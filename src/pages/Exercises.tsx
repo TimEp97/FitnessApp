@@ -9,6 +9,7 @@ import { filterExercises } from '../components/ExercisePicker';
 import { EQUIPMENT, EQUIPMENT_LABEL, LEVEL_LABEL, MUSCLES, MUSCLE_GROUPS, MUSCLE_LABEL } from '../data/labels';
 import { uid } from '../logic/dates';
 import s from './Exercises.module.css';
+import { ExerciseImage } from '../components/ExerciseImage';
 
 export function Exercises() {
   const exercises = useExercises((st) => st.exercises);
@@ -60,6 +61,7 @@ export function Exercises() {
         {list.map((e) => (
           <li key={e.id}>
             <Link to={`/uebungen/${e.id}`} className="listRow">
+              <ExerciseImage exercise={e} size="thumb" decorative />
               <span className="spacer">
                 <span className={s.name}>
                   {e.name}

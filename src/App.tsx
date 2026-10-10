@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { HashRouter, Navigate, Outlet, Route, Routes, useLocation } from 'react-router-dom';
 import { loadAll } from './stores/data';
+import { initSync } from './sync/engine';
 import { useSettings } from './stores/settings';
 import { useTheme } from './hooks/useTheme';
 import { TabBar } from './components/TabBar';
@@ -44,7 +45,10 @@ export function App() {
 
   useEffect(() => {
     loadAll()
-      .then(() => setState('ready'))
+      .then(() => {
+        setState('ready');
+        void initSync();
+      })
       .catch((e: unknown) => {
         setError(e instanceof Error ? e.message : String(e));
         setState('error');

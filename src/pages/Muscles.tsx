@@ -14,6 +14,7 @@ import { analyzeRecords } from '../logic/metrics';
 import { addDays, daysBetween, startOfWeek } from '../logic/dates';
 import { fmtNumber, fmtVolume, fmtWeight, relativeDays } from '../logic/format';
 import s from './Muscles.module.css';
+import { ExerciseImage } from '../components/ExerciseImage';
 
 const RANGES = [
   { value: 7, label: '7 Tage' },
@@ -125,6 +126,7 @@ export function Muscles() {
                 {related.slice(0, 6).map((e) => (
                   <li key={e.id}>
                     <Link to={`/uebungen/${e.id}`} className="listRow">
+                      <ExerciseImage exercise={e} size="thumb" decorative />
                       <span className="spacer">{e.name}</span>
                       <span className="muted small">{e.primary.includes(selected) ? 'primär' : 'sekundär'}</span>
                     </Link>

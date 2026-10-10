@@ -79,3 +79,25 @@
   font-weight: 700;
   font-size: 17px;
 }
+.strip {
+  list-style: none;
+  margin: 0 -20px;
+  padding: 2px 20px;
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.strip::-webkit-scrollbar {
+  display: none;
+}
+.strip li {
+  width: 112px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.25;
+}

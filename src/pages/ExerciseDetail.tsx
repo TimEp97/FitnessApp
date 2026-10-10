@@ -13,6 +13,7 @@ import { EQUIPMENT_LABEL, LEVEL_LABEL, MUSCLE_LABEL } from '../data/labels';
 import { best1RM, exerciseHistory } from '../logic/metrics';
 import { fmtDateShort, fmtWeight } from '../logic/format';
 import s from './ExerciseDetail.module.css';
+import { ExerciseImage } from '../components/ExerciseImage';
 
 export function ExerciseDetail() {
   const { id } = useParams();
@@ -44,17 +45,7 @@ export function ExerciseDetail() {
   return (
     <Page title={ex.name} back={back} sample={history.length > 0}>
       <div className="grid">
-        <div className={s.illustration} role="img" aria-label={ex.illustration ? `Illustration ${ex.name}` : 'Platzhalter: Illustration folgt'}>
-          {ex.illustration ? (
-            <img src={ex.illustration} alt="" />
-          ) : (
-            <>
-              <Icon name="image" size={32} />
-              <span>Illustration folgt</span>
-              <span className="small">Platzhalter – für diese Übung gibt es noch keine Grafik.</span>
-            </>
-          )}
-        </div>
+        <ExerciseImage exercise={ex} size="lg" />
 
         <section className="card stack" aria-label="Eckdaten">
           <dl className={s.facts}>

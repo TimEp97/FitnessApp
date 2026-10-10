@@ -30,6 +30,8 @@ export default defineConfig({
       workbox: {
         globPatterns: ['**/*.{js,css,html,svg,png,webmanifest}'],
         navigateFallback: 'index.html',
+        // Server-Sicherung nie aus dem Cache bedienen
+        navigateFallbackDenylist: [/\/api\//],
       },
     }),
   ],

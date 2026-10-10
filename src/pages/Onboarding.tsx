@@ -9,6 +9,7 @@ import { EQUIPMENT, EQUIPMENT_LABEL, GOAL_HINT, GOAL_LABEL, LEVEL_LABEL } from '
 import { daySetCount, planFromTemplate, recommendTemplate } from '../logic/planning';
 import { SESSION_OPTIONS } from './Profile';
 import s from './Onboarding.module.css';
+import { ExerciseImage } from '../components/ExerciseImage';
 
 const LEVEL_HINT: Record<Level, string> = {
   beginner: 'Weniger als 1 Jahr Krafttraining',
@@ -52,6 +53,8 @@ export function Onboarding() {
     navigate('/', { replace: true });
   };
 
+  const heroExercises = ['squat', 'bench-press', 'deadlift'].map((id) => byId.get(id)).filter((e) => e !== undefined);
+
   const toggleEq = (e: Equipment) => setEquipment((list) => (list.includes(e) ? list.filter((x) => x !== e) : [...list, e]));
 
   return (
@@ -77,10 +80,15 @@ export function Onboarding() {
       <main className={s.main}>
         {step === 0 && (
           <section className="stackLg" aria-labelledby="ob-title">
+            <div className={s.hero} aria-hidden="true">
+              {heroExercises.map((ex) => (
+                <ExerciseImage key={ex.id} exercise={ex} size="lg" decorative />
+              ))}
+            </div>
             <h1 id="ob-title" className="h1">
               Willkommen bei ATHLETIC
             </h1>
-            <p className="muted">Protokolliere dein Krafttraining in Sekunden. Alles bleibt auf deinem Gerät, ohne Konto.</p>
+            <p className="muted">Protokolliere dein Krafttraining in Sekunden. Deine Daten bleiben bei dir: im Browser und auf Wunsch auf deinem eigenen Server.</p>
             <div>
               <label className="fieldLabel" htmlFor="ob-name">
                 Wie heißt du?

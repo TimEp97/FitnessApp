@@ -1,0 +1,57 @@
+.storage {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  background: var(--card-2);
+  border-radius: var(--radius-control);
+  padding: 12px 14px;
+  font-size: 15px;
+}
+.storage svg {
+  flex-shrink: 0;
+  margin-top: 1px;
+  color: var(--accent-text);
+}
+.statusRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  background: var(--muscle-none);
+}
+.ok,
+.idle {
+  background: var(--accent);
+}
+.syncing {
+  background: var(--blue);
+}
+.offline {
+  background: var(--orange);
+}
+.error {
+  background: var(--red);
+}
+.snippet {
+  background: var(--card-2);
+  border-radius: var(--radius-control);
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: flex-start;
+}
+.snippet pre {
+  margin: 0;
+  width: 100%;
+  overflow-x: auto;
+  font-size: 13px;
+  background: var(--bg);
+  border-radius: 10px;
+  padding: 10px 12px;
+}

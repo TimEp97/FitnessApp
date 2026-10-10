@@ -16,6 +16,9 @@
   --muscle-none: #48484a;
   --chart: #c6f432;
   --muscle-secondary: #7a8f2e;
+  --illu-body: #e5e5ea;
+  --illu-prop: #48484a;
+  --illu-bg: #2c2c2e;
   --line: rgba(255, 255, 255, 0.1);
   --scrim: rgba(0, 0, 0, 0.6);
   --radius-card: 24px;
@@ -45,6 +48,9 @@
   --muscle-none: #c7c7cc;
   --chart: #6f8c00;
   --muscle-secondary: #93b31c;
+  --illu-body: #2c2c2e;
+  --illu-prop: #aeaeb2;
+  --illu-bg: #e9eadf;
   --line: rgba(0, 0, 0, 0.1);
   --scrim: rgba(0, 0, 0, 0.35);
   color-scheme: light;
@@ -172,6 +178,7 @@ p {
 
 .spacer {
   flex: 1;
+  min-width: 0;
 }
 
 /* Raster: ab 768 px zweispaltig */

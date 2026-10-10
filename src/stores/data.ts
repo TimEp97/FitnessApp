@@ -7,9 +7,12 @@ import { useExercises } from './exercises';
 import { usePlans } from './plans';
 import { useWorkouts } from './workouts';
 import { useBody } from './body';
+import { installTracking } from '../sync/tracking';
+import { markReset } from '../sync/engine';
 
 /** Lädt alle Daten aus IndexedDB in die Stores. Beim ersten Start werden Beispieldaten angelegt. */
 export async function loadAll(): Promise<void> {
+  installTracking(db);
   await ensureSeeded(db);
   const [exercises, plans, workouts, bodyLogs, settings] = await Promise.all([
     db.exercises.toArray(),
@@ -46,6 +49,7 @@ export async function deleteAllData(): Promise<void> {
     await db.exercises.bulkPut(BUILTIN_EXERCISES);
     await db.settings.put({ ...DEFAULT_SETTINGS });
   });
+  await markReset();
   await loadAll();
 }
 
@@ -78,5 +82,6 @@ export async function importData(text: string): Promise<void> {
     await db.bodyLogs.bulkPut(b.bodyLogs);
     await db.settings.put({ ...DEFAULT_SETTINGS, ...b.settings, id: 'settings' });
   });
+  await markReset();
   await loadAll();
 }

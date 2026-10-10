@@ -123,3 +123,14 @@
     transform: none;
   }
 }
+.hero {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 8px;
+}
+.hero > :first-child {
+  grid-row: 1 / 3;
+  height: 100%;
+  aspect-ratio: auto;
+}

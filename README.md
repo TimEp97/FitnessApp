@@ -1,6 +1,6 @@
 # ATHLETIC
 
-Fitness-Tracking für Krafttraining als Web-App. Mobile-first, offline nutzbar und auf dem iPhone als PWA installierbar. Alle Daten bleiben lokal im Browser (IndexedDB), es gibt kein Backend und kein Konto.
+Fitness-Tracking für Krafttraining als Web-App. Mobile-first, offline nutzbar und auf dem iPhone als PWA installierbar. Die Daten liegen im Browser (IndexedDB) und auf Wunsch zusätzlich auf dem eigenen Webspace (PHP-Datei `api/sync.php`, z. B. bei all-inkl). Es gibt kein Konto und keine Dienste Dritter.
 
 ## Schnellstart
 
@@ -17,7 +17,27 @@ npm run preview      # Build lokal ansehen
 
 `npm run build` erzeugt in `dist/` eine rein statische Seite. Den Ordnerinhalt auf einen beliebigen Webspace mit HTTPS kopieren, fertig. Die App nutzt relative Pfade und Hash-Routing (`#/training`), daher braucht der Server keine Rewrite-Regeln und die App läuft auch in einem Unterverzeichnis. HTTPS ist nötig, damit Service Worker (Offline-Betrieb) und Installation als PWA funktionieren.
 
-Auf dem iPhone: Seite in Safari öffnen → Teilen → „Zum Home-Bildschirm“.
+Auf dem iPhone: Seite in Safari öffnen → Teilen → „Zum Home-Bildschirm“. Wichtig: Die installierte App und Safari haben getrennte Speicher. Am besten direkt die installierte App nutzen und die Server-Sicherung einrichten.
+
+### Hosting bei all-inkl mit Server-Sicherung
+
+Damit die Historie dauerhaft erhalten bleibt (auch wenn der Browser-Speicher gelöscht wird oder das Gerät wechselt), sichert die App jede Änderung automatisch auf dem eigenen Webspace. Dafür reicht PHP, das in jedem all-inkl-Tarif enthalten ist. Eine Datenbank ist nicht nötig.
+
+1. `npm run build` ausführen und den **Inhalt** von `dist/` per FTP in das Zielverzeichnis der Domain laden (z. B. `/athletic/`). Der Ordner `api/` mit `sync.php` und `.htaccess` gehört dazu.
+2. Im KAS unter „Domain“ SSL (Let’s Encrypt) für die Domain aktivieren und eine PHP-Version ab 8.0 einstellen.
+3. Die App öffnen → Profil → „Speicherung und Sicherung“ → **Neuen Schlüssel erzeugen**. Den angezeigten Inhalt als Datei `api/config.php` auf den Webspace laden (Vorlage: `api/config.example.php`).
+4. In der App **Verbinden** tippen. Ab jetzt wird jede Änderung nach wenigen Sekunden gesichert, außerdem beim Schließen und beim Öffnen der App.
+5. Auf weiteren Geräten denselben Schlüssel eingeben und „Serverdaten übernehmen“ wählen.
+
+Was auf dem Server passiert:
+
+- Der aktuelle Stand liegt in `api/data/athletic.json`. Zusätzlich entsteht pro Tag eine Kopie in `api/data/history/` (die letzten 90 Tage), so lässt sich jeder frühere Stand wiederherstellen.
+- `api/data/` und `config.php` sind per `.htaccess` gegen direkten Abruf gesperrt. Zugriff gibt es nur über `sync.php` mit dem geheimen Schlüssel.
+- Ohne Netz arbeitet die App normal weiter und holt die Sicherung nach, sobald wieder eine Verbindung besteht.
+- Ändern zwei Geräte gleichzeitig, werden die Stände zusammengeführt: je Datensatz gewinnt die neuere Änderung, Löschungen werden übertragen.
+- Bei einem neuen Upload `api/config.php` und `api/data/` **nicht** löschen oder überschreiben.
+
+Zusätzlich fordert die App beim Start dauerhaften Browser-Speicher an, damit der Browser die Daten nicht bei Speicherknappheit entfernt. Der Status steht im Profil.
 
 ## Technik
 
@@ -30,22 +50,25 @@ Auf dem iPhone: Seite in Safari öffnen → Teilen → „Zum Home-Bildschirm“
 | Styling | CSS-Variablen (`src/styles/global.css`) und CSS Modules, kein UI-Framework |
 | Diagramme | eigene SVG-Komponenten (`src/components/charts`) |
 | PWA | vite-plugin-pwa, Manifest und Icons (`npm run icons` erzeugt sie neu) |
-| Tests | Vitest (`src/**/*.test.ts`), Playwright (`e2e/`) |
+| Server-Sicherung | `public/api/sync.php` (PHP 8, ohne Datenbank), Abgleich in `src/sync` |
+| Tests | Vitest (`src/**/*.test.ts`), Playwright (`e2e/`, läuft gegen einen PHP-Server wie bei all-inkl) |
 
 ## Aufbau
 
 ```
 src/
   types.ts              Datenmodell
-  data/                 Übungsbibliothek (57 Übungen), Planvorlagen, Beschriftungen
+  data/                 Übungsbibliothek (57 Übungen), Piktogramme, Planvorlagen, Beschriftungen
   db/                   Dexie-Datenbank, Beispieldaten
   logic/                reine Logik: Kennzahlen, Rekorde, Streak, Muskelbelastung,
                         Gewichts- und Übungsvorschläge, Planung, Sicherung
   stores/               Zustand-Stores (Einstellungen, Übungen, Pläne, Workouts, Körperwerte)
+  sync/                 Änderungsverfolgung, Zusammenführen, Abgleich mit api/sync.php
   components/           Tab-Leiste, Muskelkarte, Satz-Eingabe, Pausen-Timer, Diagramme …
   pages/                Screens: Home, Training, Plan bearbeiten, Workout, Zusammenfassung,
                         Muskeln, Fortschritt, Übungen, Übungsdetail, Profil, Onboarding
-e2e/                    Playwright-Tests der Kernabläufe
+e2e/                    Playwright-Tests der Kernabläufe und der Server-Sicherung
+public/api/             sync.php, config.example.php, .htaccess für den Webspace
 ```
 
 ## Umsetzungsentscheidungen
@@ -57,11 +80,13 @@ e2e/                    Playwright-Tests der Kernabläufe
 - **Schwellen der Muskelkarte** stehen als Konstanten in `src/logic/muscleLoad.ts` (`LOAD_THRESHOLDS`).
 - **Einheiten**: Kilogramm und Zentimeter. Eine Umstellung auf Pfund ist nicht umgesetzt.
 - **Kalorien** werden bewusst nicht angezeigt.
-- Kein Tracking, keine externen Anfragen außer dem Laden der App selbst.
+- **Bilder**: Jede Übung hat ein eigenes Piktogramm (SVG, `src/data/illustrations.ts`), das in Bibliothek, Workout, Plänen und auf Home erscheint. Eine echte Grafik lässt sich über das Feld `illustration` hinterlegen und hat dann Vorrang.
+- **App-Symbol**: Kurzhantel in Lime auf Schwarz, erzeugt mit `npm run icons`.
+- Kein Tracking. Anfragen gehen nur an die eigene Domain (App laden, optional `api/sync.php`).
 
 ## Offene Punkte
 
-- **Illustrationen**: Es gibt noch keine Grafiken für Übungen und keine anatomisch genaue Körperfigur. Übungen zeigen einen beschrifteten Platzhalter, die Muskelkarte ist eine vereinfachte Figur. Grafiken können über das Feld `illustration` einer Übung eingebunden werden.
+- **Illustrationen**: Die Übungen haben Piktogramme. Fotos oder detaillierte Zeichnungen und eine anatomisch genaue Körperfigur fehlen noch; sie können über das Feld `illustration` eingebunden werden.
 - **Schwellen der Muskelbelastung** (unter 4, 4 bis 12, über 12 bis 18, über 18 Sätze pro Woche) sind Startwerte und sollten vor der Veröffentlichung fachlich geprüft werden.
-- **Sync zwischen Geräten** ist nicht vorgesehen und bräuchte ein Backend mit Konto. Export und Import als JSON dienen als Backup.
+- **Sync zwischen Geräten** läuft über die eigene Server-Sicherung mit einem gemeinsamen Schlüssel (ein Nutzer). Mehrere Nutzer mit eigenen Konten sind nicht vorgesehen.
 - **HealthKit, Apple Watch, Widgets, Live Activities** erscheinen im Profil als „Spätere Ausbaustufe“.

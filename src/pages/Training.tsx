@@ -15,6 +15,7 @@ import { PLAN_TEMPLATES } from '../data/templates';
 import { daySetCount, emptyPlan, estimateMinutes, nextPlanDay, planFromTemplate } from '../logic/planning';
 import { suggestExercises, type ExerciseSuggestion } from '../logic/suggestions';
 import s from './Training.module.css';
+import { ExerciseImage } from '../components/ExerciseImage';
 
 function PlanCard({ plan, active, onActivate }: { plan: Plan; active: boolean; onActivate: () => void }) {
   const navigate = useNavigate();
@@ -117,15 +118,18 @@ export function Training() {
             </select>
             {day.items.length ? (
               <ol className={`list ${s.dayList}`}>
-                {day.items.map((it, i) => (
+                {day.items.map((it, i) => {
+                  const ex = byId.get(it.exerciseId);
+                  return (
                   <li key={`${it.exerciseId}-${i}`} className={s.dayItem}>
-                    <span className={s.dayIndex}>{i + 1}</span>
-                    <span className={s.dayName}>{byId.get(it.exerciseId)?.name ?? 'Unbekannte Übung'}</span>
+                    {ex && <ExerciseImage exercise={ex} size="thumb" decorative />}
+                    <span className={s.dayName}>{ex?.name ?? 'Unbekannte Übung'}</span>
                     <span className="muted num">
                       {it.sets} × {it.reps[0]}–{it.reps[1]}
                     </span>
                   </li>
-                ))}
+                  );
+                })}
               </ol>
             ) : (
               <p className="muted">Dieser Tag hat noch keine Übungen.</p>
@@ -177,6 +181,7 @@ export function Training() {
                       const added = dayIds.has(sg.exercise.id);
                       return (
                         <li key={sg.exercise.id} className="listRow" data-testid="suggestion">
+                          <ExerciseImage exercise={sg.exercise} size="thumb" decorative />
                           <div className="spacer">
                             <Link to={`/uebungen/${sg.exercise.id}`} className={s.sgName}>
                               {sg.exercise.name}

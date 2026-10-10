@@ -7,6 +7,7 @@ import { Page } from '../components/Page';
 import { Icon } from '../components/Icon';
 import { Segmented } from '../components/Segmented';
 import { Stepper } from '../components/Stepper';
+import { SyncSection } from '../components/SyncSection';
 import { ConfirmSheet, Sheet } from '../components/Sheet';
 import { EQUIPMENT, EQUIPMENT_LABEL, GOAL_LABEL, LEVEL_LABEL } from '../data/labels';
 import { dayKey } from '../logic/dates';
@@ -157,11 +158,13 @@ export function Profile() {
           <p className="notice">Diese Funktionen benötigen eine native iOS-App und sind in der Web-App nicht verfügbar.</p>
         </section>
 
+        <SyncSection />
+
         <section id="daten" className="card stack span2" aria-labelledby="data-title">
           <h2 id="data-title" className="h2">
             Daten
           </h2>
-          <p className="notice">Alle Daten liegen nur auf diesem Gerät, in diesem Browser. Es gibt kein Konto und keine Übertragung. Exportiere regelmäßig eine Sicherung.</p>
+          <p className="notice">Die Daten liegen in diesem Browser und, falls eingerichtet, zusätzlich auf deinem eigenen Server. Es gibt kein Konto und keine Übertragung an Dritte. Der Export erzeugt eine Sicherungsdatei zum Aufbewahren.</p>
           {message && (
             <p className={message.kind === 'error' ? 'fieldError' : 'accentText'} role={message.kind === 'error' ? 'alert' : 'status'}>
               {message.text}
@@ -232,7 +235,7 @@ export function Profile() {
       <ConfirmSheet
         open={deleteOpen}
         title="Alle Daten löschen?"
-        message="Pläne, Workouts, Körperwerte, eigene Übungen und Einstellungen werden unwiderruflich gelöscht. Exportiere vorher eine Sicherung, wenn du sie behalten willst."
+        message="Pläne, Workouts, Körperwerte, eigene Übungen und Einstellungen werden gelöscht, bei aktiver Server-Sicherung auch dort (die Tageskopien auf dem Server bleiben). Exportiere vorher eine Sicherung, wenn du die Daten behalten willst."
         confirmLabel="Endgültig löschen"
         danger
         onClose={() => setDeleteOpen(false)}

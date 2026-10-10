@@ -5,6 +5,7 @@ import { EQUIPMENT_LABEL, MUSCLE_GROUPS, MUSCLE_LABEL } from '../data/labels';
 import { Sheet } from './Sheet';
 import { Icon } from './Icon';
 import s from './ExercisePicker.module.css';
+import { ExerciseImage } from './ExerciseImage';
 
 export function filterExercises(list: Exercise[], query: string, group: string | null, equipment?: string | null): Exercise[] {
   const q = query.trim().toLocaleLowerCase('de');
@@ -59,6 +60,7 @@ export function ExercisePicker({ open, onClose, onPick, existing, title = 'Übun
           return (
             <li key={e.id}>
               <button type="button" className={`listRow ${s.item}`} onClick={() => onPick(e.id)} data-testid="picker-item">
+                <ExerciseImage exercise={e} size="thumb" decorative />
                 <span className="spacer">
                   <span className={s.name}>{e.name}</span>
                   <span className="muted small" style={{ display: 'block' }}>

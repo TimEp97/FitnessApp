@@ -25,6 +25,8 @@ export interface Exercise {
   weightStep: number;
   illustration?: string;
   custom: boolean;
+  /** Zeitpunkt der letzten Änderung, für den Abgleich mit dem Server */
+  updatedAt?: string;
 }
 
 export interface PlanItem {
@@ -46,6 +48,7 @@ export interface Plan {
   createdAt: string;
   /** Teil der Beispieldaten */
   sample?: boolean;
+  updatedAt?: string;
 }
 
 export interface SetLog {
@@ -85,6 +88,7 @@ export interface Workout {
   entries: WorkoutEntry[];
   cursor?: WorkoutCursor;
   sample?: boolean;
+  updatedAt?: string;
 }
 
 export interface BodyLog {
@@ -94,6 +98,7 @@ export interface BodyLog {
   bodyFat?: number;
   measures?: Record<string, number>;
   sample?: boolean;
+  updatedAt?: string;
 }
 
 export type Goal = 'muscle' | 'strength' | 'fitness' | 'endurance';
@@ -111,4 +116,5 @@ export interface Settings {
   theme: 'system' | 'dark' | 'light';
   hasSampleData: boolean;
   onboardingDone: boolean;
+  updatedAt?: string;
 }

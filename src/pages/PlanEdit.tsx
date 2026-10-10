@@ -14,6 +14,7 @@ import { EmptyState } from '../components/EmptyState';
 import { uid } from '../logic/dates';
 import { daySetCount, duplicatePlan, moveItem } from '../logic/planning';
 import s from './PlanEdit.module.css';
+import { ExerciseImage } from '../components/ExerciseImage';
 
 export function PlanEdit() {
   const { id } = useParams();
@@ -82,6 +83,7 @@ export function PlanEdit() {
                 onMove={(from, to) => updateDay(day.id, (d) => ({ ...d, items: moveItem(d.items, from, to) }))}
                 render={(it, i) => (
                   <>
+                    {byId.get(it.exerciseId) && <ExerciseImage exercise={byId.get(it.exerciseId)!} size="thumb" decorative />}
                     <span className={s.itemName}>{byId.get(it.exerciseId)?.name ?? 'Unbekannte Übung'}</span>
                     <button type="button" className={`btn ${s.target}`} onClick={() => setEditing({ dayId: day.id, index: i })} aria-label={`Vorgabe ändern: ${it.sets} Sätze, ${it.reps[0]} bis ${it.reps[1]} Wiederholungen`}>
                       <span className="num">

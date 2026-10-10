@@ -6,20 +6,30 @@ import { mkdirSync, writeFileSync } from 'node:fs';
 const LIME = [0xc6, 0xf4, 0x32];
 const BLACK = [0, 0, 0];
 
-// Stilisiertes „A“ (normierte Koordinaten 0..1), liegt in der Safe-Zone maskierbarer Icons.
+// Kurzhantel, 45 Grad gedreht (normierte Koordinaten 0..1, abgerundete Rechtecke [x0, y0, x1, y1, Radius]).
+// Liegt vollständig in der Safe-Zone maskierbarer Icons.
 const shapes = [
-  [[0.22, 0.78], [0.42, 0.22], [0.58, 0.22], [0.78, 0.78], [0.64, 0.78], [0.5, 0.38], [0.36, 0.78]],
-  [[0.35, 0.57], [0.65, 0.57], [0.65, 0.65], [0.35, 0.65]],
+  [0.3, 0.465, 0.7, 0.535, 0.02], // Stange
+  [0.27, 0.27, 0.355, 0.73, 0.035], // innere Scheiben
+  [0.645, 0.27, 0.73, 0.73, 0.035],
+  [0.185, 0.34, 0.265, 0.66, 0.03], // äußere Scheiben
+  [0.735, 0.34, 0.815, 0.66, 0.03],
+  [0.15, 0.455, 0.19, 0.545, 0.015], // Endkappen
+  [0.81, 0.455, 0.85, 0.545, 0.015],
 ];
 
-function inside(poly, x, y) {
-  let c = false;
-  for (let i = 0, j = poly.length - 1; i < poly.length; j = i++) {
-    const [xi, yi] = poly[i];
-    const [xj, yj] = poly[j];
-    if (yi > y !== yj > y && x < ((xj - xi) * (y - yi)) / (yj - yi) + xi) c = !c;
-  }
-  return c;
+const ANGLE = (-45 * Math.PI) / 180;
+
+function inside([x0, y0, x1, y1, r], px, py) {
+  // Punkt zurückdrehen, dann gegen das ungedrehte Rechteck prüfen
+  const dx = px - 0.5;
+  const dy = py - 0.5;
+  const x = 0.5 + dx * Math.cos(-ANGLE) - dy * Math.sin(-ANGLE);
+  const y = 0.5 + dx * Math.sin(-ANGLE) + dy * Math.cos(-ANGLE);
+  if (x < x0 || x > x1 || y < y0 || y > y1) return false;
+  const cx = Math.min(Math.max(x, x0 + r), x1 - r);
+  const cy = Math.min(Math.max(y, y0 + r), y1 - r);
+  return (x - cx) ** 2 + (y - cy) ** 2 <= r * r;
 }
 
 const crcTable = Array.from({ length: 256 }, (_, n) => {
@@ -76,6 +86,6 @@ function png(size, scale = 1) {
 mkdirSync('public/icons', { recursive: true });
 writeFileSync('public/icons/icon-192.png', png(192));
 writeFileSync('public/icons/icon-512.png', png(512));
-writeFileSync('public/icons/icon-maskable-512.png', png(512, 0.8));
+writeFileSync('public/icons/icon-maskable-512.png', png(512, 0.85));
 writeFileSync('public/icons/apple-touch-icon.png', png(180));
 console.log('Icons erzeugt.');

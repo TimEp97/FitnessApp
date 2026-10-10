@@ -10,6 +10,7 @@ import { MUSCLE_LABEL } from '../data/labels';
 import { RECORD_LABEL, recordsInWorkout, sortByStart, workoutDurationMs, workoutVolume, workoutWorkSetCount } from '../logic/metrics';
 import { fmtDateLong, fmtMinutes, fmtNumber, fmtVolume, fmtWeight } from '../logic/format';
 import s from './Summary.module.css';
+import { ExerciseImage } from '../components/ExerciseImage';
 
 function Delta({ value, format }: { value: number; format: (n: number) => string }) {
   if (Math.abs(value) < 1e-9) return <span className="muted">gleich</span>;
@@ -83,6 +84,29 @@ export function Summary() {
             </span>
             <span className={s.label}>Volumen</span>
           </div>
+        </section>
+
+        <section className="card stack" aria-labelledby="done-title">
+          <h2 id="done-title" className="h3">
+            Absolvierte Übungen
+          </h2>
+          <ul className="list">
+            {w.entries.map((e, i) => {
+              const ex = byId.get(e.exerciseId);
+              const work = e.sets.filter((x) => x.kind === 'work');
+              return (
+                <li key={`${e.exerciseId}-${i}`} className="listRow">
+                  {ex && <ExerciseImage exercise={ex} size="thumb" decorative />}
+                  <span className="spacer">
+                    <span className={s.recName}>{ex?.name ?? 'Übung'}</span>
+                    <span className="muted small num" style={{ display: 'block' }}>
+                      {work.map((x) => `${fmtWeight(x.weight)}×${x.reps}`).join('  ')}
+                    </span>
+                  </span>
+                </li>
+              );
+            })}
+          </ul>
         </section>
 
         <section className="card stack" aria-labelledby="muscles-title">

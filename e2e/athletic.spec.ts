@@ -136,3 +136,19 @@ test('6. Beispieldaten entfernen, alle Screens zeigen Leerzustände', async ({ p
   await page.goto('/#/');
   await expect(page.getByText('Lege deinen ersten Plan an')).toBeVisible();
 });
+
+test('9. Kein seitliches Scrollen bei 320 und 390 px', async ({ browser }) => {
+  for (const width of [320, 390]) {
+    const page = await (await browser.newContext({ viewport: { width, height: 760 }, isMobile: true, hasTouch: true })).newPage();
+    await skipOnboarding(page);
+    await startWorkoutFromTraining(page);
+    await page.getByRole('button', { name: 'Satz abschließen' }).click();
+    const routes = ['/', '/workout', '/training', '/muskeln', '/fortschritt', '/profil', '/uebungen', '/uebungen/bulgarian-split-squat'];
+    for (const path of routes) {
+      await page.goto(`/#${path}`);
+      await page.waitForTimeout(150);
+      const overflow = await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth);
+      expect(overflow, `${path} bei ${width} px`).toBeLessThanOrEqual(0);
+    }
+  }
+});

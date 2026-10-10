@@ -21,14 +21,18 @@
 }
 .exHead {
   display: flex;
-  align-items: flex-start;
+  align-items: flex-end;
   gap: 12px;
+}
+.exImage {
+  flex-shrink: 0;
 }
 .exName {
   font-size: 26px;
   font-weight: 800;
   letter-spacing: -0.02em;
   line-height: 1.15;
+  overflow-wrap: anywhere;
 }
 .hasNote {
   background: var(--accent-soft);

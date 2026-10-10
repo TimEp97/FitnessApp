@@ -12,6 +12,7 @@ import { daySetCount, dayMuscleGroups, estimateMinutes, nextPlanDay, plannedWeek
 import { latestRecord, RECORD_LABEL, streakWeeks, workoutDurationMs, workoutsBetween, workoutVolume } from '../logic/metrics';
 import { fmtDateLong, fmtDateShort, fmtNumber, fmtVolume, fmtWeight } from '../logic/format';
 import s from './Home.module.css';
+import { ExerciseImage } from '../components/ExerciseImage';
 
 const WEEKDAYS = ['Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa', 'So'];
 
@@ -83,6 +84,19 @@ export function Home() {
               {day.name}
             </h2>
             <p className="muted">{dayMuscleGroups(day, byId).join(' · ') || 'Noch keine Übungen'}</p>
+            {day.items.length > 0 && (
+              <ul className={s.strip} aria-label="Übungen">
+                {day.items.map((it, i) => {
+                  const ex = byId.get(it.exerciseId);
+                  return ex ? (
+                    <li key={`${it.exerciseId}-${i}`}>
+                      <ExerciseImage exercise={ex} size="md" decorative />
+                      <span>{ex.name}</span>
+                    </li>
+                  ) : null;
+                })}
+              </ul>
+            )}
             <div className={s.facts}>
               <span>
                 <b className="num">{day.items.length}</b> Übungen

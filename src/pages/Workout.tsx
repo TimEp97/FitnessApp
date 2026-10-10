@@ -16,6 +16,7 @@ import { exerciseHistory, workoutDurationMs, workoutSetCount } from '../logic/me
 import { suggestWeight } from '../logic/suggestions';
 import { fmtDuration, fmtWeight } from '../logic/format';
 import s from './Workout.module.css';
+import { ExerciseImage } from '../components/ExerciseImage';
 
 export const WEIGHT_MAX = 500;
 export const REPS_MAX = 100;
@@ -168,13 +169,13 @@ export function WorkoutPage() {
             }}
           >
             <div className={s.exHead}>
+              <Link to={`/uebungen/${exercise.id}`} aria-label={`Anleitung ${exercise.name}`} className={s.exImage}>
+                <ExerciseImage exercise={exercise} size="md" decorative />
+              </Link>
               <div className="spacer">
                 <span className="muted small num">
                   Übung {index + 1} von {active.entries.length}
                 </span>
-                <h2 id="ex-name" className={s.exName} data-testid="exercise-name">
-                  {exercise.name}
-                </h2>
               </div>
               <button
                 type="button"
@@ -188,6 +189,9 @@ export function WorkoutPage() {
                 <Icon name="note" size={20} />
               </button>
             </div>
+            <h2 id="ex-name" className={s.exName} data-testid="exercise-name">
+              {exercise.name}
+            </h2>
 
             <div className={s.meta}>
               <span className={s.setNo} data-testid="set-number">
