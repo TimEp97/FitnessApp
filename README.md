@@ -37,7 +37,7 @@ Auf dem iPhone: Seite in Safari öffnen → Teilen → „Zum Home-Bildschirm“
 ```
 src/
   types.ts              Datenmodell
-  data/                 Übungsbibliothek (55 Übungen), Planvorlagen, Beschriftungen
+  data/                 Übungsbibliothek (57 Übungen), Planvorlagen, Beschriftungen
   db/                   Dexie-Datenbank, Beispieldaten
   logic/                reine Logik: Kennzahlen, Rekorde, Streak, Muskelbelastung,
                         Gewichts- und Übungsvorschläge, Planung, Sicherung
