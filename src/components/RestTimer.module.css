@@ -1,7 +1,10 @@
 .bar {
   position: fixed;
-  left: 12px;
-  right: 12px;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  width: calc(100% - 24px);
+  max-width: calc(var(--app-width) - 24px);
   bottom: calc(var(--tabbar-h) + var(--safe-bottom) + 8px);
   z-index: 29;
   background: var(--card-2);
@@ -40,14 +43,6 @@
   color: var(--accent-text);
   font-weight: 700;
   font-size: 15px;
-}
-@media (min-width: 1024px) {
-  .bar {
-    left: auto;
-    right: 24px;
-    bottom: 24px;
-    width: 400px;
-  }
 }
 @keyframes slide {
   from {

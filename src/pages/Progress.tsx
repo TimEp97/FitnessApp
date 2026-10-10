@@ -191,7 +191,7 @@ export function Progress() {
           <p className="notice">Gestrichelte Linie: {daysPerWeek} geplante Einheiten pro Woche (im Profil änderbar).</p>
         </section>
 
-        <section className="card stack span2" aria-labelledby="records-title">
+        <section className="card stack" aria-labelledby="records-title">
           <h2 id="records-title" className="h3">
             Persönliche Rekorde
           </h2>

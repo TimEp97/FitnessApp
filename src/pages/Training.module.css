@@ -2,11 +2,6 @@
   display: grid;
   gap: 12px;
 }
-@media (min-width: 768px) {
-  .plans {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
 .planCard {
   display: flex;
   align-items: center;

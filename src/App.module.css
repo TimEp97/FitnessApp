@@ -3,23 +3,9 @@
 }
 .main {
   width: 100%;
-  max-width: 480px;
+  max-width: var(--app-width);
   margin: 0 auto;
   padding: calc(16px + var(--safe-top)) var(--gutter) calc(var(--tabbar-h) + var(--safe-bottom) + 96px);
-}
-@media (min-width: 768px) {
-  .main {
-    max-width: 920px;
-    padding-left: 32px;
-    padding-right: 32px;
-  }
-}
-@media (min-width: 1024px) {
-  .main {
-    margin-left: 232px;
-    max-width: 1040px;
-    padding: calc(32px + var(--safe-top)) 40px 96px;
-  }
 }
 .main:focus {
   outline: none;
@@ -51,7 +37,15 @@
 }
 .logo {
   font-weight: 900;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.14em;
   font-size: 24px;
   color: var(--accent-text);
+}
+.memory {
+  background: var(--card-2);
+  color: var(--text);
+  border-radius: var(--radius-control);
+  padding: 12px 16px;
+  font-size: 15px;
+  margin-bottom: 16px;
 }

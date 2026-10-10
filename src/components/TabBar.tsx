@@ -16,9 +16,6 @@ export function TabBar() {
   const running = useWorkouts((st) => Boolean(st.active));
   return (
     <nav className={s.bar} aria-label="Hauptnavigation">
-      <div className={s.brand} aria-hidden="true">
-        ATHLETIC
-      </div>
       {TABS.map((t) => {
         // Läuft ein Workout, führt „Training“ direkt dorthin.
         const to = t.to === '/training' && running ? '/workout' : t.to;

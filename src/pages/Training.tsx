@@ -209,7 +209,7 @@ export function Training() {
           </section>
         )}
 
-        <section className="stack span2" aria-labelledby="plans-title">
+        <section className="stack" aria-labelledby="plans-title">
           <div className="row">
             <h2 id="plans-title" className="h2">
               Deine Pläne

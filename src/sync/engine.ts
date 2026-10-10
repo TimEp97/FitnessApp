@@ -2,6 +2,7 @@ import { create } from 'zustand';
 import { db } from '../db/db';
 import { fingerprint, isSnapshot, mergeSnapshots, readSnapshot, type Snapshot } from './snapshot';
 import { onLocalChange, withoutTracking } from './tracking';
+import { IS_PREVIEW } from '../env';
 
 /**
  * Abgleich mit einem eigenen Server (z. B. Webspace bei all-inkl mit api/sync.php).
@@ -276,7 +277,7 @@ export async function initSync() {
   if (row?.value) useSync.setState({ meta: { ...initialMeta, ...(row.value as SyncMeta) } });
   useSync.setState({ status: getMeta().config.enabled ? 'idle' : 'off' });
   void requestPersistence();
-  if (started) return;
+  if (started || IS_PREVIEW) return;
   started = true;
   window.addEventListener('online', () => void syncNow());
   document.addEventListener('visibilitychange', () => {

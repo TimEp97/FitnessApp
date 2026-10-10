@@ -1,4 +1,4 @@
-import Dexie, { type Table } from 'dexie';
+import Dexie, { type DexieOptions, type Table } from 'dexie';
 import type { BodyLog, Exercise, Plan, Settings, Workout } from '../types';
 
 /** Technische Einträge, die nicht zu den Nutzerdaten gehören (z. B. Sync-Zustand). */
@@ -18,8 +18,8 @@ export class AthleticDB extends Dexie {
   settings!: Table<Settings, string>;
   meta!: Table<MetaRow, string>;
 
-  constructor(name = 'athletic') {
-    super(name);
+  constructor(name = 'athletic', options?: DexieOptions) {
+    super(name, options);
     this.version(1).stores({
       exercises: 'id, name',
       plans: 'id',
@@ -36,4 +36,19 @@ export class AthleticDB extends Dexie {
   }
 }
 
-export const db = new AthleticDB();
+export let db = new AthleticDB();
+
+/** true, wenn der Browser keine Datenbank erlaubt und die App nur im Arbeitsspeicher läuft */
+export let isMemoryDb = false;
+
+/** Öffnet die Datenbank. Verweigert der Browser IndexedDB, läuft die App im Arbeitsspeicher weiter. */
+export async function openDatabase(): Promise<void> {
+  try {
+    await db.open();
+  } catch {
+    const { indexedDB, IDBKeyRange } = await import('fake-indexeddb');
+    db = new AthleticDB('athletic', { indexedDB, IDBKeyRange });
+    isMemoryDb = true;
+    await db.open();
+  }
+}

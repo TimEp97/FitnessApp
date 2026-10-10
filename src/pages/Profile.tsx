@@ -8,6 +8,7 @@ import { Icon } from '../components/Icon';
 import { Segmented } from '../components/Segmented';
 import { Stepper } from '../components/Stepper';
 import { SyncSection } from '../components/SyncSection';
+import { IS_PREVIEW } from '../env';
 import { ConfirmSheet, Sheet } from '../components/Sheet';
 import { EQUIPMENT, EQUIPMENT_LABEL, GOAL_LABEL, LEVEL_LABEL } from '../data/labels';
 import { dayKey } from '../logic/dates';
@@ -160,7 +161,7 @@ export function Profile() {
 
         <SyncSection />
 
-        <section id="daten" className="card stack span2" aria-labelledby="data-title">
+        <section id="daten" className="card stack" aria-labelledby="data-title">
           <h2 id="data-title" className="h2">
             Daten
           </h2>
@@ -171,9 +172,11 @@ export function Profile() {
             </p>
           )}
           <div className={s.dataButtons}>
-            <button type="button" className="btn btnPrimary" onClick={doExport}>
-              <Icon name="download" size={20} /> Exportieren
-            </button>
+            {!IS_PREVIEW && (
+              <button type="button" className="btn btnPrimary" onClick={doExport}>
+                <Icon name="download" size={20} /> Exportieren
+              </button>
+            )}
             <button type="button" className="btn" onClick={() => fileRef.current?.click()}>
               <Icon name="upload" size={20} /> Importieren
             </button>

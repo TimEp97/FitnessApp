@@ -3,6 +3,8 @@
   left: 0;
   right: 0;
   bottom: 0;
+  margin: 0 auto;
+  max-width: var(--app-width);
   z-index: 30;
   display: flex;
   justify-content: space-around;
@@ -12,9 +14,6 @@
   border-top: 1px solid var(--line);
   padding: 4px 4px var(--safe-bottom);
   height: calc(var(--tabbar-h) + var(--safe-bottom));
-}
-.brand {
-  display: none;
 }
 .tab {
   flex: 1;
@@ -47,39 +46,4 @@
   border-radius: 50%;
   background: var(--accent);
   border: 2px solid var(--bg);
-}
-/* Ab 1024 px: seitliche Navigation */
-@media (min-width: 1024px) {
-  .bar {
-    top: 0;
-    right: auto;
-    width: 232px;
-    height: auto;
-    flex-direction: column;
-    justify-content: flex-start;
-    gap: 4px;
-    padding: calc(24px + var(--safe-top)) 12px 24px;
-    border-top: 0;
-    border-right: 1px solid var(--line);
-  }
-  .brand {
-    display: block;
-    font-weight: 900;
-    letter-spacing: 0.14em;
-    font-size: 18px;
-    padding: 8px 14px 24px;
-    color: var(--accent-text);
-  }
-  .tab {
-    flex: 0 0 auto;
-    flex-direction: row;
-    justify-content: flex-start;
-    gap: 14px;
-    padding: 0 14px;
-    min-height: 48px;
-    font-size: 16px;
-  }
-  .tab[data-active='true'] {
-    background: var(--card);
-  }
 }

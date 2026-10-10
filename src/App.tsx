@@ -1,7 +1,12 @@
 import { useEffect, useState } from 'react';
-import { HashRouter, Navigate, Outlet, Route, Routes, useLocation } from 'react-router-dom';
+import { HashRouter, MemoryRouter, Navigate, Outlet, Route, Routes, useLocation } from 'react-router-dom';
 import { loadAll } from './stores/data';
 import { initSync } from './sync/engine';
+import { IS_PREVIEW } from './env';
+import { isMemoryDb } from './db/db';
+
+// Die Vorschau läuft in einem eingebetteten Rahmen ohne eigene Adresszeile.
+const Router = IS_PREVIEW ? MemoryRouter : HashRouter;
 import { useSettings } from './stores/settings';
 import { useTheme } from './hooks/useTheme';
 import { TabBar } from './components/TabBar';
@@ -31,6 +36,11 @@ function Layout() {
       </button>
       <TabBar />
       <main id="main" className={s.main} tabIndex={-1}>
+        {isMemoryDb && (
+          <p className={s.memory} role="status">
+            Dieser Browser erlaubt keinen dauerhaften Speicher (z. B. privates Surfen). Änderungen gehen beim Schließen verloren.
+          </p>
+        )}
         <Outlet />
       </main>
       <RestTimer />
@@ -73,7 +83,7 @@ export function App() {
   }
 
   return (
-    <HashRouter>
+    <Router>
       <Routes>
         <Route path="/onboarding" element={<Onboarding />} />
         <Route element={<Layout />}>
@@ -90,6 +100,6 @@ export function App() {
           <Route path="*" element={<Navigate to="/" replace />} />
         </Route>
       </Routes>
-    </HashRouter>
+    </Router>
   );
 }

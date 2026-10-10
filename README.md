@@ -11,6 +11,7 @@ npm test             # Unit-Tests (Vitest)
 npm run test:e2e     # End-to-End-Tests (Playwright, baut vorher)
 npm run build        # statischer Build nach dist/
 npm run preview      # Build lokal ansehen
+npm run build:preview  # Vorschau als einzelne Datei preview/athletic.html (ohne Service Worker und Sync)
 ```
 
 ## Deployment
@@ -73,6 +74,8 @@ public/api/             sync.php, config.example.php, .htaccess für den Webspac
 
 ## Umsetzungsentscheidungen
 
+- **Nur Handy-Layout**: eine Spalte, Tab-Leiste unten. Auf Tablet und Desktop erscheint dieselbe Ansicht in Handybreite (480 px) mittig.
+- **Notbetrieb**: Verweigert der Browser IndexedDB (z. B. privates Surfen), läuft die App im Arbeitsspeicher weiter und weist darauf hin.
 - **Hash-Routing** statt History-Routing, damit der Build ohne Serverkonfiguration auf jedem Webspace läuft.
 - **Beispieldaten** sind mit `sample: true` markiert. „Beispieldaten entfernen“ löscht nur diese Workouts und Körperwerte, eigene Einträge bleiben. Die Beispielpläne werden auf Nachfrage behalten oder entfernt.
 - **Laufendes Workout**: Der Bedienzustand (aktuelle Übung, Pause, Pausen-Timer) liegt im Feld `cursor` des Workouts und wird nach jeder Änderung gespeichert. Nach einem Neustart geht es an derselben Stelle weiter.

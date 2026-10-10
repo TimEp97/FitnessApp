@@ -1,4 +1,4 @@
-import { db } from '../db/db';
+import { db, openDatabase } from '../db/db';
 import { DEFAULT_SETTINGS, ensureSeeded } from '../db/seed';
 import { BUILTIN_EXERCISES } from '../data/exercises';
 import { makeBackup, parseBackup } from '../logic/backup';
@@ -12,6 +12,7 @@ import { markReset } from '../sync/engine';
 
 /** Lädt alle Daten aus IndexedDB in die Stores. Beim ersten Start werden Beispieldaten angelegt. */
 export async function loadAll(): Promise<void> {
+  await openDatabase();
   installTracking(db);
   await ensureSeeded(db);
   const [exercises, plans, workouts, bodyLogs, settings] = await Promise.all([

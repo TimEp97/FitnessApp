@@ -10,7 +10,7 @@
 }
 .sheet {
   width: 100%;
-  max-width: 560px;
+  max-width: var(--app-width);
   max-height: 88dvh;
   overflow: auto;
   background: var(--card);
@@ -34,15 +34,6 @@
   display: flex;
   flex-direction: column;
   gap: 12px;
-}
-@media (min-width: 768px) {
-  .backdrop {
-    align-items: center;
-  }
-  .sheet {
-    border-radius: var(--radius-card);
-    padding-bottom: 24px;
-  }
 }
 @keyframes up {
   from {

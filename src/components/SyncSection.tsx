@@ -5,6 +5,7 @@ import { useWorkouts } from '../stores/workouts';
 import { useNow } from '../hooks/useNow';
 import { Sheet } from './Sheet';
 import { Icon } from './Icon';
+import { IS_PREVIEW } from '../env';
 import s from './SyncSection.module.css';
 
 function ago(iso: string | undefined, now: number): string {
@@ -76,7 +77,7 @@ export function SyncSection() {
   };
 
   return (
-    <section id="sicherung" className="card stack span2" aria-labelledby="sync-title">
+    <section id="sicherung" className="card stack" aria-labelledby="sync-title">
       <h2 id="sync-title" className="h2">
         Speicherung und Sicherung
       </h2>
@@ -90,7 +91,12 @@ export function SyncSection() {
         </p>
       </div>
 
-      {enabled ? (
+      {IS_PREVIEW ? (
+        <p className="muted">
+          Die Server-Sicherung funktioniert, sobald ATHLETIC auf deinem eigenen Webspace läuft (z. B. all-inkl, siehe README). In dieser Vorschau
+          bleiben die Daten nur in diesem Browser.
+        </p>
+      ) : enabled ? (
         <div className="stack" data-testid="sync-enabled">
           <div className={s.statusRow} role="status">
             <span className={`${s.dot} ${s[status]}`} aria-hidden="true" />
