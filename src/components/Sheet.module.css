@@ -1,0 +1,64 @@
+.backdrop {
+  position: fixed;
+  inset: 0;
+  background: var(--scrim);
+  z-index: 50;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  animation: fade 180ms var(--ease);
+}
+.sheet {
+  width: 100%;
+  max-width: 560px;
+  max-height: 88dvh;
+  overflow: auto;
+  background: var(--card);
+  border-radius: var(--radius-card) var(--radius-card) 0 0;
+  padding: 16px var(--gutter) calc(24px + var(--safe-bottom));
+  animation: up 220ms var(--ease);
+}
+.head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 16px;
+  position: sticky;
+  top: -16px;
+  background: var(--card);
+  padding-top: 4px;
+  z-index: 1;
+}
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+@media (min-width: 768px) {
+  .backdrop {
+    align-items: center;
+  }
+  .sheet {
+    border-radius: var(--radius-card);
+    padding-bottom: 24px;
+  }
+}
+@keyframes up {
+  from {
+    transform: translateY(24px);
+    opacity: 0;
+  }
+  to {
+    transform: none;
+    opacity: 1;
+  }
+}
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

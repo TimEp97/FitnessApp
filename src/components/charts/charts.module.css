@@ -1,0 +1,88 @@
+.wrap {
+  position: relative;
+  width: 100%;
+}
+.svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+  touch-action: pan-y;
+}
+.grid {
+  stroke: var(--line);
+  stroke-width: 1;
+}
+.axis {
+  fill: var(--text-2);
+  font-size: 11px;
+  font-family: var(--font);
+  font-variant-numeric: tabular-nums;
+}
+.axisToday {
+  fill: var(--accent-text);
+  font-weight: 700;
+}
+.line {
+  fill: none;
+  stroke: var(--chart);
+  stroke-width: 2;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+.dot {
+  fill: var(--chart);
+  stroke: var(--card);
+  stroke-width: 2;
+}
+.cross {
+  stroke: var(--text-2);
+  stroke-width: 1;
+  stroke-dasharray: 2 3;
+}
+.bar {
+  fill: var(--chart);
+}
+.barMuted {
+  fill: var(--muscle-none);
+}
+.barDashed {
+  fill: none;
+  stroke: var(--text-2);
+  stroke-width: 1.5;
+  stroke-dasharray: 4 3;
+}
+.barActive {
+  opacity: 0.75;
+}
+.target {
+  stroke: var(--text-2);
+  stroke-width: 1;
+  stroke-dasharray: 4 4;
+}
+.hit {
+  fill: transparent;
+  cursor: pointer;
+}
+.tip {
+  position: absolute;
+  top: 0;
+  transform: translate(-50%, -100%);
+  background: var(--card-2);
+  color: var(--text);
+  border-radius: 10px;
+  padding: 6px 10px;
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+  pointer-events: none;
+  font-variant-numeric: tabular-nums;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+  z-index: 2;
+}
+.tipSub {
+  display: block;
+  color: var(--text-2);
+  font-weight: 500;
+  font-size: 12px;
+}

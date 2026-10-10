@@ -1,0 +1,19 @@
+.fieldset {
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+.later {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text-2);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 2px 8px;
+  white-space: nowrap;
+}
+.dataButtons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
