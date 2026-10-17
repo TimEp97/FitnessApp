@@ -1,5 +1,5 @@
-# Konfiguration und Daten nie direkt ausliefern
-<FilesMatch "^(config(\.example)?\.php|.*\.json|\.lock)$">
+# Konfiguration, Bibliothek und Daten nie direkt ausliefern
+<FilesMatch "^(config(\.example)?\.php|_lib\.php|.*\.json|.*\.sqlite|.*\.log|\.lock)$">
   <IfModule mod_authz_core.c>
     Require all denied
   </IfModule>

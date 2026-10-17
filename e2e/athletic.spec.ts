@@ -1,7 +1,8 @@
 import { expect, test } from '@playwright/test';
-import { skipOnboarding, startWorkoutFromTraining } from './helpers';
+import { signUp, skipOnboarding, startWorkoutFromTraining } from './helpers';
 
 test('1. Onboarding durchlaufen und Plan übernehmen', async ({ page }) => {
+  await signUp(page);
   await page.goto('/');
   await page.getByLabel('Wie heißt du?').fill('Alex');
   await page.getByRole('button', { name: 'Weiter' }).click();
@@ -135,6 +136,91 @@ test('6. Beispieldaten entfernen, alle Screens zeigen Leerzustände', async ({ p
   }
   await page.goto('/#/');
   await expect(page.getByText('Lege deinen ersten Plan an')).toBeVisible();
+});
+
+test('7. Einzelnes Training löschen fragt zweimal nach', async ({ page }) => {
+  await skipOnboarding(page);
+  await page.goto('/#/fortschritt');
+  const rows = page.getByTestId('workout-history').getByRole('listitem');
+  const before = await rows.count();
+  expect(before).toBeGreaterThan(1);
+
+  // erste Rückfrage abbrechen: nichts passiert
+  await rows.first().getByRole('button', { name: /löschen$/ }).click();
+  await page.getByRole('button', { name: 'Weiter' }).click();
+  await expect(page.getByRole('dialog', { name: 'Wirklich löschen?' })).toBeVisible();
+  await page.getByRole('dialog').getByRole('button', { name: 'Abbrechen' }).click();
+  await expect(rows).toHaveCount(before);
+
+  // beide Rückfragen bestätigen
+  await rows.first().getByRole('button', { name: /löschen$/ }).click();
+  await expect(page.getByRole('dialog', { name: 'Training löschen?' })).toBeVisible();
+  await page.getByRole('button', { name: 'Weiter' }).click();
+  await page.getByRole('button', { name: 'Ja, Training löschen' }).click();
+  await expect(rows).toHaveCount(before - 1);
+
+  // auch aus der Zusammenfassung heraus
+  await rows.first().getByRole('link').click();
+  await expect(page).toHaveURL(/zusammenfassung/);
+  await page.getByRole('button', { name: 'Training löschen' }).click();
+  await page.getByRole('button', { name: 'Weiter' }).click();
+  await page.getByRole('button', { name: 'Ja, Training löschen' }).click();
+  await expect(page).toHaveURL(/#\/fortschritt$/);
+  await expect(rows).toHaveCount(before - 2);
+
+  await page.reload();
+  await expect(page.getByTestId('workout-history').getByRole('listitem')).toHaveCount(before - 2);
+});
+
+test('8. Alles zurücksetzen fragt zweimal nach und startet neu', async ({ page }) => {
+  await skipOnboarding(page);
+  await page.goto('/#/fortschritt');
+  await page.getByRole('button', { name: 'Alles zurücksetzen' }).click();
+  await expect(page.getByRole('dialog', { name: 'Alles zurücksetzen?' })).toBeVisible();
+  await page.getByRole('button', { name: 'Weiter' }).click();
+  await expect(page.getByRole('dialog', { name: 'Wirklich alles löschen?' })).toBeVisible();
+  await page.getByRole('button', { name: 'Ja, endgültig zurücksetzen' }).click();
+
+  await expect(page.getByRole('heading', { name: 'Willkommen bei ATHLETIC' })).toBeVisible();
+  await page.reload();
+  await expect(page.getByRole('heading', { name: 'Willkommen bei ATHLETIC' })).toBeVisible();
+});
+
+test('10. Fortschritt in Prozent, nach der letzten Übung direkt beenden', async ({ page }) => {
+  await skipOnboarding(page);
+  await startWorkoutFromTraining(page);
+  await expect(page.getByTestId('workout-progress')).toContainText('0 % geschafft');
+  await expect(page.getByTestId('finish-now')).toHaveCount(0);
+
+  await page.getByTestId(/stepper-(Zusatzg|G)ewicht/).click();
+  await page.getByRole('textbox', { name: /ewicht/ }).fill('20');
+  await page.keyboard.press('Enter');
+  await page.getByTestId('stepper-Wiederholungen').click();
+  await page.getByRole('textbox', { name: 'Wiederholungen' }).fill('10');
+  await page.keyboard.press('Enter');
+  await page.getByRole('button', { name: 'Satz abschließen' }).click();
+  await expect(page.getByTestId('workout-progress')).not.toContainText('0 % geschafft');
+
+  // zur letzten Übung springen und deren Sätze abschließen
+  await page.getByRole('button', { name: 'Übungsliste öffnen' }).click();
+  await page.getByRole('dialog').getByRole('button', { name: /Sätze/ }).last().click();
+  await expect(page.getByText(/^Übung (\d+) von \1$/)).toBeVisible();
+  const target = Number((await page.getByTestId('set-number').innerText()).match(/von (\d+)/)![1]);
+  for (let i = 0; i < target; i++) {
+    await expect(page.getByTestId('finish-now')).toHaveCount(0);
+    await page.getByTestId(/stepper-(Zusatzg|G)ewicht/).click();
+    await page.getByRole('textbox', { name: /ewicht/ }).fill('20');
+    await page.keyboard.press('Enter');
+    await page.getByTestId('stepper-Wiederholungen').click();
+    await page.getByRole('textbox', { name: 'Wiederholungen' }).fill('10');
+    await page.keyboard.press('Enter');
+    await page.getByRole('button', { name: 'Satz abschließen' }).click();
+  }
+  await expect(page.getByText('Letzte Übung geschafft!')).toBeVisible();
+  await page.screenshot({ path: 'test-results/finish.png', fullPage: true });
+  await page.getByTestId('finish-now').click();
+  await expect(page).toHaveURL(/zusammenfassung/);
+  await expect(page.getByTestId('summary-sets')).toHaveText(String(target + 1));
 });
 
 test('9. Kein seitliches Scrollen bei 320 und 390 px', async ({ browser }) => {

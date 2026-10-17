@@ -12,7 +12,7 @@ import { SortableList } from '../components/SortableList';
 import { ExercisePicker } from '../components/ExercisePicker';
 import { EmptyState } from '../components/EmptyState';
 import { useNow } from '../hooks/useNow';
-import { exerciseHistory, workoutDurationMs, workoutSetCount } from '../logic/metrics';
+import { exerciseHistory, plannedSets, workoutDurationMs, workoutProgress, workoutSetCount } from '../logic/metrics';
 import { suggestWeight } from '../logic/suggestions';
 import { fmtDuration, fmtWeight } from '../logic/format';
 import s from './Workout.module.css';
@@ -83,6 +83,13 @@ export function WorkoutPage() {
   useEffect(() => setShowSuggestion(false), [index, entry?.exerciseId]);
 
   const touch = useRef<{ x: number; y: number } | null>(null);
+  const finishRef = useRef<HTMLDivElement>(null);
+  const progressInfo = active ? workoutProgress(active, byId) : null;
+  const lastDone = Boolean(entry && active && index === active.entries.length - 1 && entry.sets.length >= plannedSets(entry, exercise));
+  const readyToFinish = Boolean(active && workoutSetCount(active) > 0 && (lastDone || (progressInfo?.percent ?? 0) >= 100));
+  useEffect(() => {
+    if (readyToFinish) finishRef.current?.scrollIntoView?.({ block: 'center', behavior: 'smooth' });
+  }, [readyToFinish]);
 
   if (!active) {
     return (
@@ -105,6 +112,14 @@ export function WorkoutPage() {
   const elapsed = workoutDurationMs(active, now);
   const next = active.entries[index + 1];
   const nextEx = next ? byId.get(next.exerciseId) : undefined;
+  // Letzte Übung geschafft oder alle geplanten Sätze erledigt: Beenden rückt in den Vordergrund
+  const progress = progressInfo!;
+
+  const finishNow = async () => {
+    const id = await ws.finish();
+    setFinishOpen(false);
+    navigate(id ? `/workout/zusammenfassung/${id}` : '/', { replace: true });
+  };
 
   const complete = async () => {
     const e = { weight: validateWeight(weight), reps: validateReps(reps) };
@@ -128,7 +143,7 @@ export function WorkoutPage() {
         <Icon name={paused ? 'play' : 'pause'} size={18} />
         <span className="num">{fmtDuration(elapsed)}</span>
       </button>
-      <button type="button" className="btn" onClick={() => setFinishOpen(true)}>
+      <button type="button" className={`btn ${readyToFinish ? 'btnPrimary' : ''}`} onClick={() => setFinishOpen(true)}>
         Beenden
       </button>
     </>
@@ -136,6 +151,22 @@ export function WorkoutPage() {
 
   return (
     <Page title={active.name} toolbar={header}>
+      {active.entries.length > 0 && (
+        <div className={s.progress} data-testid="workout-progress">
+          <div className={s.progressHead}>
+            <span className={s.progressPct}>
+              <span className="num">{progress.percent} %</span> geschafft
+            </span>
+            <span className="muted small num">
+              {progress.done} von {progress.planned} Sätzen
+            </span>
+          </div>
+          <div className={s.progressTrack} role="progressbar" aria-label="Workout-Fortschritt" aria-valuemin={0} aria-valuemax={100} aria-valuenow={progress.percent}>
+            <div className={s.progressFill} style={{ width: `${Math.min(100, progress.percent)}%` }} />
+          </div>
+        </div>
+      )}
+
       {paused && (
         <p className={s.pausedNote} role="status">
           Workout pausiert. Tippe auf die Zeit, um fortzusetzen.
@@ -242,8 +273,17 @@ export function WorkoutPage() {
               />
             </div>
 
-            <button type="button" className={`btn btnPrimary btnBlock ${s.complete}`} onClick={complete}>
-              <Icon name="check" /> Satz abschließen
+            {readyToFinish && (
+              <div ref={finishRef} className={s.finishBox} role="status">
+                <p className={s.finishText}>{progress.percent >= 100 ? 'Alle Sätze geschafft!' : 'Letzte Übung geschafft!'}</p>
+                <button type="button" className={`btn btnPrimary btnBlock ${s.complete}`} onClick={finishNow} data-testid="finish-now">
+                  <Icon name="check" /> Workout beenden
+                </button>
+              </div>
+            )}
+
+            <button type="button" className={`btn ${readyToFinish ? '' : 'btnPrimary'} btnBlock ${readyToFinish ? '' : s.complete}`} onClick={complete}>
+              <Icon name="check" /> {readyToFinish ? 'Noch einen Satz' : 'Satz abschließen'}
             </button>
 
             {showSuggestion && suggestion ? (
@@ -295,6 +335,7 @@ export function WorkoutPage() {
             )}
           </section>
 
+          {readyToFinish && !next ? null : (
           <section className="card stack" aria-label="Als Nächstes">
             <button type="button" className={s.nextBtn} onClick={() => setListOpen(true)}>
               <span className="spacer">
@@ -322,6 +363,17 @@ export function WorkoutPage() {
             </div>
             <p className="notice">Tipp: Nach links wischen wechselt zur nächsten Übung.</p>
           </section>
+          )}
+          {readyToFinish && !next && (
+            <section className="card row" aria-label="Weitere Optionen">
+              <button type="button" className="btn" onClick={() => ws.goTo(index - 1)} disabled={index === 0} aria-label="Vorherige Übung">
+                <Icon name="chevronLeft" />
+              </button>
+              <button type="button" className="btn spacer" onClick={() => setPickerOpen(true)}>
+                <Icon name="plus" size={20} /> Übung hinzufügen
+              </button>
+            </section>
+          )}
         </div>
       )}
 
@@ -403,15 +455,7 @@ export function WorkoutPage() {
             ? `${workoutSetCount(active)} Sätze in ${fmtDuration(elapsed)}. Übungen ohne Satz werden nicht gespeichert.`
             : 'Noch kein Satz protokolliert. Das Workout wird ohne Speichern beendet.'}
         </p>
-        <button
-          type="button"
-          className="btn btnPrimary btnBlock btnLg"
-          onClick={async () => {
-            const id = await ws.finish();
-            setFinishOpen(false);
-            navigate(id ? `/workout/zusammenfassung/${id}` : '/', { replace: true });
-          }}
-        >
+        <button type="button" className="btn btnPrimary btnBlock btnLg" onClick={finishNow}>
           {workoutSetCount(active) > 0 ? 'Beenden und speichern' : 'Beenden'}
         </button>
         {workoutSetCount(active) > 0 && (

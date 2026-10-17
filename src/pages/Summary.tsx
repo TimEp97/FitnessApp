@@ -1,4 +1,5 @@
-import { Link, useParams } from 'react-router-dom';
+import { useState } from 'react';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import type { MuscleId } from '../types';
 import { useWorkouts } from '../stores/workouts';
 import { useExercises } from '../stores/exercises';
@@ -11,6 +12,7 @@ import { RECORD_LABEL, recordsInWorkout, sortByStart, workoutDurationMs, workout
 import { fmtDateLong, fmtMinutes, fmtNumber, fmtVolume, fmtWeight } from '../logic/format';
 import s from './Summary.module.css';
 import { ExerciseImage } from '../components/ExerciseImage';
+import { DeleteWorkoutSheet } from '../components/DeleteWorkoutSheet';
 
 function Delta({ value, format }: { value: number; format: (n: number) => string }) {
   if (Math.abs(value) < 1e-9) return <span className="muted">gleich</span>;
@@ -27,6 +29,8 @@ export function Summary() {
   const { id } = useParams();
   const workouts = useWorkouts((st) => st.workouts);
   const byId = useExercises((st) => st.byId);
+  const navigate = useNavigate();
+  const [deleteOpen, setDeleteOpen] = useState(false);
   const w = workouts.find((x) => x.id === id);
 
   if (!w) {
@@ -170,6 +174,10 @@ export function Summary() {
       <Link to="/" className="btn btnPrimary btnBlock btnLg">
         Fertig
       </Link>
+      <button type="button" className="btn btnBlock btnGhost btnDanger" onClick={() => setDeleteOpen(true)}>
+        <Icon name="trash" size={20} /> Training löschen
+      </button>
+      <DeleteWorkoutSheet workout={deleteOpen ? w : null} onClose={() => setDeleteOpen(false)} onDeleted={() => navigate('/fortschritt', { replace: true })} />
     </Page>
   );
 }

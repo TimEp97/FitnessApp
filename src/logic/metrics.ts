@@ -1,4 +1,4 @@
-import type { ID, SetLog, Workout } from '../types';
+import type { Exercise, ID, SetLog, Workout, WorkoutEntry } from '../types';
 import { startOfWeek, weekKey, addDays } from './dates';
 
 export const workSets = (sets: SetLog[]): SetLog[] => sets.filter((s) => s.kind === 'work');
@@ -20,6 +20,26 @@ export function workoutWorkSetCount(w: Workout): number {
 
 export function workoutSetCount(w: Workout): number {
   return w.entries.reduce((sum, e) => sum + e.sets.length, 0);
+}
+
+/** Geplante Sätze einer Übung: Vorgabe aus dem Plan, sonst die untere Empfehlung der Übung. */
+export function plannedSets(e: WorkoutEntry, ex?: Exercise): number {
+  return e.target?.sets ?? ex?.recommended.sets[0] ?? 3;
+}
+
+/**
+ * Fortschritt eines laufenden Workouts: erledigte von geplanten Sätzen.
+ * Mehr Sätze als geplant zählen je Übung nicht über 100 % hinaus.
+ */
+export function workoutProgress(w: Workout, byId: Map<ID, Exercise>): { done: number; planned: number; percent: number } {
+  let done = 0;
+  let planned = 0;
+  for (const e of w.entries) {
+    const p = plannedSets(e, byId.get(e.exerciseId));
+    planned += p;
+    done += Math.min(e.sets.length, p);
+  }
+  return { done, planned, percent: planned ? Math.round((done / planned) * 100) : 0 };
 }
 
 /** Geschätztes 1RM nach Epley, nur für 1 bis 12 Wiederholungen. */

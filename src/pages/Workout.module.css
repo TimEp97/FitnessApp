@@ -148,3 +148,42 @@
 .jumpCurrent .jumpName {
   color: var(--accent-text);
 }
+.progress {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.progressHead {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+}
+.progressPct {
+  font-weight: 700;
+}
+.progressTrack {
+  height: 8px;
+  border-radius: 4px;
+  background: var(--card-2);
+  overflow: hidden;
+}
+.progressFill {
+  height: 100%;
+  border-radius: 4px;
+  background: var(--accent);
+  transition: width 0.3s ease;
+}
+.finishBox {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 14px;
+  border-radius: var(--radius-control);
+  background: var(--accent-soft);
+}
+.finishText {
+  font-weight: 800;
+  font-size: 18px;
+  color: var(--accent-text);
+}

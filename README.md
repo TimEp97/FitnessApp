@@ -22,17 +22,17 @@ Auf dem iPhone: Seite in Safari öffnen → Teilen → „Zum Home-Bildschirm“
 
 ### Hosting bei all-inkl mit Server-Sicherung
 
-Damit die Historie dauerhaft erhalten bleibt (auch wenn der Browser-Speicher gelöscht wird oder das Gerät wechselt), sichert die App jede Änderung automatisch auf dem eigenen Webspace. Dafür reicht PHP, das in jedem all-inkl-Tarif enthalten ist. Eine Datenbank ist nicht nötig.
+Damit die Historie dauerhaft erhalten bleibt (auch wenn der Browser-Speicher gelöscht wird oder das Gerät wechselt), sichert die App jede Änderung automatisch auf dem eigenen Webspace. Dafür reicht PHP, das in jedem all-inkl-Tarif enthalten ist. Optional landen die Daten in einer MySQL-Datenbank, ohne Datenbank in einer JSON-Datei.
 
 1. `npm run build` ausführen und den **Inhalt** von `dist/` per FTP in das Zielverzeichnis der Domain laden (z. B. `/athletic/`). Der Ordner `api/` mit `sync.php` und `.htaccess` gehört dazu.
 2. Im KAS unter „Domain“ SSL (Let’s Encrypt) für die Domain aktivieren und eine PHP-Version ab 8.0 einstellen.
-3. Die App öffnen → Profil → „Speicherung und Sicherung“ → **Neuen Schlüssel erzeugen**. Den angezeigten Inhalt als Datei `api/config.php` auf den Webspace laden (Vorlage: `api/config.example.php`).
+3. Die App öffnen → Profil → „Speicherung und Sicherung“ → **Neuen Schlüssel erzeugen**. Den angezeigten Inhalt als Datei `api/config.php` auf den Webspace laden (Vorlage: `api/config.example.php`). Für die Datenbank dort zusätzlich `DB_NAME`, `DB_USER` und `DB_PASS` aus dem KAS (Datenbanken) eintragen; die Tabellen legt `sync.php` beim ersten Aufruf selbst an.
 4. In der App **Verbinden** tippen. Ab jetzt wird jede Änderung nach wenigen Sekunden gesichert, außerdem beim Schließen und beim Öffnen der App.
 5. Auf weiteren Geräten denselben Schlüssel eingeben und „Serverdaten übernehmen“ wählen.
 
 Was auf dem Server passiert:
 
-- Der aktuelle Stand liegt in `api/data/athletic.json`. Zusätzlich entsteht pro Tag eine Kopie in `api/data/history/` (die letzten 90 Tage), so lässt sich jeder frühere Stand wiederherstellen.
+- Mit Datenbank liegt der aktuelle Stand in der Tabelle `athletic_state`, pro Tag entsteht eine Kopie in `athletic_history` (die letzten 90 Tage). Ohne Datenbank liegen sie in `api/data/athletic.json` und `api/data/history/`. So lässt sich jeder frühere Stand wiederherstellen.
 - `api/data/` und `config.php` sind per `.htaccess` gegen direkten Abruf gesperrt. Zugriff gibt es nur über `sync.php` mit dem geheimen Schlüssel.
 - Ohne Netz arbeitet die App normal weiter und holt die Sicherung nach, sobald wieder eine Verbindung besteht.
 - Ändern zwei Geräte gleichzeitig, werden die Stände zusammengeführt: je Datensatz gewinnt die neuere Änderung, Löschungen werden übertragen.

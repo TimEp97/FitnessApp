@@ -37,21 +37,3 @@
 .error {
   background: var(--red);
 }
-.snippet {
-  background: var(--card-2);
-  border-radius: var(--radius-control);
-  padding: 14px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  align-items: flex-start;
-}
-.snippet pre {
-  margin: 0;
-  width: 100%;
-  overflow-x: auto;
-  font-size: 13px;
-  background: var(--bg);
-  border-radius: 10px;
-  padding: 10px 12px;
-}

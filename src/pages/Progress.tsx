@@ -1,4 +1,5 @@
 import { useMemo, useState } from 'react';
+import type { Workout } from '../types';
 import { Link } from 'react-router-dom';
 import { useWorkouts } from '../stores/workouts';
 import { useExercises } from '../stores/exercises';
@@ -9,12 +10,14 @@ import { Segmented } from '../components/Segmented';
 import { LineChart } from '../components/charts/LineChart';
 import { BarChart } from '../components/charts/BarChart';
 import { Sheet } from '../components/Sheet';
+import { DeleteWorkoutSheet } from '../components/DeleteWorkoutSheet';
+import { ResetSheet } from '../components/ResetSheet';
 import { Stepper } from '../components/Stepper';
 import { EmptyState } from '../components/EmptyState';
 import { Icon } from '../components/Icon';
-import { analyzeRecords, best1RM, exerciseHistory, weeklyBuckets } from '../logic/metrics';
+import { analyzeRecords, best1RM, exerciseHistory, weeklyBuckets, workoutDurationMs, workoutWorkSetCount } from '../logic/metrics';
 import { DAY_MS } from '../logic/dates';
-import { fmtDateShort, fmtNumber, fmtVolume, fmtWeight } from '../logic/format';
+import { fmtDateLong, fmtDateShort, fmtMinutes, fmtNumber, fmtVolume, fmtWeight } from '../logic/format';
 import s from './Progress.module.css';
 
 const PERIODS = [
@@ -35,6 +38,8 @@ export function Progress() {
   const daysPerWeek = useSettings((st) => st.settings.daysPerWeek);
   const [days, setDays] = useState(91);
   const [weightOpen, setWeightOpen] = useState(false);
+  const [toDelete, setToDelete] = useState<Workout | null>(null);
+  const [resetOpen, setResetOpen] = useState(false);
 
   const now = Date.now();
   const from = now - days * DAY_MS;
@@ -75,7 +80,9 @@ export function Progress() {
       <Page title="Fortschritt">
         <EmptyState icon="chart" title="Noch keine Statistiken" text="Sobald du Workouts protokollierst, siehst du hier deine Entwicklung." action={<Link to="/training" className="btn btnPrimary btnLg">Zum Training</Link>} />
         <BodyWeightButton onClick={() => setWeightOpen(true)} />
+        {logs.length > 0 && <ResetButton onClick={() => setResetOpen(true)} />}
         {weightSheet()}
+        <ResetSheet open={resetOpen} onClose={() => setResetOpen(false)} />
       </Page>
     );
   }
@@ -221,13 +228,49 @@ export function Progress() {
             <p className="muted">Noch keine Rekorde.</p>
           )}
         </section>
+
+        <section className="card stack" aria-labelledby="history-title">
+          <h2 id="history-title" className="h3">
+            Alle Trainings
+          </h2>
+          {workouts.length ? (
+            <ul className="list" data-testid="workout-history">
+              {[...workouts].reverse().map((w) => (
+                <li key={w.id} className="listRow">
+                  <Link to={`/workout/zusammenfassung/${w.id}`} className={`spacer ${s.histLink}`}>
+                    <span className={s.recName}>{w.name}</span>
+                    <span className="muted small num" style={{ display: 'block' }}>
+                      {fmtDateLong(w.startedAt)} · {fmtMinutes(workoutDurationMs(w))} · {workoutWorkSetCount(w)} Sätze
+                    </span>
+                  </Link>
+                  <button type="button" className="iconBtn iconBtnGhost btnDanger" aria-label={`${w.name} vom ${fmtDateLong(w.startedAt)} löschen`} onClick={() => setToDelete(w)}>
+                    <Icon name="trash" size={20} />
+                  </button>
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p className="muted">Noch keine Trainings.</p>
+          )}
+        </section>
       </div>
       <p className="notice">
         Volumen und Leistung sind Messwerte aus deinen Protokollen. Das 1RM ist nach Epley geschätzt. Muskelzuwachs lässt sich daraus nicht exakt
         bestimmen.
       </p>
+      <ResetButton onClick={() => setResetOpen(true)} />
       {weightSheet()}
+      <DeleteWorkoutSheet workout={toDelete} onClose={() => setToDelete(null)} />
+      <ResetSheet open={resetOpen} onClose={() => setResetOpen(false)} />
     </Page>
+  );
+}
+
+function ResetButton({ onClick }: { onClick: () => void }) {
+  return (
+    <button type="button" className="btn btnBlock btnDanger" onClick={onClick}>
+      <Icon name="trash" size={20} /> Alles zurücksetzen
+    </button>
   );
 }
 

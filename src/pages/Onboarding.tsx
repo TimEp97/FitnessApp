@@ -2,6 +2,7 @@ import { useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import type { Equipment, Goal, Level } from '../types';
 import { useSettings } from '../stores/settings';
+import { useAuth } from '../auth/auth';
 import { useExercises } from '../stores/exercises';
 import { usePlans } from '../stores/plans';
 import { Icon } from '../components/Icon';
@@ -23,7 +24,8 @@ export function Onboarding() {
   const byId = useExercises((st) => st.byId);
   const navigate = useNavigate();
   const [step, setStep] = useState(0);
-  const [name, setName] = useState(settings.name);
+  const username = useAuth((st) => st.user?.username ?? '');
+  const [name, setName] = useState(settings.name || username);
   const [goal, setGoal] = useState<Goal>(settings.goal);
   const [experience, setExperience] = useState<Level>(settings.experience);
   const [days, setDays] = useState(settings.daysPerWeek);

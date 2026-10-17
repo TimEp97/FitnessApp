@@ -11,8 +11,8 @@ import { installTracking } from '../sync/tracking';
 import { markReset } from '../sync/engine';
 
 /** Lädt alle Daten aus IndexedDB in die Stores. Beim ersten Start werden Beispieldaten angelegt. */
-export async function loadAll(): Promise<void> {
-  await openDatabase();
+export async function loadAll(dbName?: string): Promise<void> {
+  await openDatabase(dbName);
   installTracking(db);
   await ensureSeeded(db);
   const [exercises, plans, workouts, bodyLogs, settings] = await Promise.all([

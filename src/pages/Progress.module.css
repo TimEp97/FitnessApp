@@ -10,3 +10,8 @@
   flex-direction: column;
   align-items: flex-end;
 }
+.histLink {
+  color: inherit;
+  text-decoration: none;
+  min-width: 0;
+}

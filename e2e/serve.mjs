@@ -1,23 +1,37 @@
 // Startet den gebauten Stand wie auf einem PHP-Webspace (z. B. all-inkl):
-// statische Dateien plus api/sync.php. Ohne PHP wird auf vite preview ausgewichen.
+// statische Dateien plus api/*.php, Datenbank als SQLite-Datei, Mails in eine Logdatei.
+// PHP wird über PHP_BIN gesucht, sonst im PATH.
 import { spawn, spawnSync } from 'node:child_process';
-import { cpSync, rmSync, writeFileSync } from 'node:fs';
+import { cpSync, mkdirSync, rmSync, writeFileSync } from 'node:fs';
+import { dirname, join, resolve } from 'node:path';
 
-export const E2E_SYNC_KEY = 'e2e-test-key-0123456789abcdef';
-const site = '.e2e-site';
+export const SITE = '.e2e-site';
+export const SETUP_CODE = 'e2e-setup-code-0123456789';
 const port = process.env.PORT ?? '4173';
+const php = process.env.PHP_BIN || 'php';
 
-const hasPhp = spawnSync('php', ['-v']).status === 0;
-let child;
-if (hasPhp) {
-  rmSync(site, { recursive: true, force: true });
-  cpSync('dist', site, { recursive: true });
-  writeFileSync(`${site}/api/config.php`, `<?php define('SYNC_KEY', '${E2E_SYNC_KEY}');\n`);
-  child = spawn('php', ['-S', `127.0.0.1:${port}`, '-t', site], { stdio: 'ignore', env: { ...process.env, PHP_CLI_SERVER_WORKERS: '4' } });
-} else {
-  console.warn('PHP fehlt – Sync-Tests werden übersprungen.');
-  child = spawn('npx', ['vite', 'preview', '--port', port, '--strictPort'], { stdio: 'inherit' });
+if (spawnSync(php, ['-v']).status !== 0) {
+  console.error('PHP fehlt. Installiere PHP 8 (mit pdo_sqlite) oder setze PHP_BIN auf php.exe.');
+  process.exit(1);
 }
+
+rmSync(SITE, { recursive: true, force: true });
+cpSync('dist', SITE, { recursive: true });
+const data = resolve(SITE, 'api', 'data');
+mkdirSync(data, { recursive: true });
+const p = (f) => join(data, f).replaceAll('\\', '/');
+writeFileSync(
+  `${SITE}/api/config.php`,
+  `<?php
+define('DB_DSN', 'sqlite:${p('e2e.sqlite')}');
+define('SETUP_CODE', '${SETUP_CODE}');
+define('MAIL_LOG', '${p('mail.log')}');
+`,
+);
+
+// Unter Windows ist pdo_sqlite nicht fest eingebaut
+const args = process.platform === 'win32' ? ['-d', `extension_dir=${join(dirname(php === 'php' ? spawnSync('where', ['php']).stdout.toString().split(/\r?\n/)[0] : php), 'ext')}`, '-d', 'extension=pdo_sqlite'] : [];
+const child = spawn(php, [...args, '-S', `127.0.0.1:${port}`, '-t', SITE], { stdio: 'ignore', env: { ...process.env, PHP_CLI_SERVER_WORKERS: '4' } });
 const stop = () => child.kill();
 process.on('SIGINT', stop);
 process.on('SIGTERM', stop);

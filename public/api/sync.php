@@ -1,102 +1,62 @@
 <?php
 /**
- * ATHLETIC – Server-Sicherung
+ * ATHLETIC – Server-Sicherung pro Konto
  *
- * Speichert den Datenstand der App als JSON-Datei auf dem eigenen Webspace
- * (z. B. all-inkl) und legt pro Tag eine Kopie als Historie an.
- *
- * Einrichtung: config.example.php nach config.php kopieren und dort den
- * Schlüssel eintragen, den die App im Profil unter „Server-Sicherung“ erzeugt.
+ * Speichert den Datenstand des angemeldeten Nutzers in der Datenbank und legt
+ * pro Tag eine Kopie als Historie an (die letzten 90 Tage).
  *
  *   GET  api/sync.php   → { revision, savedAt, data }
  *   PUT  api/sync.php   ← { baseRevision, force, data }  → { revision, savedAt }
  *                         409 mit aktuellem Stand, wenn baseRevision veraltet ist
  *
- * Authentifizierung über den Header „X-Sync-Key“.
+ * Angemeldet wird über auth.php (Cookie).
  */
 
 declare(strict_types=1);
 
+require __DIR__ . '/_lib.php';
+
 const MAX_BYTES = 20 * 1024 * 1024;
 const KEEP_DAILY_COPIES = 90;
 
-header('Content-Type: application/json; charset=utf-8');
-header('Cache-Control: no-store');
-header('X-Content-Type-Options: nosniff');
-header('X-Robots-Tag: noindex');
+$user = require_user();
+$userId = (int) $user['id'];
 
-function reply(int $status, array $body): void
+function read_state(int $userId, bool $forUpdate = false): array
 {
-    http_response_code($status);
-    echo json_encode($body, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
-    exit;
-}
-
-$configFile = __DIR__ . '/config.php';
-if (!is_file($configFile)) {
-    reply(503, ['error' => 'not_configured']);
-}
-require $configFile;
-if (!defined('SYNC_KEY') || !is_string(SYNC_KEY) || strlen(SYNC_KEY) < 24) {
-    reply(503, ['error' => 'not_configured', 'hint' => 'SYNC_KEY in config.php fehlt oder ist kürzer als 24 Zeichen']);
-}
-
-$key = $_SERVER['HTTP_X_SYNC_KEY'] ?? '';
-if (!is_string($key) || !hash_equals(SYNC_KEY, $key)) {
-    usleep(400000); // Rateversuche bremsen
-    reply(401, ['error' => 'unauthorized']);
-}
-
-$dir = __DIR__ . '/data';
-$historyDir = $dir . '/history';
-foreach ([$dir, $historyDir] as $d) {
-    if (!is_dir($d) && !mkdir($d, 0700, true) && !is_dir($d)) {
-        reply(500, ['error' => 'storage_unavailable']);
+    $sql = 'SELECT revision, saved_at, data FROM athletic_user_state WHERE user_id = ?' . ($forUpdate && !is_sqlite(db()) ? ' FOR UPDATE' : '');
+    $q = db()->prepare($sql);
+    $q->execute([$userId]);
+    $row = $q->fetch();
+    if ($row === false || $row['data'] === 'null') {
+        return ['revision' => (int) ($row['revision'] ?? 0), 'savedAt' => null, 'data' => null];
     }
-}
-// Datenordner gegen direkten Abruf sperren (Apache, wie bei all-inkl)
-$htaccess = $dir . '/.htaccess';
-if (!is_file($htaccess)) {
-    file_put_contents($htaccess, "<IfModule mod_authz_core.c>\n  Require all denied\n</IfModule>\n<IfModule !mod_authz_core.c>\n  Order allow,deny\n  Deny from all\n</IfModule>\n");
-}
-
-$file = $dir . '/athletic.json';
-$lockHandle = fopen($dir . '/.lock', 'c');
-if ($lockHandle === false) {
-    reply(500, ['error' => 'storage_unavailable']);
-}
-
-function readState(string $file): array
-{
-    if (!is_file($file)) {
-        return ['revision' => 0, 'savedAt' => null, 'data' => null];
-    }
-    $state = json_decode((string) file_get_contents($file), true);
-    if (!is_array($state) || !isset($state['revision'])) {
+    $data = json_decode($row['data'], true);
+    if (!is_array($data)) {
         reply(500, ['error' => 'corrupt_state']);
     }
-    return $state;
+    return ['revision' => (int) $row['revision'], 'savedAt' => $row['saved_at'], 'data' => $data];
 }
 
-$method = $_SERVER['REQUEST_METHOD'] ?? 'GET';
-
-if ($method === 'GET') {
-    flock($lockHandle, LOCK_SH);
-    $state = readState($file);
-    flock($lockHandle, LOCK_UN);
-    reply(200, $state);
+function encode(array $data): string
+{
+    $json = json_encode($data, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+    if ($json === false) {
+        reply(500, ['error' => 'write_failed']);
+    }
+    return $json;
 }
 
-if ($method !== 'PUT' && $method !== 'POST') {
+if (method() === 'GET') {
+    reply(200, read_state($userId));
+}
+
+if (method() !== 'PUT' && method() !== 'POST') {
     reply(405, ['error' => 'method_not_allowed']);
 }
 
-$raw = file_get_contents('php://input', false, null, 0, MAX_BYTES + 1);
-if ($raw === false || strlen($raw) > MAX_BYTES) {
-    reply(413, ['error' => 'too_large']);
-}
-$body = json_decode($raw, true);
-if (!is_array($body) || !is_array($body['data'] ?? null)) {
+$body = body(MAX_BYTES);
+if (!is_array($body['data'] ?? null)) {
     reply(400, ['error' => 'invalid_body']);
 }
 foreach (['exercises', 'plans', 'workouts', 'bodyLogs', 'deleted'] as $k) {
@@ -105,38 +65,33 @@ foreach (['exercises', 'plans', 'workouts', 'bodyLogs', 'deleted'] as $k) {
     }
 }
 
-flock($lockHandle, LOCK_EX);
-$state = readState($file);
-$force = ($body['force'] ?? false) === true;
-$base = $body['baseRevision'] ?? null;
-if (!$force && $base !== $state['revision']) {
-    flock($lockHandle, LOCK_UN);
-    reply(409, $state);
-}
+try {
+    tx_begin();
+    // Zeile anlegen, falls noch keine existiert, damit die Sperre greift
+    db()->prepare(insert_ignore() . " INTO athletic_user_state (user_id, revision, saved_at, data) VALUES (?, 0, '', 'null')")->execute([$userId]);
+    $state = read_state($userId, true);
+    $force = ($body['force'] ?? false) === true;
+    if (!$force && ($body['baseRevision'] ?? null) !== $state['revision']) {
+        tx_rollback();
+        reply(409, $state);
+    }
 
-// Tageskopie des bisherigen Stands als Historie
-if (is_file($file)) {
-    $daily = $historyDir . '/athletic-' . date('Y-m-d') . '.json';
-    if (!is_file($daily)) {
-        copy($file, $daily);
-        $copies = glob($historyDir . '/athletic-*.json') ?: [];
-        sort($copies);
-        foreach (array_slice($copies, 0, max(0, count($copies) - KEEP_DAILY_COPIES)) as $old) {
-            unlink($old);
+    // Tageskopie des bisherigen Stands als Historie
+    if ($state['data'] !== null) {
+        $copy = db()->prepare(insert_ignore() . ' INTO athletic_user_history (user_id, day, revision, saved_at, data) VALUES (?, ?, ?, ?, ?)');
+        $copy->execute([$userId, date('Y-m-d'), $state['revision'], (string) $state['savedAt'], encode($state['data'])]);
+        if ($copy->rowCount() > 0) {
+            db()->prepare('DELETE FROM athletic_user_history WHERE user_id = ? AND day < ?')
+                ->execute([$userId, date('Y-m-d', now() - KEEP_DAILY_COPIES * 86400)]);
         }
     }
-}
 
-$next = [
-    'revision' => (int) $state['revision'] + 1,
-    'savedAt' => gmdate('Y-m-d\TH:i:s\Z'),
-    'data' => $body['data'],
-];
-$tmp = $file . '.tmp';
-$json = json_encode($next, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
-if ($json === false || file_put_contents($tmp, $json, LOCK_EX) === false || !rename($tmp, $file)) {
-    flock($lockHandle, LOCK_UN);
+    $next = ['revision' => $state['revision'] + 1, 'savedAt' => iso()];
+    db()->prepare('UPDATE athletic_user_state SET revision = ?, saved_at = ?, data = ? WHERE user_id = ?')
+        ->execute([$next['revision'], $next['savedAt'], encode($body['data']), $userId]);
+    tx_commit();
+} catch (PDOException) {
+    tx_rollback();
     reply(500, ['error' => 'write_failed']);
 }
-flock($lockHandle, LOCK_UN);
-reply(200, ['revision' => $next['revision'], 'savedAt' => $next['savedAt']]);
+reply(200, $next);

@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
-import { analyzeRecords, epley1RM, exerciseHistory, latestRecord, recordsInWorkout, streakWeeks, volumeOfSets, workoutDurationMs, workoutVolume } from './metrics';
-import { set, workout } from '../test/factory';
+import { analyzeRecords, epley1RM, workoutProgress, exerciseHistory, latestRecord, recordsInWorkout, streakWeeks, volumeOfSets, workoutDurationMs, workoutVolume } from './metrics';
+import { exercise, set, workout } from '../test/factory';
 
 describe('Volumen', () => {
   it('summiert Gewicht × Wiederholungen der Arbeitssätze', () => {
@@ -102,5 +102,27 @@ describe('Dauer und Historie', () => {
     const h = exerciseHistory([a, b], 'x');
     expect(h.map((s) => s.workoutId)).toEqual([b.id, a.id]);
     expect(h[1].sets).toHaveLength(1);
+  });
+});
+
+describe('Workout-Fortschritt', () => {
+  const byId = new Map([['a', exercise('a', ['chest'])], ['b', exercise('b', ['lats'])]]);
+  it('zählt erledigte von geplanten Sätzen, ohne Vorgabe die untere Empfehlung', () => {
+    const w = workout('2026-03-02T18:00:00', [
+      { ex: 'a', sets: [set(50, 10), set(50, 10)] },
+      { ex: 'b', sets: [] },
+    ]);
+    w.entries[0].target = { sets: 4, reps: [8, 12] };
+    expect(workoutProgress(w, byId)).toEqual({ done: 2, planned: 7, percent: 29 });
+  });
+  it('Zusatzsätze heben eine Übung nicht über 100 %', () => {
+    const w = workout('2026-03-02T18:00:00', [
+      { ex: 'a', sets: [set(50, 10), set(50, 10), set(50, 10), set(50, 10), set(50, 10)] },
+      { ex: 'b', sets: [set(20, 10)] },
+    ]);
+    expect(workoutProgress(w, byId)).toEqual({ done: 4, planned: 6, percent: 67 });
+  });
+  it('ohne Übungen 0 %', () => {
+    expect(workoutProgress(workout('2026-03-02T18:00:00', []), byId).percent).toBe(0);
   });
 });

@@ -2,14 +2,16 @@ import { useEffect, useRef, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import type { Equipment, Goal, Level, Settings } from '../types';
 import { useSettings } from '../stores/settings';
-import { deleteAllData, exportData, importData, removeSampleData } from '../stores/data';
+import { exportData, importData, removeSampleData } from '../stores/data';
 import { Page } from '../components/Page';
 import { Icon } from '../components/Icon';
 import { Segmented } from '../components/Segmented';
 import { Stepper } from '../components/Stepper';
 import { SyncSection } from '../components/SyncSection';
+import { AccountSection } from '../components/AccountSection';
 import { IS_PREVIEW } from '../env';
 import { ConfirmSheet, Sheet } from '../components/Sheet';
+import { ResetSheet } from '../components/ResetSheet';
 import { EQUIPMENT, EQUIPMENT_LABEL, GOAL_LABEL, LEVEL_LABEL } from '../data/labels';
 import { dayKey } from '../logic/dates';
 import s from './Profile.module.css';
@@ -51,6 +53,8 @@ export function Profile() {
   return (
     <Page title="Profil">
       <div className="grid">
+        {!IS_PREVIEW && <AccountSection />}
+
         <section className="card stackLg" aria-labelledby="about-title">
           <h2 id="about-title" className="h2">
             Über dich
@@ -165,7 +169,7 @@ export function Profile() {
           <h2 id="data-title" className="h2">
             Daten
           </h2>
-          <p className="notice">Die Daten liegen in diesem Browser und, falls eingerichtet, zusätzlich auf deinem eigenen Server. Es gibt kein Konto und keine Übertragung an Dritte. Der Export erzeugt eine Sicherungsdatei zum Aufbewahren.</p>
+          <p className="notice">Die Daten liegen in diesem Browser und in deinem Konto auf dem Server der App. Es gibt keine Übertragung an Dritte. Der Export erzeugt eine Sicherungsdatei zum Aufbewahren.</p>
           {message && (
             <p className={message.kind === 'error' ? 'fieldError' : 'accentText'} role={message.kind === 'error' ? 'alert' : 'status'}>
               {message.text}
@@ -186,7 +190,7 @@ export function Profile() {
               </button>
             )}
             <button type="button" className="btn btnDanger" onClick={() => setDeleteOpen(true)}>
-              <Icon name="trash" size={20} /> Alle Daten löschen
+              <Icon name="trash" size={20} /> Alles zurücksetzen
             </button>
           </div>
           <input
@@ -235,19 +239,7 @@ export function Profile() {
         </button>
       </Sheet>
 
-      <ConfirmSheet
-        open={deleteOpen}
-        title="Alle Daten löschen?"
-        message="Pläne, Workouts, Körperwerte, eigene Übungen und Einstellungen werden gelöscht, bei aktiver Server-Sicherung auch dort (die Tageskopien auf dem Server bleiben). Exportiere vorher eine Sicherung, wenn du die Daten behalten willst."
-        confirmLabel="Endgültig löschen"
-        danger
-        onClose={() => setDeleteOpen(false)}
-        onConfirm={async () => {
-          await deleteAllData();
-          setDeleteOpen(false);
-          navigate('/onboarding', { replace: true });
-        }}
-      />
+      <ResetSheet open={deleteOpen} onClose={() => setDeleteOpen(false)} />
 
       <ConfirmSheet
         open={importText !== null}
