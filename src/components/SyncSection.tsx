@@ -1,4 +1,4 @@
-import { useSync, syncNow } from '../sync/engine';
+import { useSync, syncAgain } from '../sync/engine';
 import { useNow } from '../hooks/useNow';
 import { Icon } from './Icon';
 import { IS_PREVIEW } from '../env';
@@ -60,7 +60,7 @@ export function SyncSection() {
             Jede Änderung wird automatisch in deinem Konto auf dem Server gesichert, dort entsteht zusätzlich jeden Tag eine Kopie. Melde dich auf
             weiteren Geräten mit demselben Konto an, um die Daten dort zu nutzen.
           </p>
-          <button type="button" className="btn" onClick={() => void syncNow()} disabled={status === 'syncing'}>
+          <button type="button" className="btn" onClick={() => void syncAgain()}>
             <Icon name="upload" size={20} /> Jetzt sichern
           </button>
         </div>

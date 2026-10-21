@@ -1,5 +1,5 @@
 import { expect, test, type Page } from '@playwright/test';
-import { ADMIN, createInvite, lastMailTo, loginViaForm, newCredentials, signUp, skipOnboarding, startWorkoutFromTraining, syncAndWait } from './helpers';
+import { ADMIN, API_HEADERS, createInvite, lastMailTo, loginViaForm, newCredentials, signUp, skipOnboarding, startWorkoutFromTraining, syncAndWait } from './helpers';
 
 async function logOneSet(page: Page, weight: string) {
   await startWorkoutFromTraining(page);
@@ -76,6 +76,7 @@ test('A3. Registrieren nur mit gültigem Einladungscode, der Link füllt den Cod
   await expect(page.getByRole('heading', { name: 'Willkommen bei ATHLETIC' })).toBeVisible();
   // Name im Onboarding ist mit dem Benutzernamen vorbelegt
   await page.getByRole('button', { name: 'Überspringen' }).click();
+  await expect(page.getByTestId('today-card')).toBeVisible();
   await page.goto('/#/profil');
   await expect(page.getByTestId('account-username')).toHaveText(creds.username);
 });
@@ -136,8 +137,12 @@ test('A6. Abgelaufene Anmeldung: neu anmelden, Daten auf dem Gerät bleiben', as
   await page.getByRole('button', { name: 'Satz abschließen' }).click();
   await context.clearCookies();
   await page.goto('/#/profil');
-  await page.getByRole('button', { name: 'Jetzt sichern' }).click();
-  await expect(page.getByText('Deine Anmeldung ist abgelaufen')).toBeVisible();
+  // Die automatische Sicherung kann die abgelaufene Anmeldung schon vorher bemerkt haben
+  const expired = page.getByText('Deine Anmeldung ist abgelaufen');
+  const saveNow = page.getByRole('button', { name: 'Jetzt sichern' });
+  await expect(expired.or(saveNow)).toBeVisible();
+  if (!(await expired.isVisible())) await saveNow.click({ timeout: 2_000 }).catch(() => undefined);
+  await expect(expired).toBeVisible();
   await expect(page.getByLabel('Benutzername oder E-Mail')).toHaveValue(creds.username);
   await page.getByLabel('Passwort', { exact: true }).fill(creds.password);
   await page.getByRole('button', { name: 'Anmelden' }).click();
@@ -162,6 +167,7 @@ test('A7. Admin: Einladung in der App erstellen, Nutzerliste, normale Nutzer seh
   const skip = page.getByRole('button', { name: 'Überspringen' });
   await expect(page.getByTestId('today-card').or(skip)).toBeVisible();
   if (await skip.isVisible()) await skip.click();
+  await expect(page.getByTestId('today-card')).toBeVisible();
   await page.goto('/#/profil');
   await page.getByRole('link', { name: /Nutzer und Einladungen/ }).click();
   await expect(page.getByRole('heading', { name: 'Nutzer verwalten' })).toBeVisible();
@@ -170,4 +176,41 @@ test('A7. Admin: Einladung in der App erstellen, Nutzerliste, normale Nutzer seh
   await page.getByRole('button', { name: 'Einladung erstellen' }).click();
   await expect(page.getByTestId('invite-code')).toHaveText(/^[A-Z0-9]{4}-[A-Z0-9]{4}-[A-Z0-9]{4}$/);
   await expect(page.getByRole('list', { name: 'Einladungen' })).toContainText('Max');
+});
+
+test('A8. Beendetes Workout landet ohne Zutun auf dem Server und kommt auf einem leeren Gerät zurück', async ({ browser }) => {
+  const ctxA = await browser.newContext();
+  const a = await ctxA.newPage();
+  const creds = await skipOnboarding(a);
+  const summaryUrl = await logOneSet(a, '42,5');
+  const workoutId = summaryUrl.split('/').pop()!;
+
+  // Kein „Jetzt sichern“: die App sichert selbst, während die Zusammenfassung zu sehen ist
+  await expect
+    .poll(
+      async () => {
+        const body = await (await a.request.get('/api/sync.php', { headers: API_HEADERS })).json();
+        return Boolean(body.data?.workouts?.find((w: { id: string; finishedAt?: string }) => w.id === workoutId)?.finishedAt);
+      },
+      { timeout: 5_000, message: 'beendetes Workout ist in der Datenbank' },
+    )
+    .toBe(true);
+  await ctxA.close();
+
+  // Leerer Browser (z. B. nach Löschen der Website-Daten): anmelden, alles ist wieder da
+  const b = await (await browser.newContext()).newPage();
+  await loginViaForm(b, creds.username, creds.password);
+  await expect(b.getByTestId('today-card')).toBeVisible();
+  await b.goto(`/#${summaryUrl}`);
+  await expect(b.getByText('42,5×')).toBeVisible();
+});
+
+test('A9. Ohne Anmeldung gibt der Server keine Daten und keine Zugangsdaten heraus', async ({ page }) => {
+  const sync = await page.request.get('/api/sync.php', { headers: API_HEADERS });
+  expect(sync.status()).toBe(401);
+  expect(await sync.text()).not.toContain('workouts');
+  for (const path of ['/api/config.php', '/api/_lib.php', '/api/config.example.php']) {
+    const body = await (await page.request.get(path)).text();
+    for (const secret of ['DB_PASS', 'SETUP_CODE', 'define(', 'e2e-setup-code', 'sqlite:']) expect(body, `${path} enthält ${secret}`).not.toContain(secret);
+  }
 });

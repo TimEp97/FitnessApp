@@ -111,12 +111,16 @@ let changeSeq = 0;
 let timer: number | undefined;
 let metaTimer: number | undefined;
 
-export function scheduleSync(delayMs = 4000) {
+/** Wartezeit nach einer Änderung, bevor gesichert wird: Sätze und Workouts sofort, sonst kurz gebündelt. */
+const DELAY_WORKOUT_MS = 300;
+const DELAY_OTHER_MS = 1500;
+
+export function scheduleSync(delayMs = DELAY_OTHER_MS) {
   window.clearTimeout(timer);
   timer = window.setTimeout(() => void syncNow(), delayMs);
 }
 
-onLocalChange(({ deleted }) => {
+onLocalChange(({ table, deleted }) => {
   changeSeq++;
   const meta = getMeta();
   const next: Partial<SyncMeta> = { dirty: true };
@@ -125,7 +129,7 @@ onLocalChange(({ deleted }) => {
   // Metadaten gebündelt speichern
   window.clearTimeout(metaTimer);
   metaTimer = window.setTimeout(() => void saveMeta({}), 300);
-  if (syncEnabled()) scheduleSync();
+  if (syncEnabled()) scheduleSync(table === 'workouts' ? DELAY_WORKOUT_MS : DELAY_OTHER_MS);
 });
 
 // ---------- Abgleich ----------
@@ -139,6 +143,12 @@ export function syncNow(): Promise<void> {
     inflight = null;
   });
   return inflight;
+}
+
+/** Für „Jetzt sichern“: wartet einen laufenden Abgleich ab und startet danach einen frischen. */
+export async function syncAgain(): Promise<void> {
+  if (inflight) await inflight.catch(() => undefined);
+  return syncNow();
 }
 
 async function runSync() {
@@ -161,6 +171,18 @@ async function runSync() {
         const revision = await pushRemote({ ...local, deleted: [] }, meta.revision, true);
         await saveMeta({ revision, resetPending: false, deleted: [], lastSyncAt: new Date().toISOString(), dirty: changeSeq !== seq });
         break;
+      }
+
+      // Häufigster Fall (nur lokale Änderungen): direkt hochladen, ohne vorher zu holen.
+      // Hat sich der Serverstand inzwischen geändert, kommt ein Konflikt und es wird zusammengeführt.
+      if (attempt === 0 && meta.dirty && meta.revision >= 0) {
+        try {
+          const revision = await pushRemote(local, meta.revision);
+          await saveMeta({ revision, lastSyncAt: new Date().toISOString(), dirty: changeSeq !== seq });
+          break;
+        } catch (e) {
+          if (!(e instanceof Conflict)) throw e;
+        }
       }
 
       const remote = await fetchRemote();
@@ -188,7 +210,7 @@ async function runSync() {
       break;
     }
     useSync.setState({ status: 'ok' });
-    if (getMeta().dirty) scheduleSync(1000);
+    if (getMeta().dirty) scheduleSync(DELAY_WORKOUT_MS);
   } catch (e) {
     const err = e instanceof ApiError ? e : new ApiError('http', 0, 'unknown', String(e));
     useSync.setState({ status: err.kind === 'network' ? 'offline' : 'error', error: err.message });
@@ -238,7 +260,12 @@ export async function initSync() {
   started = true;
   window.addEventListener('online', () => void syncNow());
   document.addEventListener('visibilitychange', () => {
-    // beim Verlassen sichern, beim Zurückkehren Änderungen anderer Geräte holen
+    // beim Verlassen sofort sichern, beim Zurückkehren Änderungen anderer Geräte holen
+    window.clearTimeout(timer);
+    void syncNow();
+  });
+  window.addEventListener('pagehide', () => {
+    window.clearTimeout(timer);
     void syncNow();
   });
   window.setInterval(() => {

@@ -21,6 +21,17 @@ header('Cache-Control: no-store');
 header('X-Content-Type-Options: nosniff');
 header('X-Robots-Tag: noindex');
 
+// Unerwartete Fehler (z. B. Datenbank kurz nicht erreichbar) ins PHP-Fehlerprotokoll schreiben
+// und als JSON beantworten, ohne Details nach außen zu geben.
+set_exception_handler(static function (Throwable $e): void {
+    error_log('ATHLETIC: ' . get_class($e) . ': ' . $e->getMessage() . ' in ' . $e->getFile() . ':' . $e->getLine());
+    if (!headers_sent()) {
+        http_response_code(500);
+        header('Content-Type: application/json; charset=utf-8');
+    }
+    echo json_encode(['error' => 'server_error']);
+});
+
 function reply(int $status, array $body = []): never
 {
     http_response_code($status);

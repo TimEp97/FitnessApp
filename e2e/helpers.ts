@@ -43,7 +43,7 @@ export async function signUp(page: Page) {
   const creds = newCredentials();
   const invite = await createInvite();
   const res = await page.request.post('/api/auth.php?action=register', { headers: API_HEADERS, data: { ...creds, invite } });
-  expect(res.ok(), 'Registrierung').toBeTruthy();
+  expect(res.ok(), `Registrierung: HTTP ${res.status()} ${await res.text()}`).toBeTruthy();
   const { user } = await res.json();
   await page.addInitScript((u) => {
     if (sessionStorage.getItem('e2e-signed-in')) return;
@@ -74,7 +74,8 @@ export async function loginViaForm(page: Page, login: string, password: string) 
 export async function syncAndWait(page: Page) {
   await page.goto('/#/profil');
   await page.getByRole('button', { name: 'Jetzt sichern' }).click();
-  await expect(page.getByTestId('sync-status')).toContainText('Gesichert', { timeout: 15_000 });
+  // genau „Gesichert …“, nicht „Änderungen werden gleich gesichert“
+  await expect(page.getByTestId('sync-status')).toHaveText(/^Gesichert/, { timeout: 15_000 });
 }
 
 /** Letzte Mail an diese Adresse aus der Mail-Logdatei des Testservers. */

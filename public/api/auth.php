@@ -290,16 +290,22 @@ switch ($action) {
         }
         $token = str_field($b, 'token', 64);
         $password = valid_password(str_field($b, 'password'));
+        $hash = hash_password($password);
+        // Prüfen und Schreiben in einer Transaktion: Passwort, Link und Sitzungen ändern sich nur gemeinsam
+        tx_begin();
         $q = db()->prepare('SELECT user_id FROM athletic_resets WHERE token_hash = ? AND used_at IS NULL AND expires_at > ?');
         $q->execute([token_hash($token), now()]);
         $userId = $q->fetchColumn();
+        $q->closeCursor();
         if ($userId === false) {
+            tx_rollback();
             note_attempt("reset:$ip");
             reply(403, ['error' => 'invalid_reset']);
         }
-        db()->prepare('UPDATE athletic_users SET password_hash = ? WHERE id = ?')->execute([hash_password($password), $userId]);
+        db()->prepare('UPDATE athletic_users SET password_hash = ? WHERE id = ?')->execute([$hash, $userId]);
         db()->prepare('UPDATE athletic_resets SET used_at = ? WHERE token_hash = ?')->execute([now(), token_hash($token)]);
         db()->prepare('DELETE FROM athletic_sessions WHERE user_id = ?')->execute([$userId]);
+        tx_commit();
         reply(200);
 
     case 'delete_account':

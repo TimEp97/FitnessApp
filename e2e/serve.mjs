@@ -31,6 +31,7 @@ define('MAIL_LOG', '${p('mail.log')}');
 
 // Unter Windows ist pdo_sqlite nicht fest eingebaut
 const args = process.platform === 'win32' ? ['-d', `extension_dir=${join(dirname(php === 'php' ? spawnSync('where', ['php']).stdout.toString().split(/\r?\n/)[0] : php), 'ext')}`, '-d', 'extension=pdo_sqlite'] : [];
+args.push('-d', 'log_errors=1', '-d', `error_log=${p('php-error.log')}`);
 const child = spawn(php, [...args, '-S', `127.0.0.1:${port}`, '-t', SITE], { stdio: 'ignore', env: { ...process.env, PHP_CLI_SERVER_WORKERS: '4' } });
 const stop = () => child.kill();
 process.on('SIGINT', stop);
