@@ -1,0 +1,42 @@
+.facts {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin: 0;
+}
+.facts dt {
+  color: var(--text-2);
+  font-size: 13px;
+}
+.facts dd {
+  margin: 2px 0 0;
+  font-weight: 700;
+}
+.muscles {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 12px;
+  align-items: center;
+}
+.steps,
+.mistakes {
+  margin: 0;
+  padding-left: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.safety {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  background: var(--card-2);
+  border-radius: var(--radius-control);
+  padding: 12px 14px;
+  font-size: 15px;
+}
+.safety svg {
+  flex-shrink: 0;
+  color: var(--orange);
+  margin-top: 1px;
+}

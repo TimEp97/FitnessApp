@@ -1,0 +1,79 @@
+.wrap {
+  display: flex;
+  flex-direction: column;
+}
+.row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.btn {
+  width: 64px;
+  height: 64px;
+  flex-shrink: 0;
+  border: 0;
+  border-radius: var(--radius-control);
+  background: var(--card-2);
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 150ms var(--ease);
+}
+.btn:active {
+  transform: scale(0.94);
+}
+.btn:disabled {
+  opacity: 0.35;
+}
+.center {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.value,
+.input {
+  width: 100%;
+  min-height: 48px;
+  border: 0;
+  background: none;
+  font-size: 40px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  text-align: center;
+  line-height: 1.1;
+  padding: 0;
+  border-radius: 12px;
+}
+.input {
+  background: var(--card-2);
+  outline: 2px solid var(--accent);
+}
+.value[aria-invalid='true'] {
+  color: var(--red-text);
+}
+.unit {
+  color: var(--text-2);
+  font-size: 13px;
+  font-weight: 600;
+}
+.sm .btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+}
+.sm .value,
+.sm .input {
+  font-size: 24px;
+  min-height: 44px;
+}
+@media (max-width: 359px) {
+  .row {
+    gap: 8px;
+  }
+  .btn {
+    width: 52px;
+  }
+}

@@ -1,0 +1,35 @@
+.search {
+  position: relative;
+}
+.searchIcon {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-2);
+  pointer-events: none;
+}
+.searchInput {
+  padding-left: 44px;
+}
+.list {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+.name {
+  font-weight: 600;
+}
+.custom {
+  margin-left: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--accent-text);
+  border: 1px solid currentColor;
+  border-radius: 8px;
+  padding: 1px 6px;
+}
+.fieldset {
+  border: 0;
+  margin: 0;
+  padding: 0;
+}

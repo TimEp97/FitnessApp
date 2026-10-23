@@ -1,0 +1,41 @@
+.list {
+  display: flex;
+  flex-direction: column;
+}
+.item {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  min-height: 56px;
+  border-bottom: 1px solid var(--line);
+  background: var(--card);
+  transition: background var(--t);
+}
+.item:last-child {
+  border-bottom: 0;
+}
+.dragging {
+  background: var(--card-2);
+  border-radius: 12px;
+}
+.handle {
+  width: 44px;
+  height: 44px;
+  border: 0;
+  background: none;
+  color: var(--text-2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  touch-action: none;
+  cursor: grab;
+  flex-shrink: 0;
+  margin-left: -10px;
+}
+.content {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}

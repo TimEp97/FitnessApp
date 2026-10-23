@@ -1,0 +1,17 @@
+.big {
+  font-size: 28px;
+  font-weight: 800;
+}
+.recName {
+  font-weight: 600;
+}
+.recValue {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+.histLink {
+  color: inherit;
+  text-decoration: none;
+  min-width: 0;
+}

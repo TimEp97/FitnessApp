@@ -1,0 +1,89 @@
+.plans {
+  display: grid;
+  gap: 12px;
+}
+.planCard {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: var(--card);
+  border-radius: var(--radius-card);
+  border: 2px solid transparent;
+  padding-right: 8px;
+  transition: border-color var(--t) var(--ease);
+}
+.planActive {
+  border-color: var(--accent);
+}
+.planMain {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  min-height: 72px;
+  padding: 16px 12px 16px 18px;
+  background: none;
+  border: 0;
+  text-align: left;
+  border-radius: var(--radius-card);
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+}
+.planName {
+  font-weight: 700;
+  font-size: 17px;
+}
+.activeTag {
+  margin-top: 4px;
+  background: var(--accent);
+  color: #000;
+  font-size: 12px;
+  font-weight: 800;
+  padding: 3px 10px;
+  border-radius: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.dayList {
+  display: flex;
+  flex-direction: column;
+}
+.dayItem {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 56px;
+  padding: 6px 0;
+  border-bottom: 1px solid var(--line);
+}
+.dayItem:last-child {
+  border-bottom: 0;
+}
+.dayIndex {
+  width: 24px;
+  color: var(--text-2);
+  font-variant-numeric: tabular-nums;
+  font-size: 15px;
+}
+.dayName {
+  flex: 1;
+  font-weight: 600;
+}
+.sgName {
+  font-weight: 700;
+  text-decoration: none;
+}
+.added {
+  background: var(--accent);
+  color: #000;
+}
+.tplBtn {
+  width: 100%;
+  background: none;
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+}

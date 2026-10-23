@@ -1,0 +1,30 @@
+.map {
+  width: 100%;
+  max-width: 420px;
+  display: block;
+  margin: 0 auto;
+}
+.small {
+  max-width: 200px;
+}
+.base {
+  fill: var(--card-2);
+}
+.muscle {
+  stroke: var(--card);
+  stroke-width: 0.6;
+  transition: fill var(--t) var(--ease);
+}
+.clickable {
+  cursor: pointer;
+}
+.selected {
+  stroke: var(--text);
+  stroke-width: 1.2;
+}
+.caption {
+  fill: var(--text-2);
+  font-size: 7.5px;
+  font-weight: 600;
+  font-family: var(--font);
+}

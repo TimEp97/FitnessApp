@@ -1,0 +1,189 @@
+.clock {
+  padding: 0 12px;
+  gap: 6px;
+  font-size: 17px;
+}
+.pausedNote {
+  background: var(--card-2);
+  border-radius: var(--radius-control);
+  padding: 12px 16px;
+  color: var(--orange);
+  font-weight: 600;
+}
+[data-theme='light'] .pausedNote {
+  color: #8a4b00;
+}
+.exercise {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  touch-action: pan-y;
+}
+.exHead {
+  display: flex;
+  align-items: flex-end;
+  gap: 12px;
+}
+.exImage {
+  flex-shrink: 0;
+}
+.exName {
+  font-size: 26px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  overflow-wrap: anywhere;
+}
+.hasNote {
+  background: var(--accent-soft);
+  color: var(--accent-text);
+}
+.meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.setNo {
+  font-size: 17px;
+  font-weight: 700;
+}
+.note {
+  background: var(--card-2);
+  border-radius: 12px;
+  padding: 10px 14px;
+  font-size: 15px;
+}
+.inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin: 8px 0;
+}
+.complete {
+  min-height: 64px;
+  font-size: 18px;
+}
+.suggestion {
+  background: var(--card-2);
+  border-radius: var(--radius-control);
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 15px;
+}
+.done {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.mark {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 14px 0 6px;
+  border-radius: 22px;
+  border: 0;
+  background: var(--accent-soft);
+  color: var(--text);
+  font-weight: 600;
+  font-size: 15px;
+}
+.markNo {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: #000;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 800;
+}
+.warmup {
+  background: var(--card-2);
+}
+.warmup .markNo {
+  background: var(--muscle-none);
+  color: var(--text);
+}
+.nextBtn {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  min-height: 56px;
+  background: none;
+  border: 0;
+  text-align: left;
+  padding: 0;
+}
+.nextName {
+  display: block;
+  font-weight: 700;
+  font-size: 18px;
+  margin-top: 2px;
+}
+.jump {
+  flex: 1;
+  min-width: 0;
+  min-height: 52px;
+  background: none;
+  border: 0;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 4px 0;
+}
+.jumpName {
+  font-weight: 600;
+}
+.jumpCurrent .jumpName {
+  color: var(--accent-text);
+}
+.progress {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.progressHead {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+}
+.progressPct {
+  font-weight: 700;
+}
+.progressTrack {
+  height: 8px;
+  border-radius: 4px;
+  background: var(--card-2);
+  overflow: hidden;
+}
+.progressFill {
+  height: 100%;
+  border-radius: 4px;
+  background: var(--accent);
+  transition: width 0.3s ease;
+}
+.finishBox {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 14px;
+  border-radius: var(--radius-control);
+  background: var(--accent-soft);
+}
+.finishText {
+  font-weight: 800;
+  font-size: 18px;
+  color: var(--accent-text);
+}
