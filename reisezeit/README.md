@@ -23,6 +23,20 @@ Bei vorinstalliertem Chromium: `PW_CHROMIUM_PATH=/pfad/zu/chromium npm run test:
 2. `npm run build`, dann den **Inhalt** von `dist/` per FTP in den Ordner laden. `.htaccess` (Komprimierung, Caching) ist dabei.
 3. Hash-Routing und relative Pfade (`base: './'`) – keine Server-Regeln nötig, läuft auch im Unterordner.
 
+## Handy- und Desktop-Version
+
+Eine App, zwei Layouts – die Umschaltung passiert automatisch über die Bildschirmbreite (`styles/base.css`):
+
+| | Handy (< 768 px) | Laptop/Desktop (≥ 1024 px) |
+| --- | --- | --- |
+| Navigation | Tab-Leiste unten: Länder · Planen · Mein Plan (mit Anzahl Orte) | Navigation rechts im Kopf |
+| Startseite | Filter oben, Chips seitlich wischbar, Kacheln einspaltig | Filterleiste links (mitlaufend), Kacheln rechts im Raster |
+| Länderdetail | Bild oben, Regionen untereinander | Bild neben Text, Regionen zweispaltig |
+| Planer | Schrittanzeige „Schritt 2 von 4“, Aktionsknöpfe fest über der Tab-Leiste, kurze Knopftexte | Vorlieben links (mitlaufend), Vorschläge rechts |
+| Reiseplan | Kennzahlen 2 × 2, Karte über dem Tagesablauf | Karte läuft beim Scrollen neben dem Tagesablauf mit |
+
+Dazwischen (Tablet) gilt das fließende Grundlayout. Die Playwright-Tests laufen in beiden Layouts (Projekte `handy` und `desktop`).
+
 ## Aufbau
 
 ```

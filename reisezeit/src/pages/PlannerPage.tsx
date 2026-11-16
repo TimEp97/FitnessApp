@@ -99,7 +99,7 @@ export default function PlannerPage() {
       <SiteHeader>
         <Stepper step={step} maxDone={maxDone} onPick={goStep} />
       </SiteHeader>
-      <main id="inhalt" className="wrap stack" style={{ ['--gap' as string]: '18px', paddingTop: 20, maxWidth: 1100 }}>
+      <main id="inhalt" className="wrap stack planner-main" style={{ ['--gap' as string]: '18px', paddingTop: 20 }}>
         <p className="sr-only" role="status" aria-live="polite">{status}</p>
 
         {step === 1 && (
@@ -115,6 +115,8 @@ export default function PlannerPage() {
                 {prefHasPlaces ? `Orte in ${prefName} stehen bei den Vorschlägen vorne.` : `Für ${prefName} gibt es noch keine Orte im Planer – wir zeigen dir passende Alternativen.`}
               </div>
             )}
+            <div className="planner-two">
+            <div className="prefs-col stack" style={{ ['--gap' as string]: '20px' }}>
             <InterestTiles
               selected={trip.interests}
               mustHave={trip.mustHave}
@@ -150,8 +152,10 @@ export default function PlannerPage() {
                 ))}
               </fieldset>
             </div>
+            </div>
 
-            <div className="row between" style={{ alignItems: 'flex-end', borderTop: '1px solid var(--line)', paddingTop: 18 }}>
+            <div className="sugg-col stack" style={{ ['--gap' as string]: '16px' }}>
+            <div className="row between sugg-head" style={{ alignItems: 'flex-end' }}>
               <div className="stack" style={{ ['--gap' as string]: '2px' }}>
                 <h2 style={{ fontSize: 22 }}>Vorschläge für dich</h2>
                 <span className="mute small" aria-live="polite">
@@ -159,9 +163,9 @@ export default function PlannerPage() {
                   {!trip.interests.length && ' – wähle Vorlieben für bessere Treffer'}
                 </span>
               </div>
-              <div className="row">
-                <button type="button" className="btn btn-secondary" onClick={() => goStep(2)}>Selbst zusammenstellen</button>
-                <button type="button" className="btn btn-primary" onClick={autoRoute}><Sparkles size={18} aria-hidden="true" />Route automatisch vorschlagen</button>
+              <div className="row sugg-actions">
+                <button aria-label="Selbst zusammenstellen" type="button" className="btn btn-secondary" onClick={() => goStep(2)}><span className="only-desk">Selbst zusammenstellen</span><span className="only-mob">Selbst wählen</span></button>
+                <button aria-label="Route automatisch vorschlagen" type="button" className="btn btn-primary" onClick={autoRoute}><Sparkles size={18} aria-hidden="true" /><span className="only-desk">Route automatisch vorschlagen</span><span className="only-mob">Route vorschlagen</span></button>
               </div>
             </div>
             {sugg.relaxed.map((r) => (
@@ -186,6 +190,8 @@ export default function PlannerPage() {
                 Alle {sugg.ranked.length} Vorschläge zeigen
               </button>
             )}
+            </div>
+            </div>
           </section>
         )}
 
@@ -197,16 +203,16 @@ export default function PlannerPage() {
             </div>
             <div className="stack" style={{ ['--gap' as string]: '6px' }}>
               <span className="label">Reisemonat</span>
-              <MonthChips value={trip.month} onChange={(month) => trip.setInput({ month })} />
+              <MonthChips scroll value={trip.month} onChange={(month) => trip.setInput({ month })} />
             </div>
             <div className="split">
               <StopList stops={trip.stops} month={trip.month} onNights={trip.setNights} onMove={trip.moveStop} onRemove={trip.removeStop} />
               <PlaceAdder stops={trip.stops} month={trip.month} onAdd={trip.addStop} />
             </div>
-            <div className="row between">
+            <div className="row between step-actions">
               <button type="button" className="btn btn-secondary" onClick={() => goStep(1)}>Zurück</button>
-              <button type="button" className="btn btn-primary" onClick={() => goStep(3)} disabled={!trip.stops.length}>
-                Weiter: Wie reist du?<ChevronRight size={18} aria-hidden="true" />
+              <button aria-label="Weiter: Wie reist du?" type="button" className="btn btn-primary" onClick={() => goStep(3)} disabled={!trip.stops.length}>
+                <span className="only-desk">Weiter: Wie reist du?</span><span className="only-mob">Weiter</span><ChevronRight size={18} aria-hidden="true" />
               </button>
             </div>
           </section>
@@ -223,7 +229,7 @@ export default function PlannerPage() {
             ) : (
               <div className="empty">Für Verbindungen brauchst du mindestens zwei Orte. <button type="button" className="btn btn-secondary btn-small" onClick={() => goStep(2)}>Orte wählen</button></div>
             )}
-            <div className="row between">
+            <div className="row between step-actions">
               <button type="button" className="btn btn-secondary" onClick={() => goStep(2)}>Zurück</button>
               <button type="button" className="btn btn-primary" onClick={() => goStep(4)} disabled={!trip.stops.length}>
                 Reiseplan erstellen<ChevronRight size={18} aria-hidden="true" />
@@ -240,15 +246,15 @@ export default function PlannerPage() {
                 <span className="mute">{plan.places.length ? `${title} · ${subtitle}` : 'Noch keine Orte gewählt'}</span>
               </div>
               {plan.places.length > 0 && (
-                <div className="row">
-                  <button type="button" className="btn btn-secondary" onClick={async () => {
+                <div className="row plan-actions">
+                  <button aria-label="Link kopieren" type="button" className="btn btn-secondary" onClick={async () => {
                     const ok = await copyText(shareUrl(shared));
                     setStatus(ok ? 'Link kopiert.' : 'Kopieren nicht möglich – bitte den Link aus der Adresszeile nehmen.');
-                  }}><Link2 size={18} aria-hidden="true" />Link kopieren</button>
+                  }}><Link2 size={18} aria-hidden="true" /><span className="only-desk">Link kopieren</span><span className="only-mob">Link</span></button>
                   <button type="button" className="btn btn-secondary" onClick={() => sendPlan(`Reiseplan: ${title}`, subtitle, shareUrl(shared))}>
                     <Send size={18} aria-hidden="true" />Senden
                   </button>
-                  <Link to="/plan/druck" className="btn btn-primary"><FileDown size={18} aria-hidden="true" />Als PDF exportieren</Link>
+                  <Link aria-label="Als PDF exportieren" to="/plan/druck" className="btn btn-primary"><FileDown size={18} aria-hidden="true" /><span className="only-desk">Als PDF exportieren</span><span className="only-mob">PDF</span></Link>
                 </div>
               )}
             </div>
@@ -258,14 +264,14 @@ export default function PlannerPage() {
             ) : (
               <div className="empty">Wähle zuerst Orte aus. <button type="button" className="btn btn-secondary btn-small" onClick={() => goStep(1)}>Zu den Vorschlägen</button></div>
             )}
-            <div className="row between">
-              <button type="button" className="btn btn-secondary" onClick={() => goStep(3)}>Zurück zu den Verbindungen</button>
-              <button type="button" className="btn btn-secondary" onClick={() => {
+            <div className="row between step-actions">
+              <button aria-label="Zurück zu den Verbindungen" type="button" className="btn btn-secondary" onClick={() => goStep(3)}><span className="only-desk">Zurück zu den Verbindungen</span><span className="only-mob">Zurück</span></button>
+              <button aria-label="Neu anfangen" type="button" className="btn btn-secondary" onClick={() => {
                 if (confirm('Reiseplan und Vorlieben löschen und neu anfangen?')) {
                   trip.reset();
                   navigate('/planer?schritt=1');
                 }
-              }}><RotateCcw size={18} aria-hidden="true" />Neu anfangen</button>
+              }}><RotateCcw size={18} aria-hidden="true" /><span className="only-desk">Neu anfangen</span><span className="only-mob">Neu</span></button>
             </div>
           </section>
         )}

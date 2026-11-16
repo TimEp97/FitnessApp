@@ -66,3 +66,23 @@ test('bedienbar auf 360 px ohne seitliches Scrollen', async ({ page }) => {
     expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(360);
   }
 });
+
+test('Handy: Tab-Leiste unten, Desktop: Navigation im Kopf', async ({ page, isMobile }) => {
+  await page.goto('/');
+  const tabbar = page.getByRole('navigation', { name: 'Hauptnavigation (mobil)' });
+  const desk = page.getByRole('navigation', { name: 'Hauptnavigation', exact: true });
+  if (isMobile) {
+    await expect(tabbar).toBeVisible();
+    await expect(desk).toBeHidden();
+    await tabbar.getByRole('link', { name: 'Reise planen' }).click();
+  } else {
+    await expect(desk).toBeVisible();
+    await expect(tabbar).toBeHidden();
+    // Filter stehen auf dem Desktop neben den Kacheln
+    const filters = await page.getByRole('complementary', { name: 'Filter' }).boundingBox();
+    const grid = await page.locator('.grid-cards').boundingBox();
+    expect(filters!.x + filters!.width).toBeLessThan(grid!.x);
+    await desk.getByRole('link', { name: 'Reise planen' }).click();
+  }
+  await expect(page.getByRole('heading', { name: 'Was magst du?' })).toBeVisible();
+});

@@ -44,12 +44,12 @@ export function CountryPage() {
   return (
     <>
       <SiteHeader />
-      <main id="inhalt" className="wrap-narrow stack" style={{ ['--gap' as string]: '18px', paddingTop: 16 }}>
+      <main id="inhalt" className="wrap stack country-main" style={{ ['--gap' as string]: '18px', paddingTop: 16 }}>
         <Link to={back} className="chip" style={{ alignSelf: 'flex-start' }}>
           <ChevronLeft size={18} aria-hidden="true" />{t.allCountries}
         </Link>
 
-        <section className="card hero">
+        <section className="card hero hero-split">
           <img src={`img/scenes/${country.scene}.svg`} alt="" />
           <div className="body">
             <div className="row" style={{ ['--gap' as string]: '10px' }}>
@@ -81,6 +81,7 @@ export function CountryPage() {
           Orte mit <strong>+</strong> kannst du direkt in deine Route übernehmen.
         </p>
         <p className="sr-only" role="status" aria-live="polite">{added}</p>
+        <div className="region-grid">
         {country.regions.map((r) => (
           <RegionCard key={r.id} region={r} selected={cells[r.id] ?? month} onSelect={(m) => setCells((s) => ({ ...s, [r.id]: m }))}
             cities={citiesOfRegion(r, places)} inRoute={inRoute}
@@ -89,6 +90,7 @@ export function CountryPage() {
               setAdded(`${places.find((p) => p.id === id)?.name} zur Route hinzugefügt.`);
             }} />
         ))}
+        </div>
         {stops.length > 0 && (
           <Link to="/planer?schritt=2" className="btn btn-secondary" style={{ alignSelf: 'flex-start' }}>
             Zur Route ({stops.length} {stops.length === 1 ? 'Ort' : 'Orte'})

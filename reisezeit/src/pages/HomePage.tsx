@@ -64,53 +64,59 @@ export function HomePage() {
 
   return (
     <>
-      <SiteHeader>
-        <div className="stack" style={{ ['--gap' as string]: '6px' }}>
-          <label htmlFor="suche" className="label">{t.searchLabel}</label>
-          <div className="search">
-            <Search size={20} color="var(--mute)" aria-hidden="true" />
-            <input
-              id="suche"
-              type="search"
-              value={q}
-              placeholder={t.searchPlaceholder}
-              onChange={(e) => {
-                setQ(e.target.value);
-              }}
-              onBlur={() => update({ q: q.trim() || null })}
-            />
+      <SiteHeader />
+      <div className="wrap home-layout">
+        <aside className="filters" aria-label="Filter">
+          <div className="stack" style={{ ['--gap' as string]: '6px' }}>
+            <label htmlFor="suche" className="label">{t.searchLabel}</label>
+            <div className="search">
+              <Search size={20} color="var(--mute)" aria-hidden="true" />
+              <input
+                id="suche"
+                type="search"
+                value={q}
+                placeholder={t.searchPlaceholder}
+                onChange={(e) => setQ(e.target.value)}
+                onBlur={() => update({ q: q.trim() || null })}
+              />
+            </div>
           </div>
-        </div>
-        <div className="row" style={{ ['--gap' as string]: '8px' }} role="group" aria-label="Kontinent">
-          {(['Alle', ...continents] as ContFilter[]).map((c) => (
-            <button key={c} type="button" className="chip" aria-pressed={c === cont} onClick={() => update({ kontinent: c === 'Alle' ? null : c })}>
-              {c}
-            </button>
-          ))}
-        </div>
-        <div className="stack" style={{ ['--gap' as string]: '6px' }}>
-          <span className="label" id="monat-label">{t.whenTravel}</span>
-          <MonthChips allowAny scroll value={month} label={t.whenTravel} onChange={(m) => update({ monat: m >= 0 ? String(m + 1) : null })} />
-        </div>
-        <div className="legend" aria-label="Legende">
-          {LEGEND.map((l) => (
-            <span key={l.code}><i className={l.code} aria-hidden="true" />{l.text}</span>
-          ))}
-        </div>
-      </SiteHeader>
-
-      <main id="inhalt" className="wrap stack" style={{ ['--gap' as string]: '14px', paddingTop: 20 }}>
-        <p style={{ margin: 0, fontWeight: 600, color: 'var(--ink-2)' }} aria-live="polite">{countText}</p>
-        {cards.length ? (
-          <div className="grid-cards">
-            {cards.map((c) => (
-              <CountryCard key={c.id} country={c} month={month} />
+          <div className="stack" style={{ ['--gap' as string]: '6px' }}>
+            <span className="label filters-desk-only">Kontinent</span>
+            <div className="chip-scroller filters-wrap" role="group" aria-label="Kontinent">
+              {(['Alle', ...continents] as ContFilter[]).map((c) => (
+                <button key={c} type="button" className="chip" aria-pressed={c === cont} onClick={() => update({ kontinent: c === 'Alle' ? null : c })}>
+                  {c}
+                </button>
+              ))}
+            </div>
+          </div>
+          <div className="stack" style={{ ['--gap' as string]: '6px' }}>
+            <span className="label">{t.whenTravel}</span>
+            <div className="filters-months">
+              <MonthChips allowAny scroll value={month} label={t.whenTravel} onChange={(m) => update({ monat: m >= 0 ? String(m + 1) : null })} />
+            </div>
+          </div>
+          <div className="legend" aria-label="Legende">
+            {LEGEND.map((l) => (
+              <span key={l.code}><i className={l.code} aria-hidden="true" />{l.text}</span>
             ))}
           </div>
-        ) : (
-          <div className="panel" style={{ padding: 28, textAlign: 'center', color: 'var(--mute)' }}>{t.noResults}</div>
-        )}
-      </main>
+        </aside>
+
+        <main id="inhalt" className="stack home-main" style={{ ['--gap' as string]: '14px' }}>
+          <p style={{ margin: 0, fontWeight: 600, color: 'var(--ink-2)' }} aria-live="polite">{countText}</p>
+          {cards.length ? (
+            <div className="grid-cards">
+              {cards.map((c) => (
+                <CountryCard key={c.id} country={c} month={month} />
+              ))}
+            </div>
+          ) : (
+            <div className="panel" style={{ padding: 28, textAlign: 'center', color: 'var(--mute)' }}>{t.noResults}</div>
+          )}
+        </main>
+      </div>
     </>
   );
 }

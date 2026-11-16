@@ -45,7 +45,7 @@ export function PlanView({ plan, month }: { plan: Plan; month: number }) {
       ))}
 
       <div className="split">
-        <div className="card map-box" style={{ flex: '1 1 460px' }}>
+        <div className="card map-box map-sticky" style={{ flex: '1 1 460px' }}>
           {interactive ? (
             <Suspense fallback={<div className="map-placeholder">Karte lädt …</div>}>
               <TripMap plan={plan} />

@@ -203,3 +203,150 @@ main { padding-bottom: 48px; }
   .brand-name { font-size: 22px; }
   .map-leaflet, .map-placeholder { height: 320px; }
 }
+
+/* ===================================================================
+   Layouts: Handy (< 768 px) und Laptop/Desktop (≥ 1024 px)
+   Dazwischen (Tablet) gilt das fließende Grundlayout.
+   =================================================================== */
+
+/* Navigation im Kopf (Desktop/Tablet) */
+.desk-nav { display: flex; gap: 4px; flex-wrap: wrap; }
+.desk-nav-link {
+  display: inline-flex; align-items: center; gap: 7px; min-height: 44px; padding: 0 14px; border-radius: var(--radius-m);
+  font-weight: 600; font-size: 14.5px; color: var(--ink-2); text-decoration: none;
+}
+.desk-nav-link:hover { background: var(--bg); color: var(--ink); }
+.desk-nav-link.active { background: var(--accent); color: #fff; }
+
+/* Tab-Leiste unten (nur Handy) */
+.tabbar { display: none; }
+
+/* Startseite: Filter + Kacheln */
+.home-layout { padding-top: 16px; padding-bottom: 8px; }
+.filters { display: flex; flex-direction: column; gap: 14px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius-l); padding: 16px; margin-bottom: 18px; }
+.filters-desk-only { display: none; }
+.home-main { padding-bottom: 32px; }
+
+.sugg-head { border-top: 1px solid var(--line); padding-top: 18px; }
+.region-grid { display: flex; flex-direction: column; gap: 18px; }
+.stepper-mobile-title { display: none; }
+
+/* ---------------------------- Handy ---------------------------- */
+@media (max-width: 767px) {
+  body { padding-bottom: calc(68px + env(safe-area-inset-bottom)); }
+  .site-header .wrap { padding-top: 10px; padding-bottom: 10px; }
+  .header-inner { --gap: 8px !important; }
+  .brand-tagline, .desk-nav { display: none; }
+  .brand-logo { width: 36px; height: 36px; border-radius: 10px; }
+  .brand-logo svg { width: 20px; height: 20px; }
+  .brand-name { font-size: 20px; }
+
+  .tabbar {
+    display: flex; position: fixed; left: 0; right: 0; bottom: 0; z-index: 40;
+    background: var(--surface); border-top: 1px solid var(--line);
+    padding: 4px 6px calc(4px + env(safe-area-inset-bottom)); box-shadow: 0 -2px 10px rgba(19,32,30,.06);
+  }
+  .tab {
+    flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px;
+    min-height: 56px; font-size: 12px; font-weight: 600; color: var(--mute); text-decoration: none; border-radius: 10px;
+  }
+  .tab.active { color: var(--accent); background: var(--accent-tint); }
+  .tab-icon { position: relative; display: inline-flex; }
+  .tab-badge {
+    position: absolute; top: -4px; right: -10px; min-width: 18px; height: 18px; padding: 0 5px; border-radius: 999px;
+    background: var(--accent); color: #fff; font-size: 11px; font-weight: 700; display: inline-flex; align-items: center; justify-content: center;
+  }
+
+  /* Startseite */
+  .home-layout { padding-left: 0; padding-right: 0; padding-top: 0; }
+  .filters { border-radius: 0; border-width: 0 0 1px; margin-bottom: 14px; padding: 12px 16px; gap: 10px; }
+  .filters .search { min-height: 46px; }
+  .filters .legend { font-size: 12px; gap: 6px 12px; }
+  .home-main { padding: 0 16px 24px; }
+  .grid-cards { grid-template-columns: 1fr; gap: 12px; }
+  .country-card img { height: 96px; }
+
+  /* Planer */
+  .stepper-mobile-title { display: block; margin: 0 0 2px; font-size: 13px; color: var(--mute); }
+  .stepper-mobile-title strong { color: var(--ink); }
+  .stepper { gap: 4px 6px; }
+  .step { min-height: 40px; padding: 2px; }
+  .step .step-label { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+  .step .num { width: 34px; height: 34px; font-size: 14px; }
+  .stepper li + li .step::before { content: ''; width: 14px; height: 2px; background: var(--line-strong); margin-right: 2px; }
+  .planner-main { padding-top: 14px !important; padding-bottom: 96px; }
+  .planner-main h1 { font-size: 22px !important; }
+  .tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .tile { min-height: 64px; }
+
+  /* Aktionen immer erreichbar: Leiste über der Tab-Leiste */
+  .step-actions, .sugg-actions {
+    position: fixed; left: 0; right: 0; bottom: calc(64px + env(safe-area-inset-bottom)); z-index: 30;
+    background: rgba(255,255,255,.97); border-top: 1px solid var(--line); padding: 8px 12px; margin: 0;
+    flex-wrap: nowrap; gap: 8px; box-shadow: 0 -2px 8px rgba(19,32,30,.06);
+  }
+  .step-actions > *, .sugg-actions > * { flex: 1 1 0; min-width: 0; padding: 0 10px; font-size: 14px; }
+  .sugg-actions .btn-secondary { flex: 0 1 auto; }
+
+  .stop-row { gap: 8px; }
+  .stop-row > .row:last-child { margin-left: auto; }
+  .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+  .stat { padding: 10px 12px; }
+  .stat .v { font-size: 18px; }
+  .opt { min-width: 0; flex: 1 1 140px; }
+
+  /* Länderdetail */
+  .hero img { height: 150px; }
+  .hero .body { padding: 16px; }
+  .hero h1 { font-size: 26px !important; }
+  .site-footer { padding-bottom: 24px; }
+}
+
+/* ---------------------------- Laptop / Desktop ---------------------------- */
+@media (min-width: 1024px) {
+  .wrap { max-width: 1320px; padding: 0 28px; }
+
+  /* Startseite: Filterleiste links, Kacheln rechts */
+  .home-layout { display: grid; grid-template-columns: 300px minmax(0, 1fr); gap: 28px; align-items: start; padding-top: 24px; }
+  .filters {
+    position: sticky; top: 16px; margin: 0; max-height: calc(100vh - 32px); overflow: auto; gap: 18px;
+  }
+  .filters-desk-only { display: block; }
+  .filters .filters-wrap, .filters-months .chip-scroller { flex-wrap: wrap; overflow: visible; }
+  .filters .chip { min-height: 38px; padding: 0 12px !important; }
+  .filters .legend { flex-direction: column; gap: 6px; }
+  .grid-cards { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 18px; }
+
+  /* Planer: Vorlieben links (mitlaufend), Vorschläge rechts */
+  .planner-main { max-width: 1320px !important; }
+  .planner-two { display: grid; grid-template-columns: 400px minmax(0, 1fr); gap: 32px; align-items: start; }
+  .prefs-col {
+    position: sticky; top: 16px; max-height: calc(100vh - 32px); overflow: auto;
+    background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius-l); padding: 18px;
+  }
+  .prefs-col .tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .prefs-col .tile { min-height: 60px; }
+  .prefs-col .pref-rows { flex-direction: column; gap: 16px; }
+  .prefs-col .chip { min-height: 40px; }
+  .sugg-head { border-top: 0; padding-top: 0; }
+  .sugg-grid { grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); }
+
+  /* Reiseplan: Karte läuft beim Scrollen mit */
+  .map-sticky { position: sticky; top: 16px; }
+  .map-leaflet { height: 520px; }
+
+  /* Länderdetail: Bild neben Text, Regionen zweispaltig */
+  .country-main { max-width: 1320px; }
+  .hero-split { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); }
+  .hero-split img { height: 100%; min-height: 320px; }
+  .region-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; align-items: start; }
+}
+
+/* Kurze Knopftexte auf dem Handy */
+.only-mob { display: none; }
+@media (max-width: 767px) {
+  .only-desk { display: none; }
+  .only-mob { display: inline; }
+  .plan-actions { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; width: 100%; }
+  .plan-actions .btn { padding: 0 8px; min-height: 46px; }
+}

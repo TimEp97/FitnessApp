@@ -1,6 +1,7 @@
 import { Suspense, lazy, useEffect } from 'react';
 import { Link, Route, Routes, useLocation } from 'react-router-dom';
-import { Plane } from 'lucide-react';
+import { Globe2, Map as MapIcon, Plane, Route as RouteIcon } from 'lucide-react';
+import { useTrip } from './store/tripStore';
 import { t } from './i18n/de';
 import { HomePage } from './pages/HomePage';
 import { CountryPage } from './pages/CountryPage';
@@ -19,23 +20,70 @@ function ScrollToTop() {
   return null;
 }
 
+/** Hauptnavigation: Desktop im Kopf, Handy als Tab-Leiste unten */
+function useNavItems() {
+  const stops = useTrip((s) => s.stops.length);
+  return [
+    { to: '/', label: 'Länder', icon: Globe2, end: true },
+    { to: '/planer', label: 'Reise planen', icon: RouteIcon },
+    { to: '/planer?schritt=4', label: stops ? `Mein Plan (${stops})` : 'Mein Plan', short: 'Mein Plan', icon: MapIcon, badge: stops },
+  ];
+}
+
+function isActive(to: string, pathname: string, search: string) {
+  if (to === '/') return pathname === '/' || pathname.startsWith('/land');
+  if (to === '/planer') return pathname === '/planer' && !search.includes('schritt=4');
+  return pathname === '/planer' && search.includes('schritt=4');
+}
+
 export function SiteHeader({ children }: { children?: React.ReactNode }) {
+  const items = useNavItems();
+  const { pathname, search } = useLocation();
   return (
     <header className="site-header no-print">
-      <div className="wrap stack" style={{ ['--gap' as string]: '14px' }}>
-        <div className="row between" style={{ ['--gap' as string]: '12px' }}>
+      <div className="wrap stack header-inner" style={{ ['--gap' as string]: '14px' }}>
+        <div className="row between header-top" style={{ ['--gap' as string]: '12px' }}>
           <Link to="/" className="brand">
             <span className="brand-logo"><Plane size={24} aria-hidden="true" /></span>
             <span className="stack" style={{ ['--gap' as string]: '0' }}>
               <span className="brand-name">{t.appName}</span>
-              <span className="small mute">{t.tagline}</span>
+              <span className="small mute brand-tagline">{t.tagline}</span>
             </span>
           </Link>
-          <Link to="/planer" className="btn btn-primary btn-small">{t.planTrip}</Link>
+          <nav className="desk-nav" aria-label="Hauptnavigation">
+            {items.map((it) => (
+              <Link key={it.to} to={it.to} className={`desk-nav-link${isActive(it.to, pathname, search) ? ' active' : ''}`}
+                aria-current={isActive(it.to, pathname, search) ? 'page' : undefined}>
+                <it.icon size={18} aria-hidden="true" />{it.label}
+              </Link>
+            ))}
+          </nav>
         </div>
         {children}
       </div>
     </header>
+  );
+}
+
+/** Tab-Leiste unten, nur auf dem Handy sichtbar */
+function MobileTabBar() {
+  const items = useNavItems();
+  const { pathname, search } = useLocation();
+  return (
+    <nav className="tabbar no-print" aria-label="Hauptnavigation (mobil)">
+      {items.map((it) => {
+        const active = isActive(it.to, pathname, search);
+        return (
+          <Link key={it.to} to={it.to} className={`tab${active ? ' active' : ''}`} aria-current={active ? 'page' : undefined}>
+            <span className="tab-icon">
+              <it.icon size={22} aria-hidden="true" />
+              {it.badge ? <span className="tab-badge" aria-hidden="true">{it.badge}</span> : null}
+            </span>
+            <span>{it.short ?? it.label}{it.badge ? <span className="sr-only"> ({it.badge} Orte)</span> : null}</span>
+          </Link>
+        );
+      })}
+    </nav>
   );
 }
 
@@ -77,6 +125,7 @@ export function App() {
         </Routes>
       </Suspense>
       {!isPrint && <SiteFooter />}
+      {!isPrint && <MobileTabBar />}
     </>
   );
 }
