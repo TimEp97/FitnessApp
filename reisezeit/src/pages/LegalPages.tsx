@@ -1,4 +1,5 @@
 import { SiteHeader } from '../App';
+import { allCredits } from '../images';
 
 // Platzhalter: Angaben vor dem Livegang ausfüllen und rechtlich prüfen lassen (keine Rechtsberatung).
 
@@ -20,11 +21,25 @@ export function ImpressumPage() {
         <h2>Bild- und Kartennachweise</h2>
         <ul>
           <li>Landschafts-Illustrationen: eigene Grafiken.</li>
+          {allCredits().length > 0 && <li>Fotos: Wikimedia Commons, Einzelnachweise unten.</li>}
           <li>Kartendaten der interaktiven Karte: © OpenStreetMap-Mitwirkende (ODbL).</li>
           <li>Küstenlinien der Druckkarte: Natural Earth (gemeinfrei), über das Paket „world-atlas“.</li>
           <li>Schriften: Inter und Space Grotesk (SIL Open Font License), selbst gehostet.</li>
           <li>Symbole: Lucide (ISC-Lizenz).</li>
         </ul>
+        {allCredits().length > 0 && (
+          <>
+            <h2>Fotos</h2>
+            <ul>
+              {allCredits().map((c) => (
+                <li key={c.key}>
+                  <a href={c.source} target="_blank" rel="noopener noreferrer">{c.title ?? c.file}</a> – {c.author},{' '}
+                  {c.licenseUrl ? <a href={c.licenseUrl} target="_blank" rel="noopener noreferrer">{c.license}</a> : c.license}
+                </li>
+              ))}
+            </ul>
+          </>
+        )}
       </main>
     </>
   );
@@ -48,6 +63,11 @@ export function DatenschutzPage() {
           Dein Reiseplan (Vorlieben, Stopps, Verkehrsmittel) wird nur lokal in deinem Browser (localStorage) gespeichert,
           damit er nach dem Neuladen noch da ist. Es gibt keine Konten, kein Tracking und keine Cookies.
           Du kannst die Daten jederzeit über die Browser-Einstellungen oder im Planer mit „Neu anfangen“ löschen.
+        </p>
+        <h2>Reiseprofil</h2>
+        <p>
+          Dein Reiseprofil (Name, bereiste Länder und Orte, hinzugefügte Freunde) liegt ebenfalls nur in deinem Browser.
+          Wenn du deinen Profil-Link teilst, stehen diese Angaben im Link selbst – wer den Link hat, kann sie lesen.
         </p>
         <h2>Karte (OpenStreetMap)</h2>
         <p>

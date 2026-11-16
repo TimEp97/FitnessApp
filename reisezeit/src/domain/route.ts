@@ -25,19 +25,30 @@ export function buildRoute(ranked: Scored[], inp: Inputs, ctx: Ctx): Stop[] {
   if (!ranked.length) return [];
   const totalNights = inp.days - 1;
   const n = stopCount(inp.days, inp.pace, ranked.length);
-  const anchor = ranked[0].place;
-  const radius = radiusFor(anchor, ctx);
   const scoreOf = new Map(ranked.map((s) => [s.place.id, s.total]));
   const score = (p: Place) => scoreOf.get(p.id) ?? 0;
-  const near = (p: Place, list: Place[]) => list.some((q) => km(q, p) <= radius);
 
-  // 1. Anker + Cluster: nächstbester Score im Umkreis eines gewählten Orts
-  const picked: Place[] = [anchor];
-  while (picked.length < n) {
-    const next = ranked.find((s) => !picked.includes(s.place) && near(s.place, picked));
-    if (!next) break;
-    picked.push(next.place);
+  // 1. Anker + Cluster: nächstbester Score im Umkreis eines gewählten Orts.
+  //    Liegt um den besten Ort zu wenig, wird der nächstbeste Ort als Anker probiert –
+  //    so entsteht keine „Route“ mit nur einem Stopp.
+  const clusterFrom = (anchor: Place) => {
+    const radius = radiusFor(anchor, ctx);
+    const list: Place[] = [anchor];
+    while (list.length < n) {
+      const next = ranked.find((s) => !list.includes(s.place) && list.some((q) => km(q, s.place) <= radius));
+      if (!next) break;
+      list.push(next.place);
+    }
+    return list;
+  };
+  let picked: Place[] = [];
+  for (const cand of ranked.slice(0, ROUTE.anchorTries)) {
+    const list = clusterFrom(cand.place);
+    if (list.length > picked.length) picked = list;
+    if (picked.length >= n) break;
   }
+  const radius = radiusFor(picked[0], ctx);
+  const near = (p: Place, list: Place[]) => list.some((q) => km(q, p) <= radius);
 
   // 2. Mischung: jede gewählte Vorliebe mindestens einmal mit Stärke 3
   for (const id of inp.interests) {
@@ -76,30 +87,32 @@ export function buildRoute(ranked: Scored[], inp: Inputs, ctx: Ctx): Stop[] {
 }
 
 /**
- * Reihenfolge: Start an einem Ort mit (internationalem) Flughafen, dann kürzester Weg
- * (bei höchstens 6 Stopps alle Reihenfolgen durchprobiert). Ein Strand-/Ruhe-Ort kommt ans
- * Ende, wenn der Weg dadurch höchstens 20 % länger wird.
+ * Reihenfolge: kürzester Weg (bei höchstens 6 Stopps alle Reihenfolgen durchprobiert), bei dem ein
+ * Ort mit (internationalem) Flughafen am Anfang oder am Ende liegt – für An- oder Abreise.
+ * Ein Strand-/Ruhe-Ort kommt ans Ende, wenn der Weg dadurch höchstens 20 % länger wird;
+ * ein Start ganz ohne Flughafen wird leicht benachteiligt.
  */
 export function orderStops(places: Place[], _ctx?: Ctx): Place[] {
-  if (places.length <= 2) {
-    if (places.length === 2 && startRank(places[1]) > startRank(places[0])) return [places[1], places[0]];
-    return places.slice();
-  }
+  if (places.length <= 1) return places.slice();
   const bestRank = Math.max(...places.map(startRank));
-  const starts = places.filter((p) => startRank(p) === bestRank);
+  const gateway = (p: Place) => startRank(p) === bestRank;
   let best: Place[] = [];
-  let bestKm = Infinity;
+  let bestCost = Infinity;
   let beach: Place[] = [];
-  let beachKm = Infinity;
-  for (const s of starts) {
-    for (const rest of permutations(places.filter((p) => p !== s))) {
-      const route = [s, ...rest];
-      const d = pathKm(route);
-      if (d < bestKm) { bestKm = d; best = route; }
-      if (isBeachRest(route[route.length - 1]) && d < beachKm) { beachKm = d; beach = route; }
+  let beachCost = Infinity;
+  for (const route of permutations(places)) {
+    const first = route[0];
+    const last = route[route.length - 1];
+    if (!gateway(first) && !gateway(last)) continue;
+    const cost = pathKm(route) * (startRank(first) === 0 ? 1.15 : 1);
+    const endsBeach = isBeachRest(last);
+    if (cost < bestCost - 1e-6 || (Math.abs(cost - bestCost) <= 1e-6 && endsBeach && !isBeachRest(best[best.length - 1]))) {
+      bestCost = cost;
+      best = route;
     }
+    if (endsBeach && cost < beachCost) { beachCost = cost; beach = route; }
   }
-  if (beach.length && !isBeachRest(best[best.length - 1]) && beachKm <= bestKm * ROUTE.beachEndDetour) return beach;
+  if (beach.length && !isBeachRest(best[best.length - 1]) && beachCost <= bestCost * ROUTE.beachEndDetour) return beach;
   return best;
 }
 

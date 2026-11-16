@@ -7,7 +7,7 @@ type Ring = [number, number][];
 let landCache: Promise<Ring[]> | null = null;
 
 /** Vereinfachte Küstenlinien (Natural Earth 110m, gemeinfrei) – erst bei Bedarf geladen */
-function loadLand(): Promise<Ring[]> {
+export function loadLand(): Promise<Ring[]> {
   landCache ??= Promise.all([import('world-atlas/land-110m.json'), import('topojson-client')]).then(([topo, tc]) => {
     const data = (topo as { default?: unknown }).default ?? topo;
     // eslint-disable-next-line @typescript-eslint/no-explicit-any

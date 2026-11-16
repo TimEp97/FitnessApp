@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom';
 import type { ClimateCode, Country } from '../data/schema';
 import { places } from '../data';
+import { COUNTRY_INFO, VISA_LABEL } from '../data/countryInfo';
+import { countryImage } from '../images';
 import { aggregate, ranges } from '../domain/climate';
 import { citiesOfCountry } from '../domain/cities';
 import { CODE_LABEL, MONTHS_FULL, TAG_LABEL, t } from '../i18n/de';
@@ -18,7 +20,7 @@ export function CountryCard({ country, month }: { country: Country; month: numbe
   const href = `/land/${country.id}${month >= 0 ? `?monat=${month + 1}` : ''}`;
   return (
     <Link to={href} className="country-card" aria-label={`${country.name} öffnen`}>
-      <img src={`img/scenes/${country.scene}.svg`} alt="" loading="lazy" />
+      <img src={countryImage(country).src} alt="" loading="lazy" />
       <div className="body">
         <div className="row" style={{ ['--gap' as string]: '8px' }}>
           <span className="code-badge">{country.id.toUpperCase()}</span>
@@ -35,6 +37,11 @@ export function CountryCard({ country, month }: { country: Country; month: numbe
         {shown.length > 0 && (
           <span className="small" style={{ color: 'var(--ink-2)' }}>
             <strong>Orte:</strong> {shown.join(', ')}{cities.length > shown.length ? ` +${cities.length - shown.length}` : ''}
+          </span>
+        )}
+        {COUNTRY_INFO[country.id] && (
+          <span className="small" style={{ color: 'var(--ink-2)' }}>
+            <strong>Einreise:</strong> {VISA_LABEL[COUNTRY_INFO[country.id].visa]} · {COUNTRY_INFO[country.id].stay}
           </span>
         )}
         <div className="row" style={{ ['--gap' as string]: '6px' }}>

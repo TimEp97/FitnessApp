@@ -103,8 +103,8 @@ describe('Route', () => {
     const radius = radiusFor(places[0], ctx);
     expect(radius).toBe(900);
     for (const p of places) expect(places.some((q) => q !== p && km(p, q) <= radius)).toBe(true);
-    // Start an einem internationalen Flughafen
-    expect(places[0].transport.intlAirport).toBe(true);
+    // An- oder Abreise über einen internationalen Flughafen
+    expect(places[0].transport.intlAirport || places[places.length - 1].transport.intlAirport).toBe(true);
     // jede Vorliebe mindestens einmal mit Stärke 3
     for (const id of inp.interests) expect(places.some((p) => (p.interests[id] ?? 0) >= 3)).toBe(true);
   });
@@ -116,6 +116,20 @@ describe('Route', () => {
     if (bkk) expect(bkk.nights).toBeLessThanOrEqual(3);
     const last = P(stops[stops.length - 1].placeId);
     if ((last.interests.strand ?? 0) >= 3) expect(stops[stops.length - 1].nights).toBeGreaterThanOrEqual(4);
+  });
+});
+
+describe('Route mit echten Daten', () => {
+  const real = makeCtx(realCountries as Country[], realPlaces as Place[]);
+  it('hat nie nur einen Stopp, wenn der beste Ort abgelegen ist', () => {
+    for (let month = 0; month < 12; month++) {
+      for (const interests of [['strand'], ['kultur'], ['berge', 'natur'], ['city', 'food']] as const) {
+        const inp: Inputs = { ...baseInputs, month, interests: [...interests] };
+        const { ranked } = suggest(inp, real);
+        if (ranked.length < 4) continue;
+        expect(buildRoute(ranked, inp, real).length, `${month}/${interests}`).toBeGreaterThanOrEqual(2);
+      }
+    }
   });
 });
 

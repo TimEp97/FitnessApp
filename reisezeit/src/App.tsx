@@ -1,6 +1,7 @@
 import { Suspense, lazy, useEffect } from 'react';
 import { Link, Route, Routes, useLocation } from 'react-router-dom';
-import { Globe2, Map as MapIcon, Plane, Route as RouteIcon } from 'lucide-react';
+import { Globe2, Map as MapIcon, Plane, Route as RouteIcon, Trophy } from 'lucide-react';
+import { ComparePage, ProfilePage } from './pages/ProfilePage';
 import { useTrip } from './store/tripStore';
 import { t } from './i18n/de';
 import { HomePage } from './pages/HomePage';
@@ -27,11 +28,13 @@ function useNavItems() {
     { to: '/', label: 'Länder', icon: Globe2, end: true },
     { to: '/planer', label: 'Reise planen', icon: RouteIcon },
     { to: '/planer?schritt=4', label: stops ? `Mein Plan (${stops})` : 'Mein Plan', short: 'Mein Plan', icon: MapIcon, badge: stops },
+    { to: '/profil', label: 'Profil', icon: Trophy },
   ];
 }
 
 function isActive(to: string, pathname: string, search: string) {
   if (to === '/') return pathname === '/' || pathname.startsWith('/land');
+  if (to === '/profil') return pathname === '/profil' || pathname.startsWith('/vergleich');
   if (to === '/planer') return pathname === '/planer' && !search.includes('schritt=4');
   return pathname === '/planer' && search.includes('schritt=4');
 }
@@ -119,6 +122,8 @@ export function App() {
           <Route path="/planer" element={<PlannerPage />} />
           <Route path="/plan/druck" element={<PrintPage />} />
           <Route path="/plan/:code" element={<SharedPlanPage />} />
+          <Route path="/profil" element={<ProfilePage />} />
+          <Route path="/vergleich/:code" element={<ComparePage />} />
           <Route path="/impressum" element={<ImpressumPage />} />
           <Route path="/datenschutz" element={<DatenschutzPage />} />
           <Route path="*" element={<NotFound />} />

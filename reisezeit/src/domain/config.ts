@@ -50,6 +50,8 @@ export const ROUTE = {
   minStops: 2,
   maxStops: 6,
   radiusKm: { Europa: 600, default: 900 },
+  /** so viele der besten Orte werden als Startpunkt (Anker) probiert */
+  anchorTries: 12,
   /** Strand-/Ruhe-Ort ans Ende, wenn der Weg höchstens so viel länger wird */
   beachEndDetour: 1.2,
   cityMaxNights: 3,

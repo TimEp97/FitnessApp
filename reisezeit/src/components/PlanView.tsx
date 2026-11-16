@@ -4,6 +4,9 @@ import { MAP_CONSENT_KEY } from '../config';
 import type { Plan } from '../domain/timeline';
 import { formatHours } from '../domain/transport';
 import { MapLegend, TripMapStatic } from './TripMapStatic';
+import { CountryFacts } from './CountryFacts';
+import { ctx } from '../data';
+import type { Style } from '../domain/types';
 import { Timeline } from './Timeline';
 
 const TripMap = lazy(() => import('./TripMap'));
@@ -22,7 +25,8 @@ export function planStats(plan: Plan) {
 }
 
 /** Kennzahlen, Warnungen, Karte und Tagesablauf (Schritt 4 und geteilter Plan) */
-export function PlanView({ plan, month }: { plan: Plan; month: number }) {
+export function PlanView({ plan, month, style }: { plan: Plan; month: number; style?: Style }) {
+  const planCountries = [...new Map(plan.places.map((p) => [p.countryId, ctx.country(p)])).values()];
   const [interactive, setInteractive] = useState(readConsent);
   const loadMap = () => {
     try { localStorage.setItem(MAP_CONSENT_KEY, '1'); } catch { /* egal */ }
@@ -67,9 +71,16 @@ export function PlanView({ plan, month }: { plan: Plan; month: number }) {
           )}
         </div>
         <div style={{ flex: '1 1 380px' }}>
-          <Timeline plan={plan} month={month} />
+          <Timeline plan={plan} month={month} style={style} />
         </div>
       </div>
+      <section className="stack" style={{ ['--gap' as string]: '10px' }} aria-labelledby="h-wissen">
+        <h2 id="h-wissen" style={{ fontSize: 20 }}>Gut zu wissen: Einreise für Deutsche</h2>
+        <div className="facts-grid">
+          {planCountries.map((c) => <CountryFacts key={c.id} countryId={c.id} name={c.name} compact />)}
+        </div>
+        <p className="tiny mute" style={{ margin: 0 }}>Kurzfassung ohne Gewähr – vor der Reise beim Auswärtigen Amt prüfen.</p>
+      </section>
     </div>
   );
 }

@@ -1,6 +1,10 @@
 import { useState } from 'react';
 import { Link, useParams, useSearchParams } from 'react-router-dom';
-import { ChevronLeft } from 'lucide-react';
+import { Check, ChevronLeft, Plus } from 'lucide-react';
+import { CountryFacts } from '../components/CountryFacts';
+import { isoOfAppCountry } from '../data/world';
+import { countryImage } from '../images';
+import { useProfile } from '../store/profileStore';
 import { SiteHeader } from '../App';
 import { TAG_ICON } from '../components/icons';
 import { RegionCard } from '../components/RegionCard';
@@ -22,6 +26,9 @@ export function CountryPage() {
   const addStop = useTrip((s) => s.addStop);
   const [added, setAdded] = useState('');
   const inRoute = new Set(stops.map((s) => s.placeId));
+  const visitedCodes = useProfile((s) => s.countries);
+  const addCountries = useProfile((s) => s.addCountries);
+  const toggleCountry = useProfile((s) => s.toggleCountry);
 
   if (!country) {
     return (
@@ -39,6 +46,9 @@ export function CountryPage() {
   const agg = aggregate(codes);
   const back = `/${month >= 0 ? `?monat=${month + 1}` : ''}`;
   const hasPlaces = places.some((p) => p.countryId === country.id);
+  const iso = isoOfAppCountry(country.id);
+  const visited = iso.every((c) => visitedCodes.includes(c));
+  const img = countryImage(country);
   const planHref = `/planer?reg=${country.id}${month >= 0 ? `&monat=${month + 1}` : ''}`;
 
   return (
@@ -50,7 +60,7 @@ export function CountryPage() {
         </Link>
 
         <section className="card hero hero-split">
-          <img src={`img/scenes/${country.scene}.svg`} alt="" />
+          <img src={img.src} alt="" />
           <div className="body">
             <div className="row" style={{ ['--gap' as string]: '10px' }}>
               <span className="code-badge" style={{ fontSize: 12 }}>{country.id.toUpperCase()}</span>
@@ -60,6 +70,11 @@ export function CountryPage() {
             <p style={{ margin: 0, fontSize: 16 }} className="prose">{country.intro}</p>
             <div className="row">
               <Link to={planHref} className="btn btn-primary">{t.planHere}</Link>
+              <button type="button" className={`btn btn-secondary${visited ? ' is-on' : ''}`} aria-pressed={visited}
+                onClick={() => (visited ? iso.forEach((c) => toggleCountry(c)) : addCountries(iso))}>
+                {visited ? <Check size={18} aria-hidden="true" /> : <Plus size={18} aria-hidden="true" />}
+                {visited ? 'Schon bereist' : 'Als bereist markieren'}
+              </button>
               {!hasPlaces && <span className="small mute">Für {country.name} gibt es noch keine Orte im Planer – du kannst trotzdem planen.</span>}
             </div>
             <div className="row" style={{ ['--gap' as string]: '8px' }}>
@@ -75,6 +90,8 @@ export function CountryPage() {
             </div>
           </div>
         </section>
+
+        <CountryFacts countryId={country.id} name={country.name} />
 
         <h2 style={{ fontSize: 20, marginTop: 6 }}>{t.regionsHeading}</h2>
         <p className="small mute" style={{ margin: '-8px 0 0' }}>

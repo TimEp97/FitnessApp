@@ -1,6 +1,6 @@
 # Reisezeit
 
-Statische Web-App: Wann ist wo das beste Wetter? Länderübersicht mit 12-Monats-Ampel, Länderdetail je Region und ein Reiseplaner in vier Schritten (Vorlieben → Orte → Verkehrsmittel → Reiseplan) mit automatischer Route, Karte, PDF-Export und Teilen per Link. Kein Backend, kein Login – der Plan liegt im Browser.
+Statische Web-App: Wann ist wo das beste Wetter? Länderübersicht mit 12-Monats-Ampel und Einreise-Infos, ein Reiseplaner, der aus drei Fragen automatisch einen Reiseplan mit Route, Karte und bebildertem PDF baut, und ein Reiseprofil mit Punkten, Auszeichnungen und Vergleich. Kein Backend, kein Login – alles liegt im Browser.
 
 Umgesetzt nach `docs/implementierungskonzept.md`.
 
@@ -22,6 +22,35 @@ Bei vorinstalliertem Chromium: `PW_CHROMIUM_PATH=/pfad/zu/chromium npm run test:
 1. Subdomain mit eigenem Ordner anlegen und SSL aktivieren (nötig für „Link kopieren“ und Web Share).
 2. `npm run build`, dann den **Inhalt** von `dist/` per FTP in den Ordner laden. `.htaccess` (Komprimierung, Caching) ist dabei.
 3. Hash-Routing und relative Pfade (`base: './'`) – keine Server-Regeln nötig, läuft auch im Unterordner.
+
+## Ablauf für Nutzer
+
+1. **Drei Fragen** (`#/planer`): Wann? Wie lange? Was ist dir wichtig? Weitere Einstellungen sind eingeklappt.
+2. **„Reiseplan erstellen“**: Route, Nächte und Verkehrsmittel entstehen automatisch (`domain/route.ts`). Orte und Verkehrsmittel lassen sich danach über „Anpassen“ ändern, müssen aber nicht.
+3. **„PDF herunterladen“**: mehrseitiges A4-PDF mit Titelbild des Landes, Karte, Tagesplan, einer Karte je Stopp mit Bild und den Einreise-Infos je Land. Die Seiten werden im Browser gerendert (`html-to-image` + `jsPDF`, erst beim Klick geladen); „Drucken“ bleibt als Alternative.
+
+## Länder-Infos (Visum, Aufenthalt)
+
+`src/data/countryInfo.ts` enthält je Land eine Kurzfassung für deutsche Staatsangehörige: Visum, erlaubter Aufenthalt, Reisedokument, Währung, Zeitverschiebung. Sie erscheint auf der Länderseite, der Länderkachel, im Reiseplan und im PDF.
+
+**Achtung:** Die Angaben sind von Hand zusammengestellt (Stand siehe `INFO_STAND`) und nicht gegen eine amtliche Quelle abgeglichen. Vor dem Livegang Land für Land mit dem Auswärtigen Amt prüfen und danach regelmäßig pflegen. In der App steht überall der Hinweis „ohne Gewähr“ mit Link zum Auswärtigen Amt.
+
+## Reiseprofil, Punkte und Vergleich
+
+- `#/profil`: bereiste Länder (Weltliste mit rund 200 Ländern, `data/world.ts`) und Orte ankreuzen.
+- Punkte: 10 je Land, 25 je Kontinent, 3 je Ort. Daraus ergeben sich Stufen (Neuling … Reiselegende) und 13 Auszeichnungen (`domain/profile.ts`).
+- Vergleich ohne Server: Der Profil-Link (`#/vergleich/<code>`) enthält Name, Länder und Orte. Wer ihn öffnet, sieht den direkten Vergleich und kann die Person in seine lokale Rangliste aufnehmen.
+- Eine öffentliche Rangliste über alle Nutzer gibt es nicht – dafür wäre ein Server mit Konten nötig.
+
+## Bilder
+
+`src/images.ts` liefert für jedes Land und jeden Ort ein Foto, falls eines in `src/data/photos.json` steht, sonst eine Illustration. Fotos lädt
+
+```bash
+node scripts/fetch-photos.mjs      # braucht Zugriff auf en.wikipedia.org, commons.wikimedia.org, upload.wikimedia.org
+```
+
+von Wikimedia Commons (Hauptbild des Artikels aus `scripts/photo-sources.json`), nur mit Lizenz CC0, Public Domain, CC BY oder CC BY-SA. Autor, Lizenz und Quelle landen in `photos.json` und erscheinen automatisch im Impressum und im PDF. Nach dem Laden die Bilder einmal durchsehen – das Hauptbild eines Artikels passt nicht immer.
 
 ## Handy- und Desktop-Version
 
@@ -51,7 +80,7 @@ src/
 scripts/      check-data.ts, import-mockup.mjs (einmaliger Datenimport), make-scenes.mjs (Landschafts-SVGs)
 ```
 
-Routen: `#/`, `#/land/:id`, `#/planer?schritt=1..4`, `#/plan/druck`, `#/plan/:code`, `#/impressum`, `#/datenschutz`. Startseiten-Filter stehen im Link (`#/?monat=3&kontinent=Asien`).
+Routen: `#/`, `#/land/:id`, `#/planer?schritt=1..4` (1 Wünsche, 4 Reiseplan, 2/3 Anpassen), `#/plan/druck`, `#/plan/:code`, `#/profil`, `#/vergleich/:code`, `#/impressum`, `#/datenschutz`. Startseiten-Filter stehen im Link (`#/?monat=3&kontinent=Asien`).
 
 ## Daten
 
@@ -79,7 +108,7 @@ Die Planer-Orte decken bisher nur Südostasien, Südamerika und Europa ab (wie i
 ## Abweichungen und offene Punkte
 
 - Styling über globale CSS-Klassen in `styles/base.css` mit den Tokens aus `tokens.css` statt CSS-Module.
-- PDF Stufe 1 (Druckansicht + `window.print()`); Stufe 2 (jsPDF-Download) ist noch nicht gebaut.
+- Das PDF besteht aus Seitenbildern (nicht aus Vektortext); der Text im PDF ist daher nicht markierbar. „Drucken → Als PDF speichern“ liefert weiterhin ein Vektor-PDF.
 - Die Karte im Reiseplan ist zunächst eine lokale SVG-Karte (Natural-Earth-Küsten). Die Leaflet/OSM-Karte lädt erst nach Klick („Interaktive Karte laden“) – keine IP-Übertragung ohne Zustimmung.
 - Interessen-Kacheln: Tippen schaltet an → „Muss“ (Stern) → aus; langes Drücken setzt direkt „Muss“.
 - Impressum und Datenschutz enthalten Platzhalter `[NAME]` usw. – vor dem Livegang ausfüllen und prüfen lassen.
