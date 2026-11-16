@@ -1,0 +1,1912 @@
+[
+ {
+  "id": "th",
+  "name": "Thailand",
+  "continent": "Asien",
+  "group": "Südostasien",
+  "scene": "temple",
+  "tags": [
+   "temple",
+   "waves",
+   "fish"
+  ],
+  "intro": "Tempel, Streetfood und zwei Küsten mit entgegengesetztem Monsun – irgendwo in Thailand ist fast immer Saison.",
+  "regions": [
+   {
+    "id": "th-bangkok-zentralthailand",
+    "name": "Bangkok & Zentralthailand",
+    "climate": "GGLYYYYYRRGG",
+    "note": "Nov–Feb angenehm trocken; im April bis 38 °C; Sep–Okt die stärksten Regenfälle."
+   },
+   {
+    "id": "th-norden",
+    "name": "Norden (Chiang Mai, Chiang Rai, Pai)",
+    "climate": "GLRRYYYYRLGG",
+    "note": "Mär–Apr Brandrodung und Smog; im November das Lichterfest Loy Krathong / Yi Peng."
+   },
+   {
+    "id": "th-andamanensee",
+    "name": "Andamanensee (Phuket, Krabi, Khao Lak, Koh Lanta)",
+    "climate": "GGGLYRRRRYLG",
+    "note": "Mai–Okt Südwestmonsun mit rauer See; auf Koh Lanta und in Khao Lak schließen viele Resorts."
+   },
+   {
+    "id": "th-golf-von-thailand",
+    "name": "Golf von Thailand (Koh Samui, Koh Phangan, Koh Tao)",
+    "climate": "LGGGLLLLYRRY",
+    "note": "Gegenläufig zur Andamanenküste – Jul–Aug eine gute Alternative; Okt–Dez Monsun."
+   }
+  ]
+ },
+ {
+  "id": "vn",
+  "name": "Vietnam",
+  "continent": "Asien",
+  "group": "Südostasien",
+  "scene": "rice",
+  "tags": [
+   "waves",
+   "city",
+   "mountain"
+  ],
+  "intro": "Über 1.600 km lang: Norden, Mitte und Süden haben eigene Klimazonen. Für eine Rundreise passen März und April am besten.",
+  "regions": [
+   {
+    "id": "vn-norden",
+    "name": "Norden (Hanoi, Halong-Bucht, Ninh Binh, Sapa)",
+    "climate": "YLGGLYYRLGGL",
+    "note": "Dez–Feb kühl (~15 °C), oft Nebel in der Halong-Bucht; im September goldene Reisterrassen in Sapa."
+   },
+   {
+    "id": "vn-zentrum",
+    "name": "Zentrum (Hoi An, Da Nang, Hue)",
+    "climate": "YGGGGLLLYRRY",
+    "note": "Okt–Nov Taifune und Überschwemmungen; Jun–Aug heiß, vietnamesische Ferien."
+   },
+   {
+    "id": "vn-suden",
+    "name": "Süden (Saigon, Mekongdelta)",
+    "climate": "GGGLYYYYYYLG",
+    "note": "In der Regenzeit meist kurze Nachmittagsschauer; Mär–Apr sehr heiß."
+   },
+   {
+    "id": "vn-phu-quoc",
+    "name": "Phu Quoc",
+    "climate": "GGGLYRRRRYLG",
+    "note": "Nov–Apr Strandwetter; Jul–Sep Westmonsun mit Wellen und Regen."
+   }
+  ]
+ },
+ {
+  "id": "kh",
+  "name": "Kambodscha",
+  "continent": "Asien",
+  "group": "Südostasien",
+  "scene": "temple",
+  "tags": [
+   "temple",
+   "waves"
+  ],
+  "intro": "Angkor Wat ist das Highlight; tropisch heiß mit klarer Trocken- und Regenzeit.",
+  "regions": [
+   {
+    "id": "kh-angkor-phnom-penh",
+    "name": "Angkor (Siem Reap) & Phnom Penh",
+    "climate": "GGLYYYYYRRGG",
+    "note": "Mär–Mai sehr heiß; Jun–Aug grüne Saison mit kurzen Schauern und wenig Andrang in Angkor."
+   },
+   {
+    "id": "kh-kuste",
+    "name": "Küste (Kampot, Kep, Koh Rong)",
+    "climate": "GGGLYRRRRYLG",
+    "note": "Der Südwestmonsun trifft die Küste stärker als das Inland."
+   }
+  ]
+ },
+ {
+  "id": "la",
+  "name": "Laos",
+  "continent": "Asien",
+  "group": "Südostasien",
+  "scene": "temple",
+  "tags": [
+   "temple",
+   "leaf"
+  ],
+  "intro": "Entspanntes Mekong-Land mit Klöstern und Wasserfällen; Trockenzeit von November bis Februar.",
+  "regions": [
+   {
+    "id": "la-luang-prabang-vang",
+    "name": "Luang Prabang, Vang Vieng, Vientiane",
+    "climate": "GGLYYYYRRLGG",
+    "note": "Mär–Apr Brandrodungs-Dunst; im Oktober grün und klar, schön für Mekong-Bootsfahrten."
+   }
+  ]
+ },
+ {
+  "id": "my",
+  "name": "Malaysia",
+  "continent": "Asien",
+  "group": "Südostasien",
+  "scene": "beach",
+  "tags": [
+   "waves",
+   "leaf",
+   "fish"
+  ],
+  "intro": "West- und Ostküste haben gegenläufige Monsune; Borneo bietet Regenwald, Orang-Utans und Tauchen.",
+  "regions": [
+   {
+    "id": "my-westkuste",
+    "name": "Westküste (Kuala Lumpur, Penang, Langkawi)",
+    "climate": "GGGLLLLLYRYL",
+    "note": "Ganzjährig tropisch, Regenspitzen im April und Okt–Nov."
+   },
+   {
+    "id": "my-ostkuste-inseln",
+    "name": "Ostküste & Inseln (Perhentian, Tioman, Redang)",
+    "climate": "RYLGGGGGLYRR",
+    "note": "Nov–Feb Nordostmonsun – viele Inselresorts geschlossen."
+   },
+   {
+    "id": "my-borneo",
+    "name": "Borneo (Sabah, Sarawak)",
+    "climate": "YYLGGGGGGLYY",
+    "note": "Kinabalu, Orang-Utans und Tauchen vor Sipadan; Nov–Feb am nassesten."
+   }
+  ]
+ },
+ {
+  "id": "sg",
+  "name": "Singapur",
+  "continent": "Asien",
+  "group": "Südostasien",
+  "scene": "city",
+  "tags": [
+   "city"
+  ],
+  "intro": "Tropischer Stadtstaat ohne echte Jahreszeiten – ganzjährig um 31 °C, mit kurzen Schauern.",
+  "regions": [
+   {
+    "id": "sg-singapur",
+    "name": "Singapur",
+    "climate": "LGGGLLLLLLYY",
+    "note": "Nov–Jan regenreicher. Eine Stadtreise geht immer."
+   }
+  ]
+ },
+ {
+  "id": "id",
+  "name": "Indonesien",
+  "continent": "Asien",
+  "group": "Südostasien",
+  "scene": "rice",
+  "tags": [
+   "waves",
+   "fish",
+   "mountain"
+  ],
+  "intro": "Tausende Inseln, meist mit Trockenzeit Mai–Sep. Raja Ampat tickt umgekehrt.",
+  "regions": [
+   {
+    "id": "id-bali-lombok",
+    "name": "Bali & Lombok",
+    "climate": "RRYLLGGGGLYY",
+    "note": "Jul–Aug und Weihnachten sehr voll; Apr–Mai und Oktober ideal und ruhiger."
+   },
+   {
+    "id": "id-java",
+    "name": "Java (Yogyakarta, Borobudur, Bromo, Ijen)",
+    "climate": "RRYLLGGGGLYR",
+    "note": "Der Bromo-Sonnenaufgang ist in der Trockenzeit deutlich klarer."
+   },
+   {
+    "id": "id-komodo-flores",
+    "name": "Komodo & Flores",
+    "climate": "RRYGGGGGLLYR",
+    "note": "Apr–Jun noch grün; Dez–Mär raue See, Bootstouren eingeschränkt."
+   },
+   {
+    "id": "id-sumatra",
+    "name": "Sumatra (Toba-See, Bukit Lawang)",
+    "climate": "LLLYLGGLYRRY",
+    "note": "Kein ausgeprägter Monsun; Okt–Dez am nassesten."
+   },
+   {
+    "id": "id-raja-ampat",
+    "name": "Raja Ampat (Papua)",
+    "climate": "GGGGLYRRYLGG",
+    "note": "Zum Tauchen Okt–Apr ruhige See; Jul–Aug Wind und Wellen."
+   }
+  ]
+ },
+ {
+  "id": "ph",
+  "name": "Philippinen",
+  "continent": "Asien",
+  "group": "Südostasien",
+  "scene": "lagoon",
+  "tags": [
+   "waves",
+   "fish",
+   "storm"
+  ],
+  "intro": "Traumstrände und Tauchreviere; die Taifunsaison von Juni bis November sollte man meiden.",
+  "regions": [
+   {
+    "id": "ph-luzon-visayas",
+    "name": "Luzon & Visayas (Palawan, El Nido, Cebu, Bohol, Boracay)",
+    "climate": "GGGGLYRRRRYL",
+    "note": "Jun–Nov Regen- und Taifunzeit, Aug–Okt am heftigsten; Jan–Apr Traumwetter."
+   },
+   {
+    "id": "ph-siargao-ostkuste",
+    "name": "Siargao & Ostküste",
+    "climate": "YYGGGLLLGLYR",
+    "note": "Die Ostküste tickt anders: Dez–Jan am nassesten; im September Surfsaison."
+   }
+  ]
+ },
+ {
+  "id": "jp",
+  "name": "Japan",
+  "continent": "Asien",
+  "group": "Ostasien",
+  "scene": "temple",
+  "tags": [
+   "temple",
+   "city",
+   "snow"
+  ],
+  "intro": "Vier echte Jahreszeiten: Kirschblüte im Frühling, buntes Laub im Herbst, Pulverschnee im Winter.",
+  "regions": [
+   {
+    "id": "jp-honshu",
+    "name": "Honshu (Tokio, Kyoto, Osaka, Hiroshima)",
+    "climate": "LLGGGRYYYGGL",
+    "note": "Ende März–April Kirschblüte (sehr voll), November Herbstlaub; Juni Regenzeit (Tsuyu); Jul–Aug schwül bis 35 °C."
+   },
+   {
+    "id": "jp-hokkaido",
+    "name": "Hokkaido",
+    "climate": "LLYYLGGGGLYY",
+    "note": "Sommer angenehm und ohne Regenzeit; Jan–Feb Pulverschnee für Skifahrer."
+   },
+   {
+    "id": "jp-okinawa",
+    "name": "Okinawa",
+    "climate": "LLGGRRYRRGGL",
+    "note": "Mai–Jun Regenzeit, Aug–Sep Taifune; Winter mild (18–20 °C)."
+   }
+  ]
+ },
+ {
+  "id": "kr",
+  "name": "Südkorea",
+  "continent": "Asien",
+  "group": "Ostasien",
+  "scene": "city",
+  "tags": [
+   "city",
+   "mountain"
+  ],
+  "intro": "Kontinentalklima: heiße, nasse Sommer und kalte, trockene Winter. Frühling und Herbst sind ideal.",
+  "regions": [
+   {
+    "id": "kr-seoul-busan-jeju",
+    "name": "Seoul, Busan, Jeju",
+    "climate": "YYLGGLRYGGLY",
+    "note": "Im Juli Monsun (Jangma); April Kirschblüte, Oktober Herbstfarben."
+   }
+  ]
+ },
+ {
+  "id": "cn",
+  "name": "China",
+  "continent": "Asien",
+  "group": "Ostasien",
+  "scene": "mountain",
+  "tags": [
+   "city",
+   "mountain",
+   "temple"
+  ],
+  "intro": "Riesig und vielfältig – vom subtropischen Yunnan bis zum kalten Norden. Nationale Feiertage meiden.",
+  "regions": [
+   {
+    "id": "cn-peking-norden",
+    "name": "Peking & Norden (Große Mauer, Xi'an)",
+    "climate": "YYLGGLYYGGLY",
+    "note": "Winter klirrend kalt; Anfang Oktober Golden Week – extrem voll."
+   },
+   {
+    "id": "cn-shanghai-osten",
+    "name": "Shanghai & Osten (Hangzhou, Suzhou)",
+    "climate": "YYLGGRRYLGGY",
+    "note": "Jun–Jul Pflaumenregen (Meiyu); im August Taifune möglich."
+   },
+   {
+    "id": "cn-yunnan",
+    "name": "Yunnan (Kunming, Dali, Lijiang)",
+    "climate": "GGGGLYYYLGGG",
+    "note": "Stadt des ewigen Frühlings – Trockenzeit Okt–Apr."
+   },
+   {
+    "id": "cn-guilin-yangshuo",
+    "name": "Guilin & Yangshuo",
+    "climate": "YYYLRRLLGGGL",
+    "note": "Mai–Jun Starkregen; Sep–Nov klare Sicht auf die Karstberge."
+   },
+   {
+    "id": "cn-hongkong-macau",
+    "name": "Hongkong & Macau",
+    "climate": "LLLLYRRRYGGG",
+    "note": "Okt–Dez trocken und sonnig; Mai–Sep heiß, schwül, Taifune."
+   },
+   {
+    "id": "cn-tibet",
+    "name": "Tibet",
+    "climate": "YRYLGGLLGGLY",
+    "note": "Feb–Mär oft für Ausländer gesperrt; Mai–Jun und Sep–Okt klarste Sicht."
+   }
+  ]
+ },
+ {
+  "id": "tw",
+  "name": "Taiwan",
+  "continent": "Asien",
+  "group": "Ostasien",
+  "scene": "mountain",
+  "tags": [
+   "city",
+   "mountain",
+   "storm"
+  ],
+  "intro": "Subtropische Insel mit Bergen und Nachtmärkten; Taifune im Spätsommer.",
+  "regions": [
+   {
+    "id": "tw-taipeh-taroko-schlucht",
+    "name": "Taipeh, Taroko-Schlucht, Sonne-Mond-See",
+    "climate": "LLGGRRYRYGGL",
+    "note": "Mai–Jun Pflaumenregen, Jul–Sep Taifune."
+   }
+  ]
+ },
+ {
+  "id": "mn",
+  "name": "Mongolei",
+  "continent": "Asien",
+  "group": "Ostasien",
+  "scene": "mountain",
+  "tags": [
+   "tent",
+   "mountain"
+  ],
+  "intro": "Steppe, Gobi und Nomadenkultur – nur im kurzen Sommer gut bereisbar.",
+  "regions": [
+   {
+    "id": "mn-ulaanbaatar-gobi-khovsgol",
+    "name": "Ulaanbaatar, Gobi, Khövsgöl-See",
+    "climate": "RRRYYGGGLYRR",
+    "note": "Im Juli das Naadam-Fest (voll); Winter bis −30 °C."
+   }
+  ]
+ },
+ {
+  "id": "in",
+  "name": "Indien",
+  "continent": "Asien",
+  "group": "Südasien",
+  "scene": "temple",
+  "tags": [
+   "temple",
+   "waves",
+   "mountain"
+  ],
+  "intro": "Vom Himalaya bis Kerala bestimmt der Monsun die Planung. Faustregel: Oktober bis März.",
+  "regions": [
+   {
+    "id": "in-rajasthan-norden",
+    "name": "Rajasthan & Norden (Delhi, Agra, Jaipur, Varanasi)",
+    "climate": "GGLRRRYYYGGG",
+    "note": "Apr–Jun über 40 °C; Dez–Jan Morgennebel in Delhi und Agra; Holi im März."
+   },
+   {
+    "id": "in-goa",
+    "name": "Goa",
+    "climate": "GGLYYRRRRLGG",
+    "note": "Jun–Sep Monsun, viele Strandhütten geschlossen."
+   },
+   {
+    "id": "in-kerala",
+    "name": "Kerala (Backwaters, Munnar, Varkala)",
+    "climate": "GGLYYRRRYLGG",
+    "note": "Im Monsun Jun–Aug beliebt für Ayurveda-Kuren."
+   },
+   {
+    "id": "in-ladakh",
+    "name": "Ladakh (Leh, Nubra, Pangong-See)",
+    "climate": "RRRRYGGGGLRR",
+    "note": "Regenschatten – auch im Monsun trocken; Passstraßen meist Jun–Okt offen."
+   },
+   {
+    "id": "in-himachal-uttarakhand",
+    "name": "Himachal & Uttarakhand (Rishikesh, Manali)",
+    "climate": "YYGGGLRRLGGY",
+    "note": "Jul–Aug Erdrutschgefahr im Monsun."
+   },
+   {
+    "id": "in-andamanen",
+    "name": "Andamanen",
+    "climate": "GGGGYRRRRYLG",
+    "note": "Tauchen und Strände Dez–Apr."
+   },
+   {
+    "id": "in-tamil-nadu-ostkuste",
+    "name": "Tamil Nadu & Ostküste (Chennai, Pondicherry, Madurai)",
+    "climate": "GGLYYYYYYRRY",
+    "note": "Nordostmonsun Okt–Dez – anders als im Rest Indiens."
+   },
+   {
+    "id": "in-nordosten",
+    "name": "Nordosten (Sikkim, Darjeeling, Assam, Meghalaya)",
+    "climate": "LLGGLRRRYGGL",
+    "note": "Meghalaya zählt zu den regenreichsten Orten der Welt; Okt–Nov klare Himalaya-Sicht."
+   }
+  ]
+ },
+ {
+  "id": "lk",
+  "name": "Sri Lanka",
+  "continent": "Asien",
+  "group": "Südasien",
+  "scene": "beach",
+  "tags": [
+   "waves",
+   "temple",
+   "paw"
+  ],
+  "intro": "Zwei Monsune – die Insel hat fast immer eine Seite mit gutem Wetter.",
+  "regions": [
+   {
+    "id": "lk-westen-suden",
+    "name": "Westen & Süden (Colombo, Galle, Mirissa)",
+    "climate": "GGGLRRYYYRYL",
+    "note": "Südwestmonsun Mai–Sep; Blauwale vor Mirissa Dez–Apr."
+   },
+   {
+    "id": "lk-osten",
+    "name": "Osten (Trincomalee, Arugam Bay)",
+    "climate": "YYLGGGGGGYRR",
+    "note": "Gegenläufig: Nordostmonsun Nov–Jan; Surfsaison in Arugam Bay Mai–Sep."
+   },
+   {
+    "id": "lk-kulturdreieck",
+    "name": "Kulturdreieck (Sigiriya, Dambulla)",
+    "climate": "GGGGLLLLLYRY",
+    "note": "Trockenzone – fast ganzjährig gut, November am nassesten."
+   },
+   {
+    "id": "lk-hochland",
+    "name": "Hochland (Kandy, Ella, Nuwara Eliya)",
+    "climate": "GGGLYYLLYYYL",
+    "note": "Wechselhaft – beide Monsune streifen die Berge."
+   }
+  ]
+ },
+ {
+  "id": "mv",
+  "name": "Malediven",
+  "continent": "Asien",
+  "group": "Südasien",
+  "scene": "lagoon",
+  "tags": [
+   "waves",
+   "fish"
+  ],
+  "intro": "Atolle und Hausriffe: Dezember bis April trocken, der Rest feuchter, aber günstiger.",
+  "regions": [
+   {
+    "id": "mv-malediven",
+    "name": "Malediven",
+    "climate": "GGGLRYYYYYYL",
+    "note": "Mai–Nov feuchter, dafür günstiger und gute Manta-Sichtungen."
+   }
+  ]
+ },
+ {
+  "id": "np",
+  "name": "Nepal",
+  "continent": "Asien",
+  "group": "Südasien",
+  "scene": "mountain",
+  "tags": [
+   "mountain",
+   "temple"
+  ],
+  "intro": "Trekkingparadies im Himalaya; Oktober und November sind Hauptsaison.",
+  "regions": [
+   {
+    "id": "np-kathmandu-pokhara-annapurna",
+    "name": "Kathmandu, Pokhara, Annapurna, Everest",
+    "climate": "LLGGYRRRYGGL",
+    "note": "Okt–Nov klarste Bergsicht; Mär–Apr Rhododendronblüte."
+   }
+  ]
+ },
+ {
+  "id": "bt",
+  "name": "Bhutan",
+  "continent": "Asien",
+  "group": "Südasien",
+  "scene": "mountain",
+  "tags": [
+   "temple",
+   "mountain"
+  ],
+  "intro": "Klöster, Täler und Tsechu-Festivals; Frühjahr und Herbst ideal.",
+  "regions": [
+   {
+    "id": "bt-paro-thimphu-punakha",
+    "name": "Paro, Thimphu, Punakha",
+    "climate": "YLGGLYRRLGGY",
+    "note": "Festivals im Frühjahr und Herbst."
+   }
+  ]
+ },
+ {
+  "id": "ae",
+  "name": "Vereinigte Arabische Emirate",
+  "continent": "Asien",
+  "group": "Westasien",
+  "scene": "city",
+  "tags": [
+   "city",
+   "sun"
+  ],
+  "intro": "Wüstenstädte mit Wintersonne; im Sommer extrem heiß.",
+  "regions": [
+   {
+    "id": "ae-dubai-abu-dhabi",
+    "name": "Dubai & Abu Dhabi",
+    "climate": "GGGLYRRRYLGG",
+    "note": "Jun–Sep 40–45 °C bei hoher Luftfeuchte."
+   }
+  ]
+ },
+ {
+  "id": "om",
+  "name": "Oman",
+  "continent": "Asien",
+  "group": "Westasien",
+  "scene": "desert",
+  "tags": [
+   "sun",
+   "waves"
+  ],
+  "intro": "Wüste, Wadis und Fjorde – ein Winterziel; nur Salalah hat einen grünen Sommer.",
+  "regions": [
+   {
+    "id": "om-norden",
+    "name": "Norden (Maskat, Nizwa, Wahiba-Wüste)",
+    "climate": "GGGLYRRRYLGG",
+    "note": "Nov–Mär ideal für Wüste und Wadis."
+   },
+   {
+    "id": "om-dhofar",
+    "name": "Dhofar (Salalah)",
+    "climate": "GGGLYYYYLGGG",
+    "note": "Jul–Aug Khareef-Monsun: grün, neblig, Nieselregen."
+   }
+  ]
+ },
+ {
+  "id": "jo",
+  "name": "Jordanien",
+  "continent": "Asien",
+  "group": "Westasien",
+  "scene": "desert",
+  "tags": [
+   "sun",
+   "temple"
+  ],
+  "intro": "Petra und Wadi Rum sind im Frühling und Herbst am schönsten. Sicherheitshinweise prüfen.",
+  "regions": [
+   {
+    "id": "jo-amman-petra-wadi",
+    "name": "Amman, Petra, Wadi Rum, Totes Meer",
+    "climate": "YYGGGLYYLGGY",
+    "note": "Winter kühl und teils nass; Jul–Aug sehr heiß."
+   }
+  ]
+ },
+ {
+  "id": "tr",
+  "name": "Türkei",
+  "continent": "Asien",
+  "group": "Westasien",
+  "scene": "beach",
+  "tags": [
+   "waves",
+   "sun",
+   "mountain"
+  ],
+  "intro": "Badeurlaub an der Riviera, Ballonfahrten über Kappadokien.",
+  "regions": [
+   {
+    "id": "tr-turkische-riviera",
+    "name": "Türkische Riviera (Antalya, Kaş, Fethiye)",
+    "climate": "YYYYLGGGGLYY",
+    "note": "Badesaison Jun–Sep; Jul–Aug heiß und voll."
+   },
+   {
+    "id": "tr-kappadokien",
+    "name": "Kappadokien",
+    "climate": "YYYGGGLLGGLY",
+    "note": "Ballonfahrten ganzjährig; im Winter Schnee, aber malerisch."
+   }
+  ]
+ },
+ {
+  "id": "ge",
+  "name": "Georgien & Armenien",
+  "continent": "Asien",
+  "group": "Westasien",
+  "scene": "mountain",
+  "tags": [
+   "mountain",
+   "leaf"
+  ],
+  "intro": "Kaukasus-Berge, uralte Klöster und Wein – von Mai bis Oktober.",
+  "regions": [
+   {
+    "id": "ge-tiflis-kasbegi-jerewan",
+    "name": "Tiflis, Kasbegi, Jerewan, Sewansee",
+    "climate": "YYYLGGLLGGLY",
+    "note": "Jul–Aug in den Städten heiß – dann in die Berge; Sep–Okt Weinlese."
+   }
+  ]
+ },
+ {
+  "id": "uz",
+  "name": "Usbekistan",
+  "continent": "Asien",
+  "group": "Westasien",
+  "scene": "desert",
+  "tags": [
+   "temple",
+   "sun"
+  ],
+  "intro": "Seidenstraßen-Städte mit blauen Kuppeln; Frühling und Herbst ideal.",
+  "regions": [
+   {
+    "id": "uz-samarkand-buchara-chiwa",
+    "name": "Samarkand, Buchara, Chiwa",
+    "climate": "YYLGGLRRGGLY",
+    "note": "Jul–Aug über 40 °C."
+   }
+  ]
+ },
+ {
+  "id": "ma",
+  "name": "Marokko",
+  "continent": "Afrika",
+  "group": "Nordafrika",
+  "scene": "desert",
+  "tags": [
+   "sun",
+   "waves",
+   "mountain"
+  ],
+  "intro": "Königsstädte, Sahara und Atlas – Frühling und Herbst sind ideal.",
+  "regions": [
+   {
+    "id": "ma-marrakesch-konigsstadte",
+    "name": "Marrakesch & Königsstädte (Fès, Meknès)",
+    "climate": "LLGGGYRRLGGL",
+    "note": "Jul–Aug bis 40 °C; im Winter tagsüber sonnig, nachts kalt."
+   },
+   {
+    "id": "ma-atlantikkuste",
+    "name": "Atlantikküste (Essaouira, Agadir, Taghazout)",
+    "climate": "LLGGGGLLGGGL",
+    "note": "Ganzjährig mild; Essaouira im Sommer windig; Surfen Okt–Mär."
+   },
+   {
+    "id": "ma-sahara",
+    "name": "Sahara (Merzouga, Zagora)",
+    "climate": "LLGGYRRRYGGL",
+    "note": "Wüstennächte im Dez–Jan um 0 °C."
+   },
+   {
+    "id": "ma-hoher-atlas",
+    "name": "Hoher Atlas (Toubkal, Imlil)",
+    "climate": "YYYLGGGGGLYY",
+    "note": "Im Winter Schnee – Toubkal dann nur mit Steigeisen."
+   }
+  ]
+ },
+ {
+  "id": "tn",
+  "name": "Tunesien",
+  "continent": "Afrika",
+  "group": "Nordafrika",
+  "scene": "beach",
+  "tags": [
+   "waves",
+   "sun"
+  ],
+  "intro": "Mittelmeerstrände im Sommer, Sahara im Winter.",
+  "regions": [
+   {
+    "id": "tn-kuste",
+    "name": "Küste (Djerba, Hammamet, Sousse)",
+    "climate": "YYYLLGGGGLYY",
+    "note": "Badesaison Jun–Sep; Djerba im Winter mild."
+   },
+   {
+    "id": "tn-sahara",
+    "name": "Sahara (Douz, Tozeur)",
+    "climate": "GGGLYRRRYGGG",
+    "note": "Sahara-Festival in Douz im Dezember."
+   }
+  ]
+ },
+ {
+  "id": "eg",
+  "name": "Ägypten",
+  "continent": "Afrika",
+  "group": "Nordafrika",
+  "scene": "desert",
+  "tags": [
+   "temple",
+   "fish",
+   "sun"
+  ],
+  "intro": "Pharaonen am Nil im Winter, Tauchen im Roten Meer fast ganzjährig.",
+  "regions": [
+   {
+    "id": "eg-kairo-niltal",
+    "name": "Kairo & Niltal (Luxor, Assuan)",
+    "climate": "GGGLYRRRYGGG",
+    "note": "Mai–Sep in Luxor und Assuan über 40 °C; Dez–Jan Hochsaison."
+   },
+   {
+    "id": "eg-rotes-meer",
+    "name": "Rotes Meer (Hurghada, Marsa Alam)",
+    "climate": "LLGGGLYYGGGL",
+    "note": "Ganzjährig Badewetter; im Winter windig, Luft und Wasser ~22 °C."
+   }
+  ]
+ },
+ {
+  "id": "ke",
+  "name": "Kenia",
+  "continent": "Afrika",
+  "group": "Ostafrika",
+  "scene": "safari",
+  "tags": [
+   "paw",
+   "waves"
+  ],
+  "intro": "Klassische Safari und Indischer Ozean – mit zwei Regenzeiten im Jahr.",
+  "regions": [
+   {
+    "id": "ke-safari",
+    "name": "Safari (Masai Mara, Amboseli, Samburu)",
+    "climate": "LLYRRLGGGGYL",
+    "note": "Jul–Okt Große Migration in der Mara (sehr voll); Apr–Mai lange Regenzeit."
+   },
+   {
+    "id": "ke-kuste",
+    "name": "Küste (Diani, Watamu, Lamu)",
+    "climate": "GGGRRYLLLLYG",
+    "note": "Dez–Mär heiß und trocken."
+   }
+  ]
+ },
+ {
+  "id": "tz",
+  "name": "Tansania",
+  "continent": "Afrika",
+  "group": "Ostafrika",
+  "scene": "safari",
+  "tags": [
+   "paw",
+   "waves",
+   "mountain"
+  ],
+  "intro": "Serengeti, Kilimandscharo und Sansibar – die Tierwanderung ist das ganze Jahr irgendwo unterwegs.",
+  "regions": [
+   {
+    "id": "tz-nord-safari",
+    "name": "Nord-Safari (Serengeti, Ngorongoro)",
+    "climate": "GGYRRLGGGGYL",
+    "note": "Jan–Feb Kalbungszeit; Jul–Sep Flussüberquerungen am Mara."
+   },
+   {
+    "id": "tz-sansibar",
+    "name": "Sansibar",
+    "climate": "GGYRRLGGGGYL",
+    "note": "Apr–Mai lange Regenzeit, manche Hotels geschlossen."
+   },
+   {
+    "id": "tz-kilimandscharo-besteigung",
+    "name": "Kilimandscharo-Besteigung",
+    "climate": "GGLRRLGGGLYL",
+    "note": "Beste Gipfelchancen Jan–Feb und Aug–Sep."
+   },
+   {
+    "id": "tz-sud-safari",
+    "name": "Süd-Safari (Nyerere/Selous, Ruaha)",
+    "climate": "YYRRRLGGGGLY",
+    "note": "Viele Camps Mär–Mai geschlossen."
+   }
+  ]
+ },
+ {
+  "id": "ug",
+  "name": "Uganda",
+  "continent": "Afrika",
+  "group": "Ostafrika",
+  "scene": "rice",
+  "tags": [
+   "paw",
+   "leaf"
+  ],
+  "intro": "Berggorillas und Schimpansen im Regenwald.",
+  "regions": [
+   {
+    "id": "ug-bwindi-murchison-falls",
+    "name": "Bwindi, Murchison Falls, Queen Elizabeth NP",
+    "climate": "GGYRRGGGLYYL",
+    "note": "Gorilla-Trekking ganzjährig, in der Trockenzeit weniger schlammig."
+   }
+  ]
+ },
+ {
+  "id": "rw",
+  "name": "Ruanda",
+  "continent": "Afrika",
+  "group": "Ostafrika",
+  "scene": "rice",
+  "tags": [
+   "paw",
+   "leaf"
+  ],
+  "intro": "Das Land der tausend Hügel – Gorilla-Trekking in den Vulkanbergen.",
+  "regions": [
+   {
+    "id": "rw-volcanoes-np-nyungwe",
+    "name": "Volcanoes NP, Nyungwe, Kivusee",
+    "climate": "LLYRRGGGGYYL",
+    "note": "Lange Trockenzeit Jun–Sep."
+   }
+  ]
+ },
+ {
+  "id": "mg",
+  "name": "Madagaskar",
+  "continent": "Afrika",
+  "group": "Ostafrika",
+  "scene": "safari",
+  "tags": [
+   "paw",
+   "waves"
+  ],
+  "intro": "Lemuren und Baobabs; von Januar bis März drohen Zyklone.",
+  "regions": [
+   {
+    "id": "mg-baobab-allee-nosy",
+    "name": "Baobab-Allee, Nosy Be, Nationalparks",
+    "climate": "RRRYLLGGGGLY",
+    "note": "Sep–Nov Lemuren-Jungtiere; Jul–Sep Buckelwale."
+   }
+  ]
+ },
+ {
+  "id": "mu",
+  "name": "Mauritius",
+  "continent": "Afrika",
+  "group": "Indischer Ozean",
+  "scene": "lagoon",
+  "tags": [
+   "waves",
+   "wind"
+  ],
+  "intro": "Lagunen und Berge; Zyklonsaison im Südsommer.",
+  "regions": [
+   {
+    "id": "mu-mauritius",
+    "name": "Mauritius",
+    "climate": "RRYLGLLLGGGL",
+    "note": "Jan–Mär Zyklonsaison; Jun–Aug Winter ~24 °C, Ostküste windig."
+   }
+  ]
+ },
+ {
+  "id": "sc",
+  "name": "Seychellen",
+  "continent": "Afrika",
+  "group": "Indischer Ozean",
+  "scene": "lagoon",
+  "tags": [
+   "waves",
+   "fish"
+  ],
+  "intro": "Granitfelsen und Traumstrände; am ruhigsten zwischen den Monsunen.",
+  "regions": [
+   {
+    "id": "sc-mahe-praslin-la",
+    "name": "Mahé, Praslin, La Digue",
+    "climate": "RYLGGLLLLGGY",
+    "note": "Apr–Mai und Okt–Nov windstill und klares Wasser."
+   }
+  ]
+ },
+ {
+  "id": "za",
+  "name": "Südafrika",
+  "continent": "Afrika",
+  "group": "Südliches Afrika",
+  "scene": "safari",
+  "tags": [
+   "paw",
+   "waves",
+   "mountain"
+  ],
+  "intro": "Kapstadt im Sommer, Safari im Winter – das Land deckt alles ab.",
+  "regions": [
+   {
+    "id": "za-kapstadt-westkap",
+    "name": "Kapstadt & Westkap",
+    "climate": "GGGLYRRYLLGG",
+    "note": "Winterregen Jun–Aug; Wale in Hermanus Jul–Nov."
+   },
+   {
+    "id": "za-garden-route",
+    "name": "Garden Route",
+    "climate": "GGGLLYYYLLGG",
+    "note": "Ganzjährig moderat."
+   },
+   {
+    "id": "za-kruger-nordosten",
+    "name": "Krüger & Nordosten (Safari)",
+    "climate": "YYYLGGGGGLYY",
+    "note": "Trockener Winter: Tiere an Wasserlöchern, geringes Malariarisiko."
+   },
+   {
+    "id": "za-drakensberge",
+    "name": "Drakensberge",
+    "climate": "YYGGGLLLGGGY",
+    "note": "Sommer mit Gewittern; Winter klar, kalt, teils Schnee."
+   }
+  ]
+ },
+ {
+  "id": "na",
+  "name": "Namibia",
+  "continent": "Afrika",
+  "group": "Südliches Afrika",
+  "scene": "desert",
+  "tags": [
+   "sun",
+   "paw"
+  ],
+  "intro": "Rote Dünen, Etosha und endlose Weite – ein klassisches Selbstfahrerland.",
+  "regions": [
+   {
+    "id": "na-etosha-sossusvlei-damaraland",
+    "name": "Etosha, Sossusvlei, Damaraland",
+    "climate": "YRRYLGGGGLYY",
+    "note": "Aug–Okt Tiere an den Wasserlöchern; Jun–Jul Nächte unter 0 °C."
+   }
+  ]
+ },
+ {
+  "id": "bw",
+  "name": "Botswana",
+  "continent": "Afrika",
+  "group": "Südliches Afrika",
+  "scene": "safari",
+  "tags": [
+   "paw"
+  ],
+  "intro": "Okavango-Delta und Chobe – Safari der Extraklasse.",
+  "regions": [
+   {
+    "id": "bw-okavango-delta-chobe",
+    "name": "Okavango-Delta, Chobe, Kalahari",
+    "climate": "RRYYLGGGGGYY",
+    "note": "Flut-Höchststand im Delta Jun–Aug; Oktober sehr heiß."
+   }
+  ]
+ },
+ {
+  "id": "zw",
+  "name": "Simbabwe",
+  "continent": "Afrika",
+  "group": "Südliches Afrika",
+  "scene": "safari",
+  "tags": [
+   "paw",
+   "leaf"
+  ],
+  "intro": "Victoriafälle und wilde Nationalparks.",
+  "regions": [
+   {
+    "id": "zw-victoriafalle-hwange-mana",
+    "name": "Victoriafälle, Hwange, Mana Pools",
+    "climate": "RRYLLGGGGGYR",
+    "note": "Mär–Mai Fälle am mächtigsten; Okt–Nov wenig Wasser."
+   }
+  ]
+ },
+ {
+  "id": "sn",
+  "name": "Senegal & Gambia",
+  "continent": "Afrika",
+  "group": "Westafrika & Atlantik",
+  "scene": "beach",
+  "tags": [
+   "waves",
+   "leaf"
+  ],
+  "intro": "Atlantikstrände, Mangroven und Musik; Regenzeit im Sommer.",
+  "regions": [
+   {
+    "id": "sn-dakar-saloum-delta",
+    "name": "Dakar, Saloum-Delta, Gambia-Küste",
+    "climate": "GGGGLYRRRYLG",
+    "note": "Regenzeit Jul–Okt, schwül und heiß."
+   }
+  ]
+ },
+ {
+  "id": "cv",
+  "name": "Kap Verde",
+  "continent": "Afrika",
+  "group": "Westafrika & Atlantik",
+  "scene": "beach",
+  "tags": [
+   "waves",
+   "wind"
+  ],
+  "intro": "Fast regenfrei, windig und warm – ein Winterziel.",
+  "regions": [
+   {
+    "id": "cv-sal-boa-vista",
+    "name": "Sal, Boa Vista, Santo Antão",
+    "climate": "GGGGGLLYYLGG",
+    "note": "Wind Nov–Mai ideal zum Kiten; Schildkröten Jul–Okt."
+   }
+  ]
+ },
+ {
+  "id": "ic",
+  "name": "Kanaren & Madeira",
+  "continent": "Afrika",
+  "group": "Westafrika & Atlantik",
+  "scene": "mountain",
+  "tags": [
+   "waves",
+   "mountain"
+  ],
+  "intro": "Ewiger Frühling vor der Küste Afrikas – im Winter Hauptsaison.",
+  "regions": [
+   {
+    "id": "ic-teneriffa-gran-canaria",
+    "name": "Teneriffa, Gran Canaria, Madeira",
+    "climate": "LLLGGGGGGGLL",
+    "note": "Winter ~21 °C, Sommer warm und windig."
+   }
+  ]
+ },
+ {
+  "id": "pe",
+  "name": "Peru",
+  "continent": "Südamerika",
+  "group": "Andenstaaten",
+  "scene": "mountain",
+  "tags": [
+   "temple",
+   "mountain",
+   "leaf"
+  ],
+  "intro": "Machu Picchu, Anden, Wüstenküste und Amazonas – im Hochland ist Mai bis September Trockenzeit.",
+  "regions": [
+   {
+    "id": "pe-anden",
+    "name": "Anden (Cusco, Machu Picchu, Heiliges Tal)",
+    "climate": "RRYLGGGGGLYR",
+    "note": "Im Februar ist der Inka-Trail geschlossen; Jun–Aug Hochsaison mit kalten Nächten."
+   },
+   {
+    "id": "pe-titicacasee",
+    "name": "Titicacasee (Puno)",
+    "climate": "RRYLGGGGGLYR",
+    "note": "3.800 m Höhe – im Juni und Juli nachts Frost."
+   },
+   {
+    "id": "pe-kuste",
+    "name": "Küste (Lima, Paracas, Nazca)",
+    "climate": "GGGLLYYYYLLG",
+    "note": "Lima Jun–Okt grau und neblig (Garúa); Paracas und Nazca fast immer trocken."
+   },
+   {
+    "id": "pe-amazonas",
+    "name": "Amazonas (Iquitos, Puerto Maldonado)",
+    "climate": "RRRYLGGGGLYR",
+    "note": "Trockenzeit Jun–Okt: bessere Wege und Tierbeobachtung."
+   }
+  ]
+ },
+ {
+  "id": "bo",
+  "name": "Bolivien",
+  "continent": "Südamerika",
+  "group": "Andenstaaten",
+  "scene": "saltflat",
+  "tags": [
+   "sun",
+   "mountain",
+   "tent"
+  ],
+  "intro": "Die Salzwüste von Uyuni gehört zu den surrealsten Landschaften der Welt.",
+  "regions": [
+   {
+    "id": "bo-salar-de-uyuni",
+    "name": "Salar de Uyuni & Lagunen-Route",
+    "climate": "LLYLGGGGGGLY",
+    "note": "Jan–Mär Spiegeleffekt nach Regen, manche Routen dann gesperrt; Jun–Aug Nächte bis −20 °C."
+   },
+   {
+    "id": "bo-la-paz-death",
+    "name": "La Paz & Death Road",
+    "climate": "RRYLGGGGGLYR",
+    "note": "Höchstgelegener Regierungssitz der Welt – die Höhe ernst nehmen."
+   }
+  ]
+ },
+ {
+  "id": "cl",
+  "name": "Chile",
+  "continent": "Südamerika",
+  "group": "Andenstaaten",
+  "scene": "mountain",
+  "tags": [
+   "mountain",
+   "sun",
+   "leaf"
+  ],
+  "intro": "4.300 km lang: Wüste im Norden, Weinland in der Mitte, Gletscher im Süden.",
+  "regions": [
+   {
+    "id": "cl-atacama-wuste",
+    "name": "Atacama-Wüste (San Pedro)",
+    "climate": "YYGGGLLLGGGL",
+    "note": "Jan–Feb gelegentlich Gewitter (Altiplano-Winter); einer der klarsten Sternenhimmel der Welt."
+   },
+   {
+    "id": "cl-santiago-weinregion",
+    "name": "Santiago & Weinregion",
+    "climate": "LLGGLYYYLGGG",
+    "note": "Mär–Apr Weinlese; im Winter Skifahren in den Anden."
+   },
+   {
+    "id": "cl-patagonien",
+    "name": "Patagonien (Torres del Paine)",
+    "climate": "GGGLRRRRYLGG",
+    "note": "Nov–Mär Wandersaison mit starkem Wind; im Winter viele Wege und Unterkünfte geschlossen."
+   },
+   {
+    "id": "cl-osterinsel",
+    "name": "Osterinsel",
+    "climate": "GGGLLYYYLLGG",
+    "note": "Im Februar das Tapati-Fest."
+   }
+  ]
+ },
+ {
+  "id": "ec",
+  "name": "Ecuador",
+  "continent": "Südamerika",
+  "group": "Andenstaaten",
+  "scene": "mountain",
+  "tags": [
+   "fish",
+   "paw",
+   "mountain"
+  ],
+  "intro": "Vulkane in den Anden und die Galápagos-Inseln mit einzigartiger Tierwelt.",
+  "regions": [
+   {
+    "id": "ec-galapagos",
+    "name": "Galápagos",
+    "climate": "GGGGGLLLLLLG",
+    "note": "Dez–Mai warm mit ruhiger See; Jun–Nov kühler, dafür mehr Meeresleben."
+   },
+   {
+    "id": "ec-anden",
+    "name": "Anden (Quito, Cotopaxi, Baños)",
+    "climate": "YYYYLGGGGLYY",
+    "note": "Jun–Sep trocken mit klarer Sicht auf die Vulkane."
+   }
+  ]
+ },
+ {
+  "id": "ar",
+  "name": "Argentinien",
+  "continent": "Südamerika",
+  "group": "Atlantikseite & Karibik",
+  "scene": "city",
+  "tags": [
+   "city",
+   "mountain",
+   "paw"
+  ],
+  "intro": "Tango, Gletscher, Wasserfälle und Weinberge – die Jahreszeiten sind umgekehrt zu uns.",
+  "regions": [
+   {
+    "id": "ar-buenos-aires",
+    "name": "Buenos Aires",
+    "climate": "YLGGLLLLGGGL",
+    "note": "Januar heiß und schwül; Frühling Sep–Nov ideal."
+   },
+   {
+    "id": "ar-patagonien",
+    "name": "Patagonien (El Calafate, El Chaltén, Ushuaia)",
+    "climate": "GGGLRRRRYLGG",
+    "note": "Perito-Moreno-Gletscher ganzjährig, Wandern nur im Südsommer."
+   },
+   {
+    "id": "ar-iguazu-wasserfalle",
+    "name": "Iguazú-Wasserfälle",
+    "climate": "YYLGGLLGGGLY",
+    "note": "Dez–Feb heiß und voll; nach Regen besonders mächtig."
+   },
+   {
+    "id": "ar-nordwesten",
+    "name": "Nordwesten (Salta, Jujuy)",
+    "climate": "YYYGGGGGGGLY",
+    "note": "Sommerregen Dez–Mär."
+   },
+   {
+    "id": "ar-halbinsel-valdes",
+    "name": "Halbinsel Valdés",
+    "climate": "LLLYYLLGGGGL",
+    "note": "Südkaper-Wale Jun–Dez, am besten Sep–Nov."
+   }
+  ]
+ },
+ {
+  "id": "br",
+  "name": "Brasilien",
+  "continent": "Südamerika",
+  "group": "Atlantikseite & Karibik",
+  "scene": "jungle",
+  "tags": [
+   "waves",
+   "leaf",
+   "paw"
+  ],
+  "intro": "Strände, Regenwald und Feuchtgebiete – jede Region hat ihre eigene Regenzeit.",
+  "regions": [
+   {
+    "id": "br-rio-de-janeiro",
+    "name": "Rio de Janeiro",
+    "climate": "LLLGGGLLGGGL",
+    "note": "Karneval im Februar (sehr voll); Dez–Mär heiß mit Gewittern."
+   },
+   {
+    "id": "br-salvador-nordostkuste",
+    "name": "Salvador & Nordostküste",
+    "climate": "GGGYRRYLGGGG",
+    "note": "Regenzeit Apr–Jul."
+   },
+   {
+    "id": "br-lencois-maranhenses",
+    "name": "Lençóis Maranhenses",
+    "climate": "RRRRYGGGGLYR",
+    "note": "Die Lagunen zwischen den Dünen sind Jun–Sep gefüllt."
+   },
+   {
+    "id": "br-pantanal",
+    "name": "Pantanal",
+    "climate": "RRRYLLGGGGYR",
+    "note": "Trockenzeit Jul–Okt: beste Chancen auf Jaguare."
+   },
+   {
+    "id": "br-amazonas",
+    "name": "Amazonas (Manaus)",
+    "climate": "YYRRYLGGGGLY",
+    "note": "Hochwasser bis Juni (Kanutouren im überfluteten Wald), danach Trockenzeit."
+   }
+  ]
+ },
+ {
+  "id": "co",
+  "name": "Kolumbien",
+  "continent": "Südamerika",
+  "group": "Atlantikseite & Karibik",
+  "scene": "jungle",
+  "tags": [
+   "waves",
+   "city",
+   "mountain"
+  ],
+  "intro": "Karibikküste, Kaffeeregion und lebendige Städte – im Landesinneren mit zwei Regenzeiten.",
+  "regions": [
+   {
+    "id": "co-karibikkuste",
+    "name": "Karibikküste (Cartagena, Tayrona)",
+    "climate": "GGGLLLLYRRYG",
+    "note": "Sep–Nov am nassesten; der Tayrona-Park schließt zeitweise zur Erholung."
+   },
+   {
+    "id": "co-medellin-kaffeeregion",
+    "name": "Medellín & Kaffeeregion (Salento)",
+    "climate": "GGLYYGGGLYYG",
+    "note": "Regenzeiten Apr–Mai und Okt–Nov."
+   }
+  ]
+ },
+ {
+  "id": "is",
+  "name": "Island",
+  "continent": "Europa",
+  "group": "Nordeuropa",
+  "scene": "fjord",
+  "tags": [
+   "mountain",
+   "leaf",
+   "snow"
+  ],
+  "intro": "Vulkane, Gletscher und Wasserfälle – im Sommer Mitternachtssonne, im Winter Nordlichter.",
+  "regions": [
+   {
+    "id": "is-ringstrasse-sudkuste",
+    "name": "Ringstraße & Südküste",
+    "climate": "YYYYLGGGLYYY",
+    "note": "Sep–Mär Nordlichter, aber kurze Tage und Stürme; Jun–Aug fast rund um die Uhr hell."
+   },
+   {
+    "id": "is-hochland",
+    "name": "Hochland (Landmannalaugar)",
+    "climate": "RRRRRYGGLRRR",
+    "note": "Hochlandpisten meist nur Ende Juni bis Anfang September befahrbar."
+   }
+  ]
+ },
+ {
+  "id": "fo",
+  "name": "Färöer",
+  "continent": "Europa",
+  "group": "Nordeuropa",
+  "scene": "fjord",
+  "tags": [
+   "mountain",
+   "leaf"
+  ],
+  "intro": "Dramatische Klippen mitten im Nordatlantik – wild, grün und kaum Touristen.",
+  "regions": [
+   {
+    "id": "fo-faroer-inseln",
+    "name": "Färöer-Inseln",
+    "climate": "RRRYLGGGLYRR",
+    "note": "Papageitaucher Mai–Aug; das Wetter wechselt stündlich."
+   }
+  ]
+ },
+ {
+  "id": "no",
+  "name": "Norwegen",
+  "continent": "Europa",
+  "group": "Nordeuropa",
+  "scene": "fjord",
+  "tags": [
+   "mountain",
+   "snow",
+   "surf"
+  ],
+  "intro": "Fjorde im Sommer, Nordlichter im Winter – und Surfen am Polarkreis.",
+  "regions": [
+   {
+    "id": "no-fjorde",
+    "name": "Fjorde (Bergen, Geiranger, Flåm)",
+    "climate": "RRRYLGGGLYRR",
+    "note": "Im Mai Obstblüte am Hardangerfjord; Trolltunga-Wanderung Jun–Sep."
+   },
+   {
+    "id": "no-lofoten-troms",
+    "name": "Lofoten & Tromsø",
+    "climate": "LLLYYGGGLYYY",
+    "note": "Mitternachtssonne Ende Mai–Mitte Juli; Nordlichter Sep–Mär; Nov–Jan Polarnacht."
+   }
+  ]
+ },
+ {
+  "id": "fi",
+  "name": "Finnland",
+  "continent": "Europa",
+  "group": "Nordeuropa",
+  "scene": "snow",
+  "tags": [
+   "snow",
+   "leaf",
+   "tent"
+  ],
+  "intro": "Lappland wird im Winter zum Wintermärchen mit Huskys und Nordlicht.",
+  "regions": [
+   {
+    "id": "fi-lappland",
+    "name": "Lappland (Rovaniemi, Saariselkä)",
+    "climate": "GGGYRLLLLYYG",
+    "note": "Dez–Mär Schnee und Nordlicht; im Mai Schneeschmelze; im September Herbstfarben (Ruska)."
+   },
+   {
+    "id": "fi-helsinki-seenplatte",
+    "name": "Helsinki & Seenplatte",
+    "climate": "YYYYLGGGLYYY",
+    "note": "Sommer mit langen Tagen und Sauna am See."
+   }
+  ]
+ },
+ {
+  "id": "gb",
+  "name": "Schottland",
+  "continent": "Europa",
+  "group": "Westeuropa & Atlantik",
+  "scene": "mountain",
+  "tags": [
+   "mountain",
+   "temple",
+   "leaf"
+  ],
+  "intro": "Highlands, Burgen und Whisky – Mai, Juni und September sind die Geheimtipps.",
+  "regions": [
+   {
+    "id": "gb-highlands-isle-of",
+    "name": "Highlands & Isle of Skye",
+    "climate": "YYYLGGLLGLYY",
+    "note": "Jul–Aug Mücken (Midges) und voll; Mai, Juni und September ruhiger."
+   },
+   {
+    "id": "gb-edinburgh",
+    "name": "Edinburgh",
+    "climate": "YYYLGGLLGLYY",
+    "note": "Im August Festival – Unterkünfte früh buchen."
+   }
+  ]
+ },
+ {
+  "id": "ie",
+  "name": "Irland",
+  "continent": "Europa",
+  "group": "Westeuropa & Atlantik",
+  "scene": "mountain",
+  "tags": [
+   "leaf",
+   "waves",
+   "surf"
+  ],
+  "intro": "Grüne Klippen am Wild Atlantic Way – Regen gehört dazu.",
+  "regions": [
+   {
+    "id": "ie-westkuste",
+    "name": "Westküste (Connemara, Cliffs of Moher, Kerry)",
+    "climate": "YYYLGGLLGLYY",
+    "note": "Mai und Juni oft am sonnigsten."
+   }
+  ]
+ },
+ {
+  "id": "pt",
+  "name": "Portugal",
+  "continent": "Europa",
+  "group": "Westeuropa & Atlantik",
+  "scene": "coast",
+  "tags": [
+   "waves",
+   "surf",
+   "city"
+  ],
+  "intro": "Surfen an der Algarve, Stadtflair in Lissabon und Porto, Vulkaninseln auf den Azoren.",
+  "regions": [
+   {
+    "id": "pt-lissabon-porto",
+    "name": "Lissabon & Porto",
+    "climate": "YYLGGGLLGGYY",
+    "note": "Jul–Aug heiß und voll; Mai–Jun und Sep–Okt ideal."
+   },
+   {
+    "id": "pt-algarve",
+    "name": "Algarve",
+    "climate": "YYLLGGGGGLYY",
+    "note": "Surfen Okt–Apr an der Westküste; Winter mild um 16 °C."
+   },
+   {
+    "id": "pt-azoren",
+    "name": "Azoren",
+    "climate": "YYYLLGGGGLYY",
+    "note": "Wale Apr–Okt; Winter mild, aber nass und windig."
+   }
+  ]
+ },
+ {
+  "id": "es",
+  "name": "Spanien",
+  "continent": "Europa",
+  "group": "Westeuropa & Atlantik",
+  "scene": "coast",
+  "tags": [
+   "temple",
+   "city",
+   "sun"
+  ],
+  "intro": "Andalusien mit Alhambra, Flamenco und Tapas – am besten nicht im Hochsommer.",
+  "regions": [
+   {
+    "id": "es-andalusien",
+    "name": "Andalusien (Sevilla, Granada, Córdoba)",
+    "climate": "LLGGGLRRLGGL",
+    "note": "Jul–Aug oft über 40 °C; Semana Santa und Feria im Frühling sehr voll."
+   }
+  ]
+ },
+ {
+  "id": "it",
+  "name": "Italien",
+  "continent": "Europa",
+  "group": "Mittelmeer & Balkan",
+  "scene": "coast",
+  "tags": [
+   "mountain",
+   "waves",
+   "temple"
+  ],
+  "intro": "Von den Dolomiten bis zu den Inseln – abseits von Rom und Venedig.",
+  "regions": [
+   {
+    "id": "it-dolomiten",
+    "name": "Dolomiten",
+    "climate": "LLLYYGGGGLYL",
+    "note": "Hütten meist Mitte Juni bis September offen; Dez–Mär Skisaison."
+   },
+   {
+    "id": "it-sizilien",
+    "name": "Sizilien",
+    "climate": "YYLGGGLLGGYY",
+    "note": "Jul–Aug heiß und voll; Mandelblüte im Februar."
+   },
+   {
+    "id": "it-sardinien",
+    "name": "Sardinien",
+    "climate": "YYYLGGGGGLYY",
+    "note": "Badesaison Jun–Sep; August sehr voll."
+   }
+  ]
+ },
+ {
+  "id": "gr",
+  "name": "Griechenland",
+  "continent": "Europa",
+  "group": "Mittelmeer & Balkan",
+  "scene": "coast",
+  "tags": [
+   "waves",
+   "temple",
+   "wind"
+  ],
+  "intro": "Inseln mit weißen Dörfern, Kreta mit Schluchten und Athen mit Antike.",
+  "regions": [
+   {
+    "id": "gr-kykladen",
+    "name": "Kykladen (Santorini, Naxos, Milos)",
+    "climate": "RRYLGGLLGLYR",
+    "note": "Jul–Aug Meltemi-Wind und Hochsaison; im Winter viele Hotels zu und weniger Fähren."
+   },
+   {
+    "id": "gr-kreta",
+    "name": "Kreta",
+    "climate": "YYYLGGGGGGLY",
+    "note": "Samaria-Schlucht meist Mai–Okt geöffnet."
+   },
+   {
+    "id": "gr-athen",
+    "name": "Athen",
+    "climate": "YYLGGGLLGGLY",
+    "note": "Jul–Aug sehr heiß – die Akropolis früh morgens besuchen."
+   }
+  ]
+ },
+ {
+  "id": "hr",
+  "name": "Kroatien",
+  "continent": "Europa",
+  "group": "Mittelmeer & Balkan",
+  "scene": "coast",
+  "tags": [
+   "waves",
+   "temple"
+  ],
+  "intro": "Inselhopping in Dalmatien und die Seen von Plitvice.",
+  "regions": [
+   {
+    "id": "hr-dalmatien-inseln",
+    "name": "Dalmatien & Inseln (Split, Hvar, Dubrovnik)",
+    "climate": "YYYLGGLLGLYY",
+    "note": "Jul–Aug sehr voll und teuer; Juni und September ideal."
+   },
+   {
+    "id": "hr-plitvicer-seen",
+    "name": "Plitvicer Seen",
+    "climate": "YYYLGGLLGGLY",
+    "note": "Im Oktober Herbstfarben und deutlich weniger Besucher."
+   }
+  ]
+ },
+ {
+  "id": "me",
+  "name": "Montenegro & Albanien",
+  "continent": "Europa",
+  "group": "Mittelmeer & Balkan",
+  "scene": "coast",
+  "tags": [
+   "waves",
+   "mountain"
+  ],
+  "intro": "Fjordartige Buchten, türkises Wasser und Bergdörfer – noch günstig und weniger überlaufen.",
+  "regions": [
+   {
+    "id": "me-bucht-von-kotor",
+    "name": "Bucht von Kotor, Albanische Riviera, Theth",
+    "climate": "YYYLGGGLGLYY",
+    "note": "August am vollsten; Bergwandern in Theth Jun–Sep."
+   }
+  ]
+ },
+ {
+  "id": "si",
+  "name": "Slowenien",
+  "continent": "Europa",
+  "group": "Mittelmeer & Balkan",
+  "scene": "mountain",
+  "tags": [
+   "mountain",
+   "leaf",
+   "tent"
+  ],
+  "intro": "Alpen, smaragdgrüne Flüsse und der Bleder See – kompakt und grün.",
+  "regions": [
+   {
+    "id": "si-julische-alpen-bled",
+    "name": "Julische Alpen, Bled, Soča-Tal",
+    "climate": "YYYLGGGGGLYY",
+    "note": "Rafting im Soča-Tal Mai–Sep."
+   }
+  ]
+ },
+ {
+  "id": "mt",
+  "name": "Malta",
+  "continent": "Europa",
+  "group": "Mittelmeer & Balkan",
+  "scene": "city",
+  "tags": [
+   "temple",
+   "fish",
+   "waves"
+  ],
+  "intro": "Kleiner Inselstaat mit Festungsstädten und Top-Tauchrevieren.",
+  "regions": [
+   {
+    "id": "mt-malta-gozo",
+    "name": "Malta & Gozo",
+    "climate": "LLLGGGLLGGLL",
+    "note": "Winter mild um 16 °C; Jul–Aug heiß."
+   }
+  ]
+ },
+ {
+  "id": "ro",
+  "name": "Rumänien",
+  "continent": "Europa",
+  "group": "Mittelmeer & Balkan",
+  "scene": "mountain",
+  "tags": [
+   "temple",
+   "mountain",
+   "paw"
+  ],
+  "intro": "Burgen, mittelalterliche Städte und wilde Karpaten mit Bären.",
+  "regions": [
+   {
+    "id": "ro-transsilvanien-karpaten",
+    "name": "Transsilvanien & Karpaten",
+    "climate": "YYYLGGGGGGYY",
+    "note": "Im Oktober bunte Wälder; Winter schneereich."
+   }
+  ]
+ },
+ {
+  "id": "bd",
+  "name": "Bangladesch",
+  "continent": "Asien",
+  "group": "Südasien",
+  "scene": "rice",
+  "tags": [
+   "leaf",
+   "paw"
+  ],
+  "intro": "Flussdelta mit den Mangroven der Sundarbans; der Monsun prägt das Jahr.",
+  "regions": [
+   {
+    "id": "bd-dhaka-sundarbans-sylhet",
+    "name": "Dhaka, Sundarbans, Sylhet",
+    "climate": "GGLYYRRRRYGG",
+    "note": "Monsun Jun–Sep; Zyklongefahr im Mai und Okt–Nov."
+   }
+  ]
+ },
+ {
+  "id": "qa",
+  "name": "Katar",
+  "continent": "Asien",
+  "group": "Westasien",
+  "scene": "city",
+  "tags": [
+   "city",
+   "sun"
+  ],
+  "intro": "Wüstenstadt am Golf – ein Winterziel.",
+  "regions": [
+   {
+    "id": "qa-doha",
+    "name": "Doha",
+    "climate": "GGGLYRRRYLGG",
+    "note": "Wie die Emirate – Sommer extrem heiß."
+   }
+  ]
+ },
+ {
+  "id": "sa",
+  "name": "Saudi-Arabien",
+  "continent": "Asien",
+  "group": "Westasien",
+  "scene": "desert",
+  "tags": [
+   "sun",
+   "temple"
+  ],
+  "intro": "Wüstenlandschaften und Felsengräber in AlUla – nur im Winter angenehm.",
+  "regions": [
+   {
+    "id": "sa-riad-dschidda-alula",
+    "name": "Riad, Dschidda, AlUla",
+    "climate": "GGLYRRRRYLGG",
+    "note": "AlUla-Wüste im Winter ideal; Sommer kaum erträglich."
+   }
+  ]
+ },
+ {
+  "id": "kg",
+  "name": "Kirgistan & Tadschikistan",
+  "continent": "Asien",
+  "group": "Westasien",
+  "scene": "mountain",
+  "tags": [
+   "mountain",
+   "tent"
+  ],
+  "intro": "Hochgebirge, Jurtencamps und der Pamir Highway – nur im Sommer erreichbar.",
+  "regions": [
+   {
+    "id": "kg-tian-shan-issyk",
+    "name": "Tian Shan, Issyk-Kul, Pamir Highway",
+    "climate": "RRRYLGGGGLRR",
+    "note": "Pässe und Jurtencamps nur im Sommer; Pamir am besten Jul–Sep."
+   }
+  ]
+ },
+ {
+  "id": "mw",
+  "name": "Malawi",
+  "continent": "Afrika",
+  "group": "Ostafrika",
+  "scene": "lagoon",
+  "tags": [
+   "waves",
+   "paw"
+  ],
+  "intro": "Der Malawisee und ruhige Nationalparks.",
+  "regions": [
+   {
+    "id": "mw-malawisee-liwonde-np",
+    "name": "Malawisee, Liwonde NP",
+    "climate": "RRRYLGGGGGYR",
+    "note": "Sep–Okt heiß, aber beste Tierbeobachtung."
+   }
+  ]
+ },
+ {
+  "id": "mz",
+  "name": "Mosambik",
+  "continent": "Afrika",
+  "group": "Ostafrika",
+  "scene": "lagoon",
+  "tags": [
+   "waves",
+   "fish"
+  ],
+  "intro": "Inseln und Tauchreviere am Indischen Ozean.",
+  "regions": [
+   {
+    "id": "mz-bazaruto-tofo-inhambane",
+    "name": "Bazaruto, Tofo, Inhambane",
+    "climate": "RRRYLGGGGGLY",
+    "note": "Buckelwale Jul–Okt; Jan–Mär Zyklongefahr."
+   }
+  ]
+ },
+ {
+  "id": "re",
+  "name": "Réunion",
+  "continent": "Afrika",
+  "group": "Indischer Ozean",
+  "scene": "mountain",
+  "tags": [
+   "mountain",
+   "leaf"
+  ],
+  "intro": "Vulkaninsel mit Talkesseln – ein Wanderparadies.",
+  "regions": [
+   {
+    "id": "re-wandern-cirques-piton",
+    "name": "Wandern, Cirques, Piton de la Fournaise",
+    "climate": "RRYLGGGGGGLY",
+    "note": "Trockener Winter ideal zum Wandern."
+   }
+  ]
+ },
+ {
+  "id": "zm",
+  "name": "Sambia",
+  "continent": "Afrika",
+  "group": "Südliches Afrika",
+  "scene": "safari",
+  "tags": [
+   "paw",
+   "tent"
+  ],
+  "intro": "Ursprüngliche Safari und Walking Safaris.",
+  "regions": [
+   {
+    "id": "zm-south-luangwa-lower",
+    "name": "South Luangwa, Lower Zambezi, Livingstone",
+    "climate": "RRRYLGGGGGYR",
+    "note": "Viele Buschcamps Nov–Apr geschlossen; Walking Safaris im trockenen Winter."
+   }
+  ]
+ },
+ {
+  "id": "gh",
+  "name": "Ghana",
+  "continent": "Afrika",
+  "group": "Westafrika & Atlantik",
+  "scene": "beach",
+  "tags": [
+   "waves",
+   "temple"
+  ],
+  "intro": "Festungen an der Küste und lebendige Märkte.",
+  "regions": [
+   {
+    "id": "gh-accra-cape-coast",
+    "name": "Accra, Cape Coast, Kumasi, Mole NP",
+    "climate": "GGLYRRYLYYGG",
+    "note": "Dez–Feb Harmattan (Saharastaub, diesig); kleine Trockenzeit im August."
+   }
+  ]
+ }
+]

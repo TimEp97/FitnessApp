@@ -1,0 +1,2359 @@
+[
+ {
+  "id": "bkk",
+  "name": "Bangkok",
+  "countryId": "th",
+  "regionId": "th-bangkok-zentralthailand",
+  "lat": 13.75,
+  "lon": 100.5,
+  "crowd": "321111110023",
+  "priceLevel": 1,
+  "interests": {
+   "kultur": 3,
+   "food": 3,
+   "nightlife": 3,
+   "city": 3
+  },
+  "tip": "Großer Palast, Wat Pho, Chinatown, Bootsfahrt auf dem Chao Phraya",
+  "stays": {
+   "budget": "Guesthouse oder Hostel im Zentrum",
+   "komfort": "Rooftop-Hotel mit Pool am Chao Phraya",
+   "luxus": "Designhotel mit Rooftop-Bar"
+  },
+  "events": [
+   {
+    "month": 3,
+    "name": "Songkran (Thai-Neujahr)",
+    "interest": "nightlife"
+   }
+  ],
+  "transport": {
+   "airport": true,
+   "intlAirport": true,
+   "rail": true,
+   "island": false
+  },
+  "flightHoursFromDE": 12,
+  "maxTempC": [
+   32,
+   33,
+   34,
+   35,
+   34,
+   33,
+   32,
+   32,
+   32,
+   32,
+   31,
+   31
+  ],
+  "safety": 0
+ },
+ {
+  "id": "ayu",
+  "name": "Ayutthaya",
+  "countryId": "th",
+  "regionId": "th-bangkok-zentralthailand",
+  "lat": 14.35,
+  "lon": 100.57,
+  "crowd": "321111110023",
+  "priceLevel": 1,
+  "interests": {
+   "kultur": 3
+  },
+  "tip": "Tempelruinen der alten Königsstadt per Fahrrad",
+  "stays": {
+   "budget": "Einfaches Gästehaus",
+   "komfort": "Gästehaus in einem alten Holzhaus am Fluss",
+   "luxus": "Boutique-Hotel in historischem Gebäude"
+  },
+  "transport": {
+   "airport": false,
+   "rail": true,
+   "island": false
+  },
+  "flightHoursFromDE": 12,
+  "safety": 0
+ },
+ {
+  "id": "cnx",
+  "name": "Chiang Mai",
+  "countryId": "th",
+  "regionId": "th-norden",
+  "lat": 18.79,
+  "lon": 98.98,
+  "crowd": "310011110123",
+  "priceLevel": 1,
+  "interests": {
+   "kultur": 3,
+   "food": 3,
+   "natur": 3,
+   "ruhe": 3
+  },
+  "tip": "Altstadt-Tempel, Nachtmarkt, Kochkurs, Doi Suthep",
+  "stays": {
+   "budget": "Familiengeführtes Gästehaus",
+   "komfort": "Boutique-Hotel im Lanna-Stil in der Altstadt",
+   "luxus": "Boutique-Lodge mit Panoramablick"
+  },
+  "events": [
+   {
+    "month": 10,
+    "name": "Lichterfest Yi Peng / Loy Krathong",
+    "interest": "kultur"
+   }
+  ],
+  "transport": {
+   "airport": true,
+   "intlAirport": true,
+   "rail": true,
+   "island": false
+  },
+  "flightHoursFromDE": 12,
+  "safety": 0
+ },
+ {
+  "id": "cei",
+  "name": "Chiang Rai",
+  "countryId": "th",
+  "regionId": "th-norden",
+  "lat": 19.91,
+  "lon": 99.84,
+  "crowd": "310011110123",
+  "priceLevel": 1,
+  "interests": {
+   "kultur": 3,
+   "natur": 3
+  },
+  "tip": "Weißer und Blauer Tempel, Goldenes Dreieck",
+  "stays": {
+   "budget": "Familiengeführtes Gästehaus",
+   "komfort": "Lodge mit Blick über die Berge",
+   "luxus": "Boutique-Lodge mit Panoramablick"
+  },
+  "transport": {
+   "airport": true,
+   "rail": false,
+   "island": false
+  },
+  "flightHoursFromDE": 12,
+  "safety": 0
+ },
+ {
+  "id": "pai",
+  "name": "Pai",
+  "countryId": "th",
+  "regionId": "th-norden",
+  "lat": 19.36,
+  "lon": 98.44,
+  "crowd": "310011110123",
+  "priceLevel": 1,
+  "interests": {
+   "berge": 3,
+   "natur": 3,
+   "abenteuer": 3,
+   "ruhe": 3,
+   "stays": 3
+  },
+  "tip": "Canyon, heiße Quellen und Aussichtspunkte",
+  "stays": {
+   "budget": "Familiengeführtes Gästehaus",
+   "komfort": "Bambus-Bungalow im Tal mit Hängematte",
+   "luxus": "Boutique-Lodge mit Panoramablick"
+  },
+  "transport": {
+   "airport": false,
+   "rail": false,
+   "island": false
+  },
+  "flightHoursFromDE": 14,
+  "safety": 0
+ },
+ {
+  "id": "hkt",
+  "name": "Phuket",
+  "countryId": "th",
+  "regionId": "th-andamanensee",
+  "lat": 7.88,
+  "lon": 98.39,
+  "crowd": "322110000113",
+  "priceLevel": 1,
+  "interests": {
+   "strand": 3,
+   "surfen": 3,
+   "tauchen": 3,
+   "nightlife": 3
+  },
+  "tip": "Strände im Süden, Old Town, Bootstour in die Phang-Nga-Bucht",
+  "stays": {
+   "budget": "Einfacher Bungalow in Strandnähe",
+   "komfort": "Villa mit Privatpool über der Bucht",
+   "luxus": "Resort mit Pool und Meerblick"
+  },
+  "transport": {
+   "airport": true,
+   "intlAirport": true,
+   "rail": false,
+   "island": false
+  },
+  "flightHoursFromDE": 12,
+  "safety": 0
+ },
+ {
+  "id": "kbv",
+  "name": "Krabi",
+  "countryId": "th",
+  "regionId": "th-andamanensee",
+  "lat": 8.03,
+  "lon": 98.83,
+  "crowd": "322110000113",
+  "priceLevel": 1,
+  "interests": {
+   "strand": 3,
+   "abenteuer": 3,
+   "natur": 3,
+   "stays": 3
+  },
+  "tip": "Railay Beach, Kletterfelsen, 4-Insel-Tour",
+  "stays": {
+   "budget": "Einfacher Bungalow in Strandnähe",
+   "komfort": "Bungalow unter Kalkfelsen in Railay",
+   "luxus": "Resort mit Pool und Meerblick"
+  },
+  "transport": {
+   "airport": true,
+   "rail": false,
+   "island": false
+  },
+  "flightHoursFromDE": 12,
+  "safety": 0
+ },
+ {
+  "id": "lnt",
+  "name": "Koh Lanta",
+  "countryId": "th",
+  "regionId": "th-andamanensee",
+  "lat": 7.62,
+  "lon": 99.04,
+  "crowd": "322110000113",
+  "priceLevel": 1,
+  "interests": {
+   "strand": 3,
+   "ruhe": 3,
+   "tauchen": 3,
+   "stays": 3
+  },
+  "tip": "Lange Sandstrände, Nationalpark, Schnorcheln bei Koh Rok",
+  "stays": {
+   "budget": "Einfacher Bungalow in Strandnähe",
+   "komfort": "Strandbungalow direkt am Sand",
+   "luxus": "Resort mit Pool und Meerblick"
+  },
+  "transport": {
+   "airport": false,
+   "rail": false,
+   "island": true
+  },
+  "flightHoursFromDE": 14,
+  "closedMonths": [
+   5,
+   6,
+   7,
+   8
+  ],
+  "safety": 0
+ },
+ {
+  "id": "pp",
+  "name": "Koh Phi Phi",
+  "countryId": "th",
+  "regionId": "th-andamanensee",
+  "lat": 7.74,
+  "lon": 98.77,
+  "crowd": "322110000113",
+  "priceLevel": 1,
+  "interests": {
+   "strand": 3,
+   "tauchen": 3,
+   "nightlife": 3
+  },
+  "tip": "Maya Bay, Aussichtspunkt, Schnorcheln",
+  "stays": {
+   "budget": "Einfacher Bungalow in Strandnähe",
+   "komfort": "Hütte am Hang mit Meerblick",
+   "luxus": "Resort mit Pool und Meerblick"
+  },
+  "transport": {
+   "airport": false,
+   "rail": false,
+   "island": true
+  },
+  "flightHoursFromDE": 14,
+  "safety": 0
+ },
+ {
+  "id": "usm",
+  "name": "Koh Samui",
+  "countryId": "th",
+  "regionId": "th-golf-von-thailand",
+  "lat": 9.51,
+  "lon": 100.01,
+  "crowd": "122211111001",
+  "priceLevel": 1,
+  "interests": {
+   "strand": 3,
+   "ruhe": 3
+  },
+  "tip": "Chaweng und Lamai, Big Buddha, Ang-Thong-Meerespark",
+  "stays": {
+   "budget": "Einfacher Bungalow in Strandnähe",
+   "komfort": "Yoga- und Wellness-Resort am Meer",
+   "luxus": "Resort mit Pool und Meerblick"
+  },
+  "transport": {
+   "airport": true,
+   "rail": false,
+   "island": true
+  },
+  "flightHoursFromDE": 13,
+  "safety": 0
+ },
+ {
+  "id": "pgn",
+  "name": "Koh Phangan",
+  "countryId": "th",
+  "regionId": "th-golf-von-thailand",
+  "lat": 9.73,
+  "lon": 100.03,
+  "crowd": "122211111001",
+  "priceLevel": 1,
+  "interests": {
+   "strand": 3,
+   "ruhe": 3,
+   "nightlife": 3,
+   "stays": 3
+  },
+  "tip": "Ruhige Buchten, Wanderwege, Full-Moon-Party",
+  "stays": {
+   "budget": "Einfacher Bungalow in Strandnähe",
+   "komfort": "Holzbungalow in einer einsamen Bucht",
+   "luxus": "Resort mit Pool und Meerblick"
+  },
+  "transport": {
+   "airport": false,
+   "rail": false,
+   "island": true
+  },
+  "flightHoursFromDE": 14,
+  "safety": 0
+ },
+ {
+  "id": "tao",
+  "name": "Koh Tao",
+  "countryId": "th",
+  "regionId": "th-golf-von-thailand",
+  "lat": 10.1,
+  "lon": 99.84,
+  "crowd": "122211111001",
+  "priceLevel": 1,
+  "interests": {
+   "tauchen": 3,
+   "strand": 3,
+   "abenteuer": 3
+  },
+  "tip": "Tauchkurs, Schnorcheln, Aussichtspunkte",
+  "stays": {
+   "budget": "Einfacher Bungalow in Strandnähe",
+   "komfort": "Tauchresort direkt am Hausriff",
+   "luxus": "Resort mit Pool und Meerblick"
+  },
+  "transport": {
+   "airport": false,
+   "rail": false,
+   "island": true
+  },
+  "flightHoursFromDE": 14,
+  "safety": 0
+ },
+ {
+  "id": "han",
+  "name": "Hanoi",
+  "countryId": "vn",
+  "regionId": "vn-norden",
+  "lat": 21.03,
+  "lon": 105.85,
+  "crowd": "112211101221",
+  "priceLevel": 1,
+  "interests": {
+   "kultur": 3,
+   "food": 3,
+   "city": 3,
+   "nightlife": 3
+  },
+  "tip": "Altstadt, Hoan-Kiem-See, Streetfood-Tour",
+  "stays": {
+   "budget": "Guesthouse oder Hostel im Zentrum",
+   "komfort": "Boutique-Hotel in der Altstadt",
+   "luxus": "Designhotel mit Rooftop-Bar"
+  },
+  "transport": {
+   "airport": true,
+   "intlAirport": true,
+   "rail": true,
+   "island": false
+  },
+  "flightHoursFromDE": 13,
+  "safety": 0
+ },
+ {
+  "id": "hlb",
+  "name": "Halong-Bucht",
+  "countryId": "vn",
+  "regionId": "vn-norden",
+  "lat": 20.91,
+  "lon": 107.18,
+  "crowd": "112211101221",
+  "priceLevel": 1,
+  "interests": {
+   "natur": 3,
+   "ruhe": 3,
+   "stays": 3
+  },
+  "tip": "Übernachtung auf dem Boot zwischen Karstfelsen",
+  "stays": {
+   "budget": "Familiengeführtes Gästehaus",
+   "komfort": "Übernachtung auf einer Dschunke in der Bucht",
+   "luxus": "Boutique-Lodge mit Panoramablick"
+  },
+  "transport": {
+   "airport": false,
+   "rail": false,
+   "island": false
+  },
+  "flightHoursFromDE": 14,
+  "safety": 0
+ },
+ {
+  "id": "nbh",
+  "name": "Ninh Binh",
+  "countryId": "vn",
+  "regionId": "vn-norden",
+  "lat": 20.25,
+  "lon": 105.97,
+  "crowd": "112211101221",
+  "priceLevel": 1,
+  "interests": {
+   "natur": 3,
+   "berge": 3,
+   "ruhe": 3,
+   "stays": 3
+  },
+  "tip": "Bootsfahrt Tam Coc und Trang An, Reisfelder",
+  "stays": {
+   "budget": "Familiengeführtes Gästehaus",
+   "komfort": "Homestay zwischen Reisfeldern und Karstbergen",
+   "luxus": "Boutique-Lodge mit Panoramablick"
+  },
+  "transport": {
+   "airport": false,
+   "rail": true,
+   "island": false
+  },
+  "flightHoursFromDE": 13,
+  "safety": 0
+ },
+ {
+  "id": "sap",
+  "name": "Sapa",
+  "countryId": "vn",
+  "regionId": "vn-norden",
+  "lat": 22.34,
+  "lon": 103.84,
+  "crowd": "112211101221",
+  "priceLevel": 1,
+  "interests": {
+   "berge": 3,
+   "abenteuer": 3,
+   "natur": 3,
+   "stays": 3
+  },
+  "tip": "Wanderungen durch Reisterrassen und Bergdörfer",
+  "stays": {
+   "budget": "Familiengeführtes Gästehaus",
+   "komfort": "Homestay bei einer Familie im Bergdorf",
+   "luxus": "Boutique-Lodge mit Panoramablick"
+  },
+  "transport": {
+   "airport": false,
+   "rail": false,
+   "island": false
+  },
+  "flightHoursFromDE": 15,
+  "safety": 0
+ },
+ {
+  "id": "hui",
+  "name": "Hue",
+  "countryId": "vn",
+  "regionId": "vn-zentrum",
+  "lat": 16.46,
+  "lon": 107.59,
+  "crowd": "122221111001",
+  "priceLevel": 1,
+  "interests": {
+   "kultur": 3,
+   "food": 3
+  },
+  "tip": "Kaiserstadt, Königsgräber, Parfümfluss",
+  "stays": {
+   "budget": "Einfaches Gästehaus",
+   "komfort": "Garten-Villa am Parfümfluss",
+   "luxus": "Boutique-Hotel in historischem Gebäude"
+  },
+  "transport": {
+   "airport": true,
+   "rail": true,
+   "island": false
+  },
+  "flightHoursFromDE": 13,
+  "safety": 0
+ },
+ {
+  "id": "dad",
+  "name": "Da Nang",
+  "countryId": "vn",
+  "regionId": "vn-zentrum",
+  "lat": 16.05,
+  "lon": 108.2,
+  "crowd": "122221111001",
+  "priceLevel": 1,
+  "interests": {
+   "strand": 3,
+   "surfen": 3,
+   "food": 3,
+   "city": 3
+  },
+  "tip": "Marmorberge, Strand My Khe, Goldene Brücke",
+  "stays": {
+   "budget": "Einfacher Bungalow in Strandnähe",
+   "komfort": "Strandhotel mit Infinity-Pool",
+   "luxus": "Resort mit Pool und Meerblick"
+  },
+  "transport": {
+   "airport": true,
+   "intlAirport": true,
+   "rail": true,
+   "island": false
+  },
+  "flightHoursFromDE": 13,
+  "safety": 0
+ },
+ {
+  "id": "hoi",
+  "name": "Hoi An",
+  "countryId": "vn",
+  "regionId": "vn-zentrum",
+  "lat": 15.88,
+  "lon": 108.33,
+  "crowd": "122221111001",
+  "priceLevel": 1,
+  "interests": {
+   "kultur": 3,
+   "food": 3,
+   "strand": 3,
+   "stays": 3
+  },
+  "tip": "Laternen-Altstadt, Schneider, Radtour durch Reisfelder",
+  "stays": {
+   "budget": "Einfacher Bungalow in Strandnähe",
+   "komfort": "Villa mit Pool zwischen Reisfeldern",
+   "luxus": "Resort mit Pool und Meerblick"
+  },
+  "transport": {
+   "airport": false,
+   "rail": false,
+   "island": false
+  },
+  "flightHoursFromDE": 13,
+  "safety": 0
+ },
+ {
+  "id": "sgn",
+  "name": "Saigon",
+  "countryId": "vn",
+  "regionId": "vn-suden",
+  "lat": 10.82,
+  "lon": 106.63,
+  "crowd": "322111111113",
+  "priceLevel": 1,
+  "interests": {
+   "city": 3,
+   "food": 3,
+   "nightlife": 3
+  },
+  "tip": "Märkte, Kriegsmuseum, Cu-Chi-Tunnel",
+  "stays": {
+   "budget": "Guesthouse oder Hostel im Zentrum",
+   "komfort": "Design-Hotel mit Rooftop-Bar",
+   "luxus": "Designhotel mit Rooftop-Bar"
+  },
+  "transport": {
+   "airport": true,
+   "intlAirport": true,
+   "rail": true,
+   "island": false
+  },
+  "flightHoursFromDE": 13,
+  "maxTempC": [
+   32,
+   33,
+   34,
+   35,
+   34,
+   32,
+   32,
+   32,
+   31,
+   31,
+   31,
+   31
+  ],
+  "safety": 0
+ },
+ {
+  "id": "mek",
+  "name": "Mekongdelta",
+  "countryId": "vn",
+  "regionId": "vn-suden",
+  "lat": 10.04,
+  "lon": 105.79,
+  "crowd": "322111111113",
+  "priceLevel": 1,
+  "interests": {
+   "natur": 3,
+   "ruhe": 3,
+   "food": 3,
+   "stays": 3
+  },
+  "tip": "Schwimmende Märkte bei Can Tho, Homestay",
+  "stays": {
+   "budget": "Familiengeführtes Gästehaus",
+   "komfort": "Homestay auf einer Flussinsel",
+   "luxus": "Boutique-Lodge mit Panoramablick"
+  },
+  "transport": {
+   "airport": false,
+   "rail": false,
+   "island": false
+  },
+  "flightHoursFromDE": 15,
+  "safety": 0
+ },
+ {
+  "id": "pqc",
+  "name": "Phu Quoc",
+  "countryId": "vn",
+  "regionId": "vn-phu-quoc",
+  "lat": 10.29,
+  "lon": 103.98,
+  "crowd": "322110000113",
+  "priceLevel": 1,
+  "interests": {
+   "strand": 3,
+   "tauchen": 3,
+   "ruhe": 3
+  },
+  "tip": "Sao Beach, Sonnenuntergang, Schnorcheln",
+  "stays": {
+   "budget": "Einfacher Bungalow in Strandnähe",
+   "komfort": "Resort am Sunset Beach",
+   "luxus": "Resort mit Pool und Meerblick"
+  },
+  "transport": {
+   "airport": true,
+   "rail": false,
+   "island": true
+  },
+  "flightHoursFromDE": 13,
+  "safety": 0
+ },
+ {
+  "id": "rep",
+  "name": "Siem Reap",
+  "countryId": "kh",
+  "regionId": "kh-angkor-phnom-penh",
+  "lat": 13.36,
+  "lon": 103.86,
+  "crowd": "321111110023",
+  "priceLevel": 1,
+  "interests": {
+   "kultur": 3,
+   "abenteuer": 3
+  },
+  "tip": "Angkor Wat zum Sonnenaufgang, Ta Prohm, Bayon",
+  "stays": {
+   "budget": "Einfaches Gästehaus",
+   "komfort": "Boutique-Resort mit Pool nahe Angkor",
+   "luxus": "Boutique-Hotel in historischem Gebäude"
+  },
+  "transport": {
+   "airport": true,
+   "intlAirport": true,
+   "rail": false,
+   "island": false
+  },
+  "flightHoursFromDE": 14,
+  "safety": 0
+ },
+ {
+  "id": "pnh",
+  "name": "Phnom Penh",
+  "countryId": "kh",
+  "regionId": "kh-angkor-phnom-penh",
+  "lat": 11.56,
+  "lon": 104.93,
+  "crowd": "321111110023",
+  "priceLevel": 1,
+  "interests": {
+   "kultur": 3,
+   "city": 3,
+   "food": 3
+  },
+  "tip": "Königspalast, Tuol Sleng, Mekong-Promenade",
+  "stays": {
+   "budget": "Guesthouse oder Hostel im Zentrum",
+   "komfort": "Kolonialvilla mit Innenhof",
+   "luxus": "Designhotel mit Rooftop-Bar"
+  },
+  "transport": {
+   "airport": true,
+   "intlAirport": true,
+   "rail": false,
+   "island": false
+  },
+  "flightHoursFromDE": 14,
+  "safety": 0
+ },
+ {
+  "id": "kmp",
+  "name": "Kampot",
+  "countryId": "kh",
+  "regionId": "kh-kuste",
+  "lat": 10.61,
+  "lon": 104.18,
+  "crowd": "322110000113",
+  "priceLevel": 1,
+  "interests": {
+   "natur": 3,
+   "ruhe": 3,
+   "food": 3
+  },
+  "tip": "Pfefferfarmen, Bokor-Berg, Flussfahrt",
+  "stays": {
+   "budget": "Familiengeführtes Gästehaus",
+   "komfort": "Bungalow am Fluss",
+   "luxus": "Boutique-Lodge mit Panoramablick"
+  },
+  "transport": {
+   "airport": false,
+   "rail": false,
+   "island": false
+  },
+  "flightHoursFromDE": 16,
+  "safety": 0
+ },
+ {
+  "id": "lpq",
+  "name": "Luang Prabang",
+  "countryId": "la",
+  "regionId": "la-luang-prabang-vang",
+  "lat": 19.89,
+  "lon": 102.13,
+  "crowd": "321111100123",
+  "priceLevel": 1,
+  "interests": {
+   "kultur": 3,
+   "ruhe": 3,
+   "natur": 3,
+   "stays": 3
+  },
+  "tip": "Almosengang, Kuang-Si-Wasserfälle, Mekong",
+  "stays": {
+   "budget": "Familiengeführtes Gästehaus",
+   "komfort": "Kolonialhaus-Hotel an der Mekong-Promenade",
+   "luxus": "Boutique-Lodge mit Panoramablick"
+  },
+  "transport": {
+   "airport": true,
+   "rail": true,
+   "island": false
+  },
+  "flightHoursFromDE": 14,
+  "safety": 0
+ },
+ {
+  "id": "vte",
+  "name": "Vientiane",
+  "countryId": "la",
+  "regionId": "la-luang-prabang-vang",
+  "lat": 17.97,
+  "lon": 102.63,
+  "crowd": "321111100123",
+  "priceLevel": 1,
+  "interests": {
+   "kultur": 3,
+   "ruhe": 3
+  },
+  "tip": "Pha That Luang, Buddha-Park",
+  "stays": {
+   "budget": "Einfaches Gästehaus",
+   "komfort": "Hotel mit Blick auf den Mekong",
+   "luxus": "Boutique-Hotel in historischem Gebäude"
+  },
+  "transport": {
+   "airport": true,
+   "rail": true,
+   "island": false
+  },
+  "flightHoursFromDE": 14,
+  "safety": 0
+ },
+ {
+  "id": "lim",
+  "name": "Lima",
+  "countryId": "pe",
+  "regionId": "pe-kuste",
+  "lat": -12.05,
+  "lon": -77.04,
+  "crowd": "332111111112",
+  "priceLevel": 1,
+  "interests": {
+   "city": 3,
+   "food": 3
+  },
+  "tip": "Altstadt, Barranco, Ceviche – Perus Gourmet-Hauptstadt",
+  "stays": {
+   "budget": "Guesthouse oder Hostel im Zentrum",
+   "komfort": "Boutique-Hotel im Künstlerviertel Barranco",
+   "luxus": "Designhotel mit Rooftop-Bar"
+  },
+  "transport": {
+   "airport": true,
+   "intlAirport": true,
+   "rail": false,
+   "island": false
+  },
+  "flightHoursFromDE": 17,
+  "safety": 0
+ },
+ {
+  "id": "cuz",
+  "name": "Cusco",
+  "countryId": "pe",
+  "regionId": "pe-anden",
+  "lat": -13.53,
+  "lon": -71.97,
+  "crowd": "001122222110",
+  "priceLevel": 1,
+  "interests": {
+   "kultur": 3,
+   "berge": 3
+  },
+  "tip": "Inka-Mauern, San-Pedro-Markt, Ausflug ins Heilige Tal",
+  "stays": {
+   "budget": "Familiengeführtes Gästehaus",
+   "komfort": "Kolonialhaus-Hotel mit Innenhof",
+   "luxus": "Boutique-Lodge mit Panoramablick"
+  },
+  "transport": {
+   "airport": true,
+   "rail": true,
+   "island": false
+  },
+  "flightHoursFromDE": 17,
+  "safety": 0
+ },
+ {
+  "id": "mpi",
+  "name": "Machu Picchu",
+  "countryId": "pe",
+  "regionId": "pe-anden",
+  "lat": -13.16,
+  "lon": -72.55,
+  "crowd": "001122222110",
+  "priceLevel": 1,
+  "interests": {
+   "kultur": 3,
+   "berge": 3,
+   "abenteuer": 3,
+   "stays": 3
+  },
+  "tip": "Inka-Stadt zum Sonnenaufgang, Aufstieg auf den Huayna Picchu",
+  "stays": {
+   "budget": "Familiengeführtes Gästehaus",
+   "komfort": "Lodge am Urubamba-Fluss",
+   "luxus": "Boutique-Lodge mit Panoramablick"
+  },
+  "transport": {
+   "airport": false,
+   "rail": true,
+   "island": false
+  },
+  "flightHoursFromDE": 17,
+  "safety": 0
+ },
+ {
+  "id": "puno",
+  "name": "Titicacasee",
+  "countryId": "pe",
+  "regionId": "pe-titicacasee",
+  "lat": -15.84,
+  "lon": -70.02,
+  "crowd": "001122222110",
+  "priceLevel": 1,
+  "interests": {
+   "kultur": 3,
+   "ruhe": 3,
+   "stays": 3
+  },
+  "tip": "Schwimmende Uros-Inseln, Übernachtung auf Amantaní",
+  "stays": {
+   "budget": "Einfaches Gästehaus",
+   "komfort": "Homestay bei einer Familie auf Amantaní",
+   "luxus": "Boutique-Hotel in historischem Gebäude"
+  },
+  "transport": {
+   "airport": false,
+   "rail": false,
+   "island": false
+  },
+  "flightHoursFromDE": 17,
+  "safety": 0
+ },
+ {
+  "id": "uyu",
+  "name": "Salar de Uyuni",
+  "countryId": "bo",
+  "regionId": "bo-salar-de-uyuni",
+  "lat": -20.46,
+  "lon": -66.83,
+  "crowd": "221122222211",
+  "priceLevel": 1,
+  "interests": {
+   "abenteuer": 3,
+   "natur": 3,
+   "stays": 3
+  },
+  "tip": "Salzwüste, Flamingo-Lagunen, Spiegeleffekt in der Regenzeit",
+  "stays": {
+   "budget": "Familiengeführtes Gästehaus",
+   "komfort": "Hotel ganz aus Salzblöcken",
+   "luxus": "Boutique-Lodge mit Panoramablick"
+  },
+  "events": [
+   {
+    "month": 0,
+    "name": "Spiegeleffekt auf dem Salar",
+    "interest": "natur",
+    "overridesRain": true
+   },
+   {
+    "month": 1,
+    "name": "Spiegeleffekt auf dem Salar",
+    "interest": "natur",
+    "overridesRain": true
+   }
+  ],
+  "transport": {
+   "airport": true,
+   "rail": false,
+   "island": false
+  },
+  "flightHoursFromDE": 22,
+  "safety": 0
+ },
+ {
+  "id": "lpb",
+  "name": "La Paz",
+  "countryId": "bo",
+  "regionId": "bo-la-paz-death",
+  "lat": -16.5,
+  "lon": -68.15,
+  "crowd": "001122222110",
+  "priceLevel": 1,
+  "interests": {
+   "city": 3,
+   "abenteuer": 3
+  },
+  "tip": "Seilbahn-Netz, Hexenmarkt, Death Road per Mountainbike",
+  "stays": {
+   "budget": "Guesthouse oder Hostel im Zentrum",
+   "komfort": "Design-Hotel mit Blick auf den Illimani",
+   "luxus": "Designhotel mit Rooftop-Bar"
+  },
+  "events": [
+   {
+    "month": 1,
+    "name": "Karneval von Oruro (Ausflug)",
+    "interest": "kultur"
+   }
+  ],
+  "transport": {
+   "airport": true,
+   "rail": false,
+   "island": false
+  },
+  "flightHoursFromDE": 20,
+  "safety": 0
+ },
+ {
+  "id": "scl",
+  "name": "Santiago de Chile",
+  "countryId": "cl",
+  "regionId": "cl-santiago-weinregion",
+  "lat": -33.45,
+  "lon": -70.67,
+  "crowd": "222211111222",
+  "priceLevel": 2,
+  "interests": {
+   "city": 3,
+   "food": 3
+  },
+  "tip": "Cerro San Cristóbal, Ausflug nach Valparaíso, Weingüter",
+  "stays": {
+   "budget": "Guesthouse oder Hostel im Zentrum",
+   "komfort": "Weingut-Lodge im Colchagua-Tal",
+   "luxus": "Designhotel mit Rooftop-Bar"
+  },
+  "transport": {
+   "airport": true,
+   "intlAirport": true,
+   "rail": false,
+   "island": false
+  },
+  "flightHoursFromDE": 16,
+  "safety": 0
+ },
+ {
+  "id": "spa",
+  "name": "San Pedro de Atacama",
+  "countryId": "cl",
+  "regionId": "cl-atacama-wuste",
+  "lat": -22.91,
+  "lon": -68.2,
+  "crowd": "222221112221",
+  "priceLevel": 2,
+  "interests": {
+   "abenteuer": 3,
+   "natur": 3,
+   "ruhe": 3,
+   "stays": 3
+  },
+  "tip": "Valle de la Luna, Geysire, Sternenbeobachtung",
+  "stays": {
+   "budget": "Familiengeführtes Gästehaus",
+   "komfort": "Wüsten-Lodge mit eigener Sternwarte",
+   "luxus": "Boutique-Lodge mit Panoramablick"
+  },
+  "transport": {
+   "airport": true,
+   "rail": false,
+   "island": false
+  },
+  "flightHoursFromDE": 16,
+  "safety": 0
+ },
+ {
+  "id": "tdp",
+  "name": "Torres del Paine",
+  "countryId": "cl",
+  "regionId": "cl-patagonien",
+  "lat": -51,
+  "lon": -73,
+  "crowd": "332100001122",
+  "priceLevel": 2,
+  "interests": {
+   "berge": 3,
+   "natur": 3,
+   "abenteuer": 3,
+   "stays": 3
+  },
+  "tip": "W-Trek, Gletscher, Granittürme",
+  "stays": {
+   "budget": "Familiengeführtes Gästehaus",
+   "komfort": "Kuppelzelt mit Blick auf die Torres",
+   "luxus": "Boutique-Lodge mit Panoramablick"
+  },
+  "transport": {
+   "airport": true,
+   "rail": false,
+   "island": false
+  },
+  "flightHoursFromDE": 19,
+  "closedMonths": [
+   5,
+   6,
+   7,
+   8
+  ],
+  "safety": 0
+ },
+ {
+  "id": "bue",
+  "name": "Buenos Aires",
+  "countryId": "ar",
+  "regionId": "ar-buenos-aires",
+  "lat": -34.6,
+  "lon": -58.38,
+  "crowd": "222211112221",
+  "priceLevel": 2,
+  "interests": {
+   "city": 3,
+   "food": 3,
+   "nightlife": 3,
+   "kultur": 3
+  },
+  "tip": "Tango in San Telmo, Steakhaus, Recoleta",
+  "stays": {
+   "budget": "Guesthouse oder Hostel im Zentrum",
+   "komfort": "Altbau-Boutiquehotel in Palermo Soho",
+   "luxus": "Designhotel mit Rooftop-Bar"
+  },
+  "transport": {
+   "airport": true,
+   "intlAirport": true,
+   "rail": false,
+   "island": false
+  },
+  "flightHoursFromDE": 15,
+  "safety": 0
+ },
+ {
+  "id": "fte",
+  "name": "El Calafate",
+  "countryId": "ar",
+  "regionId": "ar-patagonien",
+  "lat": -50.34,
+  "lon": -72.27,
+  "crowd": "332100001122",
+  "priceLevel": 2,
+  "interests": {
+   "berge": 3,
+   "natur": 3,
+   "abenteuer": 3
+  },
+  "tip": "Perito-Moreno-Gletscher, Wandern in El Chaltén",
+  "stays": {
+   "budget": "Familiengeführtes Gästehaus",
+   "komfort": "Estancia in der patagonischen Steppe",
+   "luxus": "Boutique-Lodge mit Panoramablick"
+  },
+  "transport": {
+   "airport": true,
+   "rail": false,
+   "island": false
+  },
+  "flightHoursFromDE": 18,
+  "closedMonths": [
+   5,
+   6,
+   7
+  ],
+  "safety": 0
+ },
+ {
+  "id": "igr",
+  "name": "Iguazú",
+  "countryId": "ar",
+  "regionId": "ar-iguazu-wasserfalle",
+  "lat": -25.69,
+  "lon": -54.44,
+  "crowd": "221221122211",
+  "priceLevel": 2,
+  "interests": {
+   "natur": 3
+  },
+  "tip": "Teufelsschlund und Wanderwege auf beiden Seiten der Fälle",
+  "stays": {
+   "budget": "Familiengeführtes Gästehaus",
+   "komfort": "Lodge im Regenwald direkt an den Fällen",
+   "luxus": "Boutique-Lodge mit Panoramablick"
+  },
+  "transport": {
+   "airport": true,
+   "rail": false,
+   "island": false
+  },
+  "flightHoursFromDE": 15,
+  "safety": 0
+ },
+ {
+  "id": "sla",
+  "name": "Salta",
+  "countryId": "ar",
+  "regionId": "ar-nordwesten",
+  "lat": -24.78,
+  "lon": -65.41,
+  "crowd": "221222222211",
+  "priceLevel": 2,
+  "interests": {
+   "kultur": 3,
+   "natur": 3,
+   "food": 3
+  },
+  "tip": "Bunte Berge von Purmamarca, Weinort Cafayate",
+  "stays": {
+   "budget": "Familiengeführtes Gästehaus",
+   "komfort": "Hacienda im Weinort Cafayate",
+   "luxus": "Boutique-Lodge mit Panoramablick"
+  },
+  "transport": {
+   "airport": true,
+   "rail": false,
+   "island": false
+  },
+  "flightHoursFromDE": 15,
+  "safety": 0
+ },
+ {
+  "id": "rio",
+  "name": "Rio de Janeiro",
+  "countryId": "br",
+  "regionId": "br-rio-de-janeiro",
+  "lat": -22.91,
+  "lon": -43.17,
+  "crowd": "221222112221",
+  "priceLevel": 2,
+  "interests": {
+   "strand": 3,
+   "city": 3,
+   "nightlife": 3,
+   "surfen": 3
+  },
+  "tip": "Zuckerhut, Christus-Statue, Copacabana, Samba",
+  "stays": {
+   "budget": "Einfacher Bungalow in Strandnähe",
+   "komfort": "Hotel mit Blick auf die Copacabana",
+   "luxus": "Resort mit Pool und Meerblick"
+  },
+  "events": [
+   {
+    "month": 1,
+    "name": "Karneval",
+    "interest": "nightlife"
+   }
+  ],
+  "transport": {
+   "airport": true,
+   "intlAirport": true,
+   "rail": false,
+   "island": false
+  },
+  "flightHoursFromDE": 13,
+  "safety": 0
+ },
+ {
+  "id": "ssa",
+  "name": "Salvador da Bahia",
+  "countryId": "br",
+  "regionId": "br-salvador-nordostkuste",
+  "lat": -12.97,
+  "lon": -38.5,
+  "crowd": "332100112222",
+  "priceLevel": 2,
+  "interests": {
+   "kultur": 3,
+   "strand": 3,
+   "food": 3
+  },
+  "tip": "Bunte Altstadt Pelourinho, Capoeira, Strände",
+  "stays": {
+   "budget": "Einfacher Bungalow in Strandnähe",
+   "komfort": "Pousada in der Altstadt",
+   "luxus": "Resort mit Pool und Meerblick"
+  },
+  "transport": {
+   "airport": true,
+   "rail": false,
+   "island": false
+  },
+  "flightHoursFromDE": 13,
+  "safety": 0
+ },
+ {
+  "id": "lnc",
+  "name": "Lençóis Maranhenses",
+  "countryId": "br",
+  "regionId": "br-lencois-maranhenses",
+  "lat": -2.49,
+  "lon": -43.12,
+  "crowd": "000012222110",
+  "priceLevel": 2,
+  "interests": {
+   "natur": 3,
+   "abenteuer": 3,
+   "stays": 3
+  },
+  "tip": "Dünen mit türkisen Regenwasser-Lagunen",
+  "stays": {
+   "budget": "Familiengeführtes Gästehaus",
+   "komfort": "Pousada am Rand der Dünen",
+   "luxus": "Boutique-Lodge mit Panoramablick"
+  },
+  "transport": {
+   "airport": false,
+   "rail": false,
+   "island": false
+  },
+  "flightHoursFromDE": 16,
+  "safety": 0
+ },
+ {
+  "id": "ctg",
+  "name": "Cartagena",
+  "countryId": "co",
+  "regionId": "co-karibikkuste",
+  "lat": 10.39,
+  "lon": -75.48,
+  "crowd": "332111110012",
+  "priceLevel": 1,
+  "interests": {
+   "kultur": 3,
+   "strand": 3,
+   "nightlife": 3
+  },
+  "tip": "Bunte Altstadt, Rosario-Inseln, Sonnenuntergang auf der Stadtmauer",
+  "stays": {
+   "budget": "Einfacher Bungalow in Strandnähe",
+   "komfort": "Kolonialhaus-Hotel mit Dachpool",
+   "luxus": "Resort mit Pool und Meerblick"
+  },
+  "transport": {
+   "airport": true,
+   "intlAirport": true,
+   "rail": false,
+   "island": false
+  },
+  "flightHoursFromDE": 13,
+  "safety": 0
+ },
+ {
+  "id": "mde",
+  "name": "Medellín",
+  "countryId": "co",
+  "regionId": "co-medellin-kaffeeregion",
+  "lat": 6.24,
+  "lon": -75.58,
+  "crowd": "331112221112",
+  "priceLevel": 1,
+  "interests": {
+   "city": 3,
+   "food": 3,
+   "nightlife": 3
+  },
+  "tip": "Comuna 13, Seilbahnen, Ausflug nach Guatapé",
+  "stays": {
+   "budget": "Guesthouse oder Hostel im Zentrum",
+   "komfort": "Hotel im grünen Viertel El Poblado",
+   "luxus": "Designhotel mit Rooftop-Bar"
+  },
+  "transport": {
+   "airport": true,
+   "intlAirport": true,
+   "rail": false,
+   "island": false
+  },
+  "flightHoursFromDE": 13,
+  "safety": 0
+ },
+ {
+  "id": "sal",
+  "name": "Salento",
+  "countryId": "co",
+  "regionId": "co-medellin-kaffeeregion",
+  "lat": 4.64,
+  "lon": -75.57,
+  "crowd": "331112221112",
+  "priceLevel": 1,
+  "interests": {
+   "natur": 3,
+   "berge": 3,
+   "ruhe": 3,
+   "stays": 3
+  },
+  "tip": "Kaffeefarmen, Wachspalmen im Cocora-Tal",
+  "stays": {
+   "budget": "Familiengeführtes Gästehaus",
+   "komfort": "Finca auf einer Kaffeeplantage",
+   "luxus": "Boutique-Lodge mit Panoramablick"
+  },
+  "transport": {
+   "airport": false,
+   "rail": false,
+   "island": false
+  },
+  "flightHoursFromDE": 13,
+  "safety": 0
+ },
+ {
+  "id": "uio",
+  "name": "Quito",
+  "countryId": "ec",
+  "regionId": "ec-anden",
+  "lat": -0.18,
+  "lon": -78.47,
+  "crowd": "221112222111",
+  "priceLevel": 2,
+  "interests": {
+   "kultur": 3,
+   "berge": 3
+  },
+  "tip": "Altstadt, Äquator-Denkmal, Cotopaxi-Vulkan",
+  "stays": {
+   "budget": "Familiengeführtes Gästehaus",
+   "komfort": "Hacienda am Fuß des Cotopaxi",
+   "luxus": "Boutique-Lodge mit Panoramablick"
+  },
+  "transport": {
+   "airport": true,
+   "intlAirport": true,
+   "rail": false,
+   "island": false
+  },
+  "flightHoursFromDE": 15,
+  "safety": 0
+ },
+ {
+  "id": "gps",
+  "name": "Galápagos",
+  "countryId": "ec",
+  "regionId": "ec-galapagos",
+  "lat": -0.74,
+  "lon": -90.31,
+  "crowd": "332221111112",
+  "priceLevel": 3,
+  "interests": {
+   "tauchen": 3,
+   "natur": 3,
+   "strand": 3,
+   "stays": 3
+  },
+  "tip": "Seelöwen, Riesenschildkröten, Schnorcheln mit Haien",
+  "stays": {
+   "budget": "Einfacher Bungalow in Strandnähe",
+   "komfort": "Kleine Yacht-Kreuzfahrt zwischen den Inseln",
+   "luxus": "Resort mit Pool und Meerblick"
+  },
+  "transport": {
+   "airport": true,
+   "rail": false,
+   "island": true
+  },
+  "flightHoursFromDE": 19,
+  "safety": 0
+ },
+ {
+  "id": "rek",
+  "name": "Reykjavík",
+  "countryId": "is",
+  "regionId": "is-ringstrasse-sudkuste",
+  "lat": 64.15,
+  "lon": -21.94,
+  "crowd": "111112331111",
+  "priceLevel": 3,
+  "interests": {
+   "natur": 3,
+   "city": 3,
+   "ruhe": 3
+  },
+  "tip": "Golden Circle, heiße Quellen, Nordlichter im Winter",
+  "stays": {
+   "budget": "Guesthouse oder Hostel im Zentrum",
+   "komfort": "Glas-Iglu für Nordlichter außerhalb der Stadt",
+   "luxus": "Designhotel mit Rooftop-Bar"
+  },
+  "transport": {
+   "airport": true,
+   "intlAirport": true,
+   "rail": false,
+   "island": false
+  },
+  "flightHoursFromDE": 3.5,
+  "safety": 0
+ },
+ {
+  "id": "vik",
+  "name": "Vík & Südküste",
+  "countryId": "is",
+  "regionId": "is-ringstrasse-sudkuste",
+  "lat": 63.42,
+  "lon": -19.01,
+  "crowd": "111112331111",
+  "priceLevel": 3,
+  "interests": {
+   "natur": 3,
+   "abenteuer": 3,
+   "stays": 3
+  },
+  "tip": "Schwarze Strände, Wasserfälle, Gletscherwanderung",
+  "stays": {
+   "budget": "Familiengeführtes Gästehaus",
+   "komfort": "Holzhütte mit Blick auf den Gletscher",
+   "luxus": "Boutique-Lodge mit Panoramablick"
+  },
+  "transport": {
+   "airport": false,
+   "rail": false,
+   "island": false
+  },
+  "flightHoursFromDE": 3.5,
+  "safety": 0
+ },
+ {
+  "id": "fae",
+  "name": "Färöer",
+  "countryId": "fo",
+  "regionId": "fo-faroer-inseln",
+  "lat": 62.01,
+  "lon": -6.77,
+  "crowd": "000112331100",
+  "priceLevel": 3,
+  "interests": {
+   "natur": 3,
+   "berge": 3,
+   "ruhe": 3,
+   "stays": 3
+  },
+  "tip": "Klippen, Papageitaucher, Dörfer mit Grasdächern",
+  "stays": {
+   "budget": "Familiengeführtes Gästehaus",
+   "komfort": "Grasdach-Häuschen am Fjord",
+   "luxus": "Boutique-Lodge mit Panoramablick"
+  },
+  "transport": {
+   "airport": true,
+   "rail": false,
+   "island": true
+  },
+  "flightHoursFromDE": 4.5,
+  "safety": 0
+ },
+ {
+  "id": "bgo",
+  "name": "Bergen & Fjorde",
+  "countryId": "no",
+  "regionId": "no-fjorde",
+  "lat": 60.39,
+  "lon": 5.32,
+  "crowd": "000112331100",
+  "priceLevel": 3,
+  "interests": {
+   "natur": 3,
+   "berge": 3
+  },
+  "tip": "Bryggen, Fjordfahrt, Flåmbahn, Trolltunga",
+  "stays": {
+   "budget": "Familiengeführtes Gästehaus",
+   "komfort": "Fjordhütte direkt am Wasser",
+   "luxus": "Boutique-Lodge mit Panoramablick"
+  },
+  "transport": {
+   "airport": true,
+   "intlAirport": true,
+   "rail": true,
+   "island": false
+  },
+  "flightHoursFromDE": 2.5,
+  "safety": 0
+ },
+ {
+  "id": "lof",
+  "name": "Lofoten",
+  "countryId": "no",
+  "regionId": "no-lofoten-troms",
+  "lat": 68.23,
+  "lon": 14.57,
+  "crowd": "111112331111",
+  "priceLevel": 3,
+  "interests": {
+   "natur": 3,
+   "berge": 3,
+   "surfen": 3,
+   "stays": 3
+  },
+  "tip": "Rote Fischerhütten, Mitternachtssonne, Kajak, Surfen in Unstad",
+  "stays": {
+   "budget": "Familiengeführtes Gästehaus",
+   "komfort": "Rorbu – rote Fischerhütte auf Stelzen",
+   "luxus": "Boutique-Lodge mit Panoramablick"
+  },
+  "transport": {
+   "airport": true,
+   "rail": false,
+   "island": false
+  },
+  "flightHoursFromDE": 5,
+  "safety": 0
+ },
+ {
+  "id": "tos",
+  "name": "Tromsø",
+  "countryId": "no",
+  "regionId": "no-lofoten-troms",
+  "lat": 69.65,
+  "lon": 18.96,
+  "crowd": "111112331111",
+  "priceLevel": 3,
+  "interests": {
+   "natur": 3,
+   "abenteuer": 3,
+   "city": 3
+  },
+  "tip": "Nordlichter, Wale im Winter, Hundeschlitten",
+  "stays": {
+   "budget": "Guesthouse oder Hostel im Zentrum",
+   "komfort": "Glas-Iglu unter dem Nordlicht",
+   "luxus": "Designhotel mit Rooftop-Bar"
+  },
+  "events": [
+   {
+    "month": 0,
+    "name": "Nordlicht-Saison",
+    "interest": "natur"
+   },
+   {
+    "month": 1,
+    "name": "Nordlicht-Saison",
+    "interest": "natur"
+   }
+  ],
+  "transport": {
+   "airport": true,
+   "rail": false,
+   "island": false
+  },
+  "flightHoursFromDE": 4.5,
+  "safety": 0
+ },
+ {
+  "id": "rvn",
+  "name": "Rovaniemi (Lappland)",
+  "countryId": "fi",
+  "regionId": "fi-lappland",
+  "lat": 66.5,
+  "lon": 25.73,
+  "crowd": "222101221112",
+  "priceLevel": 3,
+  "interests": {
+   "natur": 3,
+   "abenteuer": 3,
+   "stays": 3
+  },
+  "tip": "Husky-Safari, Nordlichter, Schneeschuhwandern",
+  "stays": {
+   "budget": "Familiengeführtes Gästehaus",
+   "komfort": "Glas-Iglu oder Baumhaus-Hotel im Wald",
+   "luxus": "Boutique-Lodge mit Panoramablick"
+  },
+  "events": [
+   {
+    "month": 11,
+    "name": "Weihnachtszeit in Lappland",
+    "interest": "abenteuer"
+   },
+   {
+    "month": 0,
+    "name": "Nordlicht-Saison",
+    "interest": "natur"
+   }
+  ],
+  "transport": {
+   "airport": true,
+   "rail": true,
+   "island": false
+  },
+  "flightHoursFromDE": 5,
+  "safety": 0
+ },
+ {
+  "id": "edi",
+  "name": "Edinburgh",
+  "countryId": "gb",
+  "regionId": "gb-edinburgh",
+  "lat": 55.95,
+  "lon": -3.19,
+  "crowd": "111122222111",
+  "priceLevel": 3,
+  "interests": {
+   "kultur": 3,
+   "city": 3,
+   "nightlife": 3
+  },
+  "tip": "Burg, Royal Mile, Whisky-Bars, Arthur's Seat",
+  "stays": {
+   "budget": "Guesthouse oder Hostel im Zentrum",
+   "komfort": "Hotel in einem georgianischen Stadthaus",
+   "luxus": "Designhotel mit Rooftop-Bar"
+  },
+  "events": [
+   {
+    "month": 7,
+    "name": "Edinburgh Festival",
+    "interest": "kultur"
+   }
+  ],
+  "transport": {
+   "airport": true,
+   "intlAirport": true,
+   "rail": true,
+   "island": false
+  },
+  "flightHoursFromDE": 2,
+  "safety": 0
+ },
+ {
+  "id": "sky",
+  "name": "Isle of Skye",
+  "countryId": "gb",
+  "regionId": "gb-highlands-isle-of",
+  "lat": 57.41,
+  "lon": -6.19,
+  "crowd": "111122222111",
+  "priceLevel": 3,
+  "interests": {
+   "natur": 3,
+   "berge": 3,
+   "ruhe": 3,
+   "stays": 3
+  },
+  "tip": "Old Man of Storr, Fairy Pools, Whisky-Destillerie",
+  "stays": {
+   "budget": "Familiengeführtes Gästehaus",
+   "komfort": "Cottage am Loch",
+   "luxus": "Boutique-Lodge mit Panoramablick"
+  },
+  "transport": {
+   "airport": false,
+   "rail": false,
+   "island": false
+  },
+  "flightHoursFromDE": 4,
+  "safety": 0
+ },
+ {
+  "id": "lis",
+  "name": "Lissabon",
+  "countryId": "pt",
+  "regionId": "pt-lissabon-porto",
+  "lat": 38.72,
+  "lon": -9.14,
+  "crowd": "111222222211",
+  "priceLevel": 2,
+  "interests": {
+   "city": 3,
+   "food": 3,
+   "kultur": 3,
+   "nightlife": 3
+  },
+  "tip": "Alfama, Straßenbahn 28, Fado, Pastéis de Nata",
+  "stays": {
+   "budget": "Guesthouse oder Hostel im Zentrum",
+   "komfort": "Boutique-Hotel in einem Stadtpalast in der Alfama",
+   "luxus": "Designhotel mit Rooftop-Bar"
+  },
+  "transport": {
+   "airport": true,
+   "intlAirport": true,
+   "rail": true,
+   "island": false
+  },
+  "flightHoursFromDE": 3,
+  "safety": 0
+ },
+ {
+  "id": "opo",
+  "name": "Porto",
+  "countryId": "pt",
+  "regionId": "pt-lissabon-porto",
+  "lat": 41.15,
+  "lon": -8.61,
+  "crowd": "111222222211",
+  "priceLevel": 2,
+  "interests": {
+   "city": 3,
+   "food": 3,
+   "kultur": 3
+  },
+  "tip": "Ribeira, Portweinkeller, Douro-Tal",
+  "stays": {
+   "budget": "Guesthouse oder Hostel im Zentrum",
+   "komfort": "Weingut-Quinta im Douro-Tal",
+   "luxus": "Designhotel mit Rooftop-Bar"
+  },
+  "transport": {
+   "airport": true,
+   "intlAirport": true,
+   "rail": true,
+   "island": false
+  },
+  "flightHoursFromDE": 3,
+  "safety": 0
+ },
+ {
+  "id": "lag",
+  "name": "Algarve (Lagos)",
+  "countryId": "pt",
+  "regionId": "pt-algarve",
+  "lat": 37.1,
+  "lon": -8.67,
+  "crowd": "111122332111",
+  "priceLevel": 2,
+  "interests": {
+   "strand": 3,
+   "surfen": 3,
+   "ruhe": 3
+  },
+  "tip": "Felsbuchten, Ponta da Piedade, Surfen an der Westküste",
+  "stays": {
+   "budget": "Einfacher Bungalow in Strandnähe",
+   "komfort": "Surfcamp oder Klippenhotel mit Meerblick",
+   "luxus": "Resort mit Pool und Meerblick"
+  },
+  "transport": {
+   "airport": false,
+   "rail": true,
+   "island": false
+  },
+  "flightHoursFromDE": 3,
+  "safety": 0
+ },
+ {
+  "id": "pdl",
+  "name": "Azoren (São Miguel)",
+  "countryId": "pt",
+  "regionId": "pt-azoren",
+  "lat": 37.74,
+  "lon": -25.67,
+  "crowd": "111112332111",
+  "priceLevel": 2,
+  "interests": {
+   "natur": 3,
+   "berge": 3,
+   "tauchen": 3,
+   "ruhe": 3,
+   "stays": 3
+  },
+  "tip": "Kraterseen, heiße Quellen, Whale-Watching",
+  "stays": {
+   "budget": "Familiengeführtes Gästehaus",
+   "komfort": "Eco-Lodge zwischen Teeplantagen",
+   "luxus": "Boutique-Lodge mit Panoramablick"
+  },
+  "transport": {
+   "airport": true,
+   "rail": false,
+   "island": true
+  },
+  "flightHoursFromDE": 5,
+  "safety": 0
+ },
+ {
+  "id": "svq",
+  "name": "Sevilla",
+  "countryId": "es",
+  "regionId": "es-andalusien",
+  "lat": 37.39,
+  "lon": -5.98,
+  "crowd": "112221111221",
+  "priceLevel": 2,
+  "interests": {
+   "kultur": 3,
+   "food": 3,
+   "city": 3,
+   "nightlife": 3
+  },
+  "tip": "Alcázar, Kathedrale, Flamenco, Tapas",
+  "stays": {
+   "budget": "Guesthouse oder Hostel im Zentrum",
+   "komfort": "Patio-Hotel im Viertel Santa Cruz",
+   "luxus": "Designhotel mit Rooftop-Bar"
+  },
+  "transport": {
+   "airport": true,
+   "intlAirport": true,
+   "rail": true,
+   "island": false
+  },
+  "flightHoursFromDE": 3,
+  "maxTempC": [
+   16,
+   18,
+   22,
+   24,
+   28,
+   33,
+   36,
+   36,
+   31,
+   26,
+   20,
+   16
+  ],
+  "safety": 0
+ },
+ {
+  "id": "grx",
+  "name": "Granada",
+  "countryId": "es",
+  "regionId": "es-andalusien",
+  "lat": 37.18,
+  "lon": -3.6,
+  "crowd": "112221111221",
+  "priceLevel": 2,
+  "interests": {
+   "kultur": 3,
+   "food": 3,
+   "berge": 3
+  },
+  "tip": "Alhambra, Albaicín, Tapas zum Getränk",
+  "stays": {
+   "budget": "Familiengeführtes Gästehaus",
+   "komfort": "Höhlenhaus im Sacromonte",
+   "luxus": "Boutique-Lodge mit Panoramablick"
+  },
+  "transport": {
+   "airport": true,
+   "rail": true,
+   "island": false
+  },
+  "flightHoursFromDE": 3,
+  "maxTempC": [
+   13,
+   15,
+   19,
+   21,
+   26,
+   32,
+   35,
+   36,
+   30,
+   24,
+   17,
+   13
+  ],
+  "safety": 0
+ },
+ {
+  "id": "dol",
+  "name": "Dolomiten",
+  "countryId": "it",
+  "regionId": "it-dolomiten",
+  "lat": 46.54,
+  "lon": 11.8,
+  "crowd": "111112332111",
+  "priceLevel": 2,
+  "interests": {
+   "berge": 3,
+   "natur": 3,
+   "abenteuer": 3,
+   "stays": 3
+  },
+  "tip": "Seceda, Drei Zinnen, Hüttenwanderungen, Skifahren",
+  "stays": {
+   "budget": "Familiengeführtes Gästehaus",
+   "komfort": "Berghütte mit Panorama-Sauna",
+   "luxus": "Boutique-Lodge mit Panoramablick"
+  },
+  "transport": {
+   "airport": false,
+   "rail": false,
+   "island": false
+  },
+  "flightHoursFromDE": 1.5,
+  "safety": 0
+ },
+ {
+  "id": "pmo",
+  "name": "Palermo (Sizilien)",
+  "countryId": "it",
+  "regionId": "it-sizilien",
+  "lat": 38.12,
+  "lon": 13.36,
+  "crowd": "111222222211",
+  "priceLevel": 2,
+  "interests": {
+   "kultur": 3,
+   "food": 3,
+   "strand": 3
+  },
+  "tip": "Märkte, Ätna, Barockstädte, Cannoli",
+  "stays": {
+   "budget": "Einfacher Bungalow in Strandnähe",
+   "komfort": "Masseria auf dem Land",
+   "luxus": "Resort mit Pool und Meerblick"
+  },
+  "transport": {
+   "airport": true,
+   "intlAirport": true,
+   "rail": false,
+   "island": false
+  },
+  "flightHoursFromDE": 1.5,
+  "safety": 0
+ },
+ {
+  "id": "cag",
+  "name": "Sardinien",
+  "countryId": "it",
+  "regionId": "it-sardinien",
+  "lat": 39.22,
+  "lon": 9.12,
+  "crowd": "111122332111",
+  "priceLevel": 2,
+  "interests": {
+   "strand": 3,
+   "tauchen": 3,
+   "ruhe": 3
+  },
+  "tip": "Karibikblaue Buchten, Wanderung zur Cala Goloritzé",
+  "stays": {
+   "budget": "Einfacher Bungalow in Strandnähe",
+   "komfort": "Agriturismo mit Meerblick",
+   "luxus": "Resort mit Pool und Meerblick"
+  },
+  "transport": {
+   "airport": true,
+   "rail": false,
+   "island": true
+  },
+  "flightHoursFromDE": 1.5,
+  "safety": 0
+ },
+ {
+  "id": "ath",
+  "name": "Athen",
+  "countryId": "gr",
+  "regionId": "gr-athen",
+  "lat": 37.98,
+  "lon": 23.73,
+  "crowd": "111222222211",
+  "priceLevel": 2,
+  "interests": {
+   "kultur": 3,
+   "city": 3,
+   "food": 3
+  },
+  "tip": "Akropolis, Plaka, Rooftop-Bars mit Blick",
+  "stays": {
+   "budget": "Guesthouse oder Hostel im Zentrum",
+   "komfort": "Hotel mit Blick auf die Akropolis",
+   "luxus": "Designhotel mit Rooftop-Bar"
+  },
+  "transport": {
+   "airport": true,
+   "intlAirport": true,
+   "rail": true,
+   "island": false
+  },
+  "flightHoursFromDE": 3,
+  "maxTempC": [
+   13,
+   14,
+   16,
+   20,
+   25,
+   30,
+   33,
+   33,
+   28,
+   23,
+   18,
+   14
+  ],
+  "safety": 0
+ },
+ {
+  "id": "jtr",
+  "name": "Santorini",
+  "countryId": "gr",
+  "regionId": "gr-kykladen",
+  "lat": 36.39,
+  "lon": 25.46,
+  "crowd": "001122222110",
+  "priceLevel": 2,
+  "interests": {
+   "strand": 3,
+   "ruhe": 3,
+   "stays": 3
+  },
+  "tip": "Caldera, Oia bei Sonnenuntergang, Vulkanstrände",
+  "stays": {
+   "budget": "Einfacher Bungalow in Strandnähe",
+   "komfort": "Höhlenhotel mit Pool an der Caldera",
+   "luxus": "Resort mit Pool und Meerblick"
+  },
+  "transport": {
+   "airport": true,
+   "rail": false,
+   "island": true
+  },
+  "flightHoursFromDE": 4.5,
+  "safety": 0
+ },
+ {
+  "id": "nax",
+  "name": "Naxos",
+  "countryId": "gr",
+  "regionId": "gr-kykladen",
+  "lat": 37.1,
+  "lon": 25.38,
+  "crowd": "001122222110",
+  "priceLevel": 2,
+  "interests": {
+   "strand": 3,
+   "ruhe": 3,
+   "food": 3
+  },
+  "tip": "Lange Sandstrände, Bergdörfer, Kitesurfen",
+  "stays": {
+   "budget": "Einfacher Bungalow in Strandnähe",
+   "komfort": "Familiengeführte Studios am Strand",
+   "luxus": "Resort mit Pool und Meerblick"
+  },
+  "transport": {
+   "airport": true,
+   "rail": false,
+   "island": true
+  },
+  "flightHoursFromDE": 5,
+  "safety": 0
+ },
+ {
+  "id": "her",
+  "name": "Kreta",
+  "countryId": "gr",
+  "regionId": "gr-kreta",
+  "lat": 35.34,
+  "lon": 25.13,
+  "crowd": "111122332211",
+  "priceLevel": 2,
+  "interests": {
+   "strand": 3,
+   "berge": 3,
+   "food": 3
+  },
+  "tip": "Samaria-Schlucht, Balos, Elafonisi",
+  "stays": {
+   "budget": "Einfacher Bungalow in Strandnähe",
+   "komfort": "Restauriertes Steinhaus in einem Bergdorf",
+   "luxus": "Resort mit Pool und Meerblick"
+  },
+  "transport": {
+   "airport": true,
+   "intlAirport": true,
+   "rail": false,
+   "island": true
+  },
+  "flightHoursFromDE": 3,
+  "safety": 0
+ },
+ {
+  "id": "spu",
+  "name": "Split & Hvar",
+  "countryId": "hr",
+  "regionId": "hr-dalmatien-inseln",
+  "lat": 43.51,
+  "lon": 16.44,
+  "crowd": "111122222111",
+  "priceLevel": 2,
+  "interests": {
+   "strand": 3,
+   "kultur": 3,
+   "nightlife": 3
+  },
+  "tip": "Diokletianpalast, Inselhopping, Bootstouren",
+  "stays": {
+   "budget": "Einfacher Bungalow in Strandnähe",
+   "komfort": "Steinvilla mit Meerblick auf Hvar",
+   "luxus": "Resort mit Pool und Meerblick"
+  },
+  "transport": {
+   "airport": true,
+   "intlAirport": true,
+   "rail": false,
+   "island": false
+  },
+  "flightHoursFromDE": 2,
+  "safety": 0
+ },
+ {
+  "id": "dbv",
+  "name": "Dubrovnik",
+  "countryId": "hr",
+  "regionId": "hr-dalmatien-inseln",
+  "lat": 42.65,
+  "lon": 18.09,
+  "crowd": "111122222111",
+  "priceLevel": 2,
+  "interests": {
+   "kultur": 3,
+   "strand": 3
+  },
+  "tip": "Stadtmauer, Insel Lokrum, Kajak",
+  "stays": {
+   "budget": "Einfacher Bungalow in Strandnähe",
+   "komfort": "Apartment innerhalb der Stadtmauern",
+   "luxus": "Resort mit Pool und Meerblick"
+  },
+  "transport": {
+   "airport": true,
+   "intlAirport": true,
+   "rail": false,
+   "island": false
+  },
+  "flightHoursFromDE": 2,
+  "safety": 0
+ },
+ {
+  "id": "tiv",
+  "name": "Kotor",
+  "countryId": "me",
+  "regionId": "me-bucht-von-kotor",
+  "lat": 42.42,
+  "lon": 18.77,
+  "crowd": "111122322111",
+  "priceLevel": 1,
+  "interests": {
+   "kultur": 3,
+   "berge": 3,
+   "strand": 3
+  },
+  "tip": "Bucht von Kotor, Festungsaufstieg, Perast",
+  "stays": {
+   "budget": "Einfacher Bungalow in Strandnähe",
+   "komfort": "Steinhaus direkt an der Bucht",
+   "luxus": "Resort mit Pool und Meerblick"
+  },
+  "transport": {
+   "airport": true,
+   "rail": false,
+   "island": false
+  },
+  "flightHoursFromDE": 2.5,
+  "safety": 0
+ },
+ {
+  "id": "ksa",
+  "name": "Ksamil (Albanische Riviera)",
+  "countryId": "me",
+  "regionId": "me-bucht-von-kotor",
+  "lat": 39.77,
+  "lon": 20,
+  "crowd": "111122322111",
+  "priceLevel": 1,
+  "interests": {
+   "strand": 3,
+   "ruhe": 3,
+   "food": 3
+  },
+  "tip": "Türkises Wasser, Ruinen von Butrint, Bergdörfer",
+  "stays": {
+   "budget": "Einfacher Bungalow in Strandnähe",
+   "komfort": "Gästehaus mit Meerblick",
+   "luxus": "Resort mit Pool und Meerblick"
+  },
+  "transport": {
+   "airport": false,
+   "rail": false,
+   "island": false
+  },
+  "flightHoursFromDE": 4,
+  "safety": 0
+ },
+ {
+  "id": "bled",
+  "name": "Bled & Julische Alpen",
+  "countryId": "si",
+  "regionId": "si-julische-alpen-bled",
+  "lat": 46.37,
+  "lon": 14.11,
+  "crowd": "111122332111",
+  "priceLevel": 2,
+  "interests": {
+   "berge": 3,
+   "natur": 3,
+   "abenteuer": 3
+  },
+  "tip": "Bleder See, Vintgar-Klamm, Rafting im Soča-Tal",
+  "stays": {
+   "budget": "Familiengeführtes Gästehaus",
+   "komfort": "Glamping-Zelt im Soča-Tal",
+   "luxus": "Boutique-Lodge mit Panoramablick"
+  },
+  "transport": {
+   "airport": false,
+   "rail": true,
+   "island": false
+  },
+  "flightHoursFromDE": 1.5,
+  "safety": 0
+ },
+ {
+  "id": "mla",
+  "name": "Malta",
+  "countryId": "mt",
+  "regionId": "mt-malta-gozo",
+  "lat": 35.9,
+  "lon": 14.51,
+  "crowd": "111222222211",
+  "priceLevel": 2,
+  "interests": {
+   "kultur": 3,
+   "tauchen": 3,
+   "strand": 3
+  },
+  "tip": "Valletta, Blaue Grotte, Tauchen vor Gozo",
+  "stays": {
+   "budget": "Einfacher Bungalow in Strandnähe",
+   "komfort": "Palazzo-Hotel in Valletta",
+   "luxus": "Resort mit Pool und Meerblick"
+  },
+  "transport": {
+   "airport": true,
+   "intlAirport": true,
+   "rail": false,
+   "island": true
+  },
+  "flightHoursFromDE": 3,
+  "safety": 0
+ },
+ {
+  "id": "bsv",
+  "name": "Brașov (Transsilvanien)",
+  "countryId": "ro",
+  "regionId": "ro-transsilvanien-karpaten",
+  "lat": 45.65,
+  "lon": 25.6,
+  "crowd": "111122332211",
+  "priceLevel": 1,
+  "interests": {
+   "kultur": 3,
+   "natur": 3,
+   "berge": 3
+  },
+  "tip": "Burgen, Sighișoara, Bärenbeobachtung in den Karpaten",
+  "stays": {
+   "budget": "Familiengeführtes Gästehaus",
+   "komfort": "Gästehaus in einem siebenbürgischen Dorf",
+   "luxus": "Boutique-Lodge mit Panoramablick"
+  },
+  "transport": {
+   "airport": false,
+   "rail": true,
+   "island": false
+  },
+  "flightHoursFromDE": 2.5,
+  "safety": 0
+ }
+]

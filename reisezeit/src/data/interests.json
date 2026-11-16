@@ -1,0 +1,62 @@
+[
+ {
+  "id": "strand",
+  "label": "Strand",
+  "icon": "waves"
+ },
+ {
+  "id": "surfen",
+  "label": "Surfen",
+  "icon": "surf"
+ },
+ {
+  "id": "tauchen",
+  "label": "Tauchen & Schnorcheln",
+  "icon": "fish"
+ },
+ {
+  "id": "berge",
+  "label": "Berge & Wandern",
+  "icon": "mountain"
+ },
+ {
+  "id": "kultur",
+  "label": "Kultur & Geschichte",
+  "icon": "temple"
+ },
+ {
+  "id": "food",
+  "label": "Streetfood & Kochen",
+  "icon": "bowl"
+ },
+ {
+  "id": "natur",
+  "label": "Natur & Tiere",
+  "icon": "leaf"
+ },
+ {
+  "id": "nightlife",
+  "label": "Nachtleben",
+  "icon": "moon"
+ },
+ {
+  "id": "ruhe",
+  "label": "Ruhe & Wellness",
+  "icon": "lotus"
+ },
+ {
+  "id": "abenteuer",
+  "label": "Abenteuer",
+  "icon": "tent"
+ },
+ {
+  "id": "city",
+  "label": "Städte",
+  "icon": "city"
+ },
+ {
+  "id": "stays",
+  "label": "Besondere Unterkünfte",
+  "icon": "home"
+ }
+]
