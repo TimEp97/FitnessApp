@@ -81,6 +81,8 @@ main { padding-bottom: 48px; }
 .chip:hover { border-color: var(--ink); color: var(--ink); }
 .chip[aria-pressed="true"], .chip.act { background: var(--ink); color: #fff; border-color: var(--ink); }
 .chip.used { background: var(--chip-tint); color: var(--mute); border-color: var(--chip-tint); }
+.city-chip { min-height: 40px; padding: 0 12px; font-size: 13.5px; }
+.city-tag { font-size: 13px; padding: 6px 11px; }
 .chip .dot { width: 10px; height: 10px; border-radius: 999px; display: inline-block; }
 .chip-scroller { display: flex; gap: 6px; overflow-x: auto; padding: 4px 2px; scrollbar-width: none; }
 .chip-scroller::-webkit-scrollbar { display: none; }

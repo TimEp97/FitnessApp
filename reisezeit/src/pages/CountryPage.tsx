@@ -5,6 +5,8 @@ import { SiteHeader } from '../App';
 import { TAG_ICON } from '../components/icons';
 import { RegionCard } from '../components/RegionCard';
 import { countryById, places } from '../data';
+import { citiesOfRegion } from '../domain/cities';
+import { useTrip } from '../store/tripStore';
 import { aggregate, badMonths, ranges } from '../domain/climate';
 import { TAG_LABEL, t } from '../i18n/de';
 import { clampMonth } from './HomePage';
@@ -16,6 +18,10 @@ export function CountryPage() {
   const country = countryById.get(id);
   // gewählter Monat je Region; global gewählter Monat ist vorausgewählt
   const [cells, setCells] = useState<Record<string, number>>({});
+  const stops = useTrip((s) => s.stops);
+  const addStop = useTrip((s) => s.addStop);
+  const [added, setAdded] = useState('');
+  const inRoute = new Set(stops.map((s) => s.placeId));
 
   if (!country) {
     return (
@@ -71,9 +77,23 @@ export function CountryPage() {
         </section>
 
         <h2 style={{ fontSize: 20, marginTop: 6 }}>{t.regionsHeading}</h2>
+        <p className="small mute" style={{ margin: '-8px 0 0' }}>
+          Orte mit <strong>+</strong> kannst du direkt in deine Route übernehmen.
+        </p>
+        <p className="sr-only" role="status" aria-live="polite">{added}</p>
         {country.regions.map((r) => (
-          <RegionCard key={r.id} region={r} selected={cells[r.id] ?? month} onSelect={(m) => setCells((s) => ({ ...s, [r.id]: m }))} />
+          <RegionCard key={r.id} region={r} selected={cells[r.id] ?? month} onSelect={(m) => setCells((s) => ({ ...s, [r.id]: m }))}
+            cities={citiesOfRegion(r, places)} inRoute={inRoute}
+            onAddPlace={(id) => {
+              addStop(id);
+              setAdded(`${places.find((p) => p.id === id)?.name} zur Route hinzugefügt.`);
+            }} />
         ))}
+        {stops.length > 0 && (
+          <Link to="/planer?schritt=2" className="btn btn-secondary" style={{ alignSelf: 'flex-start' }}>
+            Zur Route ({stops.length} {stops.length === 1 ? 'Ort' : 'Orte'})
+          </Link>
+        )}
       </main>
     </>
   );

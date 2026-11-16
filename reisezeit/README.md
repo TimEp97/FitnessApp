@@ -70,3 +70,4 @@ Die Planer-Orte decken bisher nur Südostasien, Südamerika und Europa ab (wie i
 - Interessen-Kacheln: Tippen schaltet an → „Muss“ (Stern) → aus; langes Drücken setzt direkt „Muss“.
 - Impressum und Datenschutz enthalten Platzhalter `[NAME]` usw. – vor dem Livegang ausfüllen und prüfen lassen.
 - Drag-and-drop in der Stopp-Liste fehlt noch (Pfeiltasten sind da).
+- Orte je Region (Länderdetail und Länderkachel): Planer-Orte aus `places.json` plus Namen aus dem Regionsnamen (`domain/cities.ts`). Planer-Orte lassen sich direkt zur Route hinzufügen.

@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom';
 import type { ClimateCode, Country } from '../data/schema';
+import { places } from '../data';
 import { aggregate, ranges } from '../domain/climate';
+import { citiesOfCountry } from '../domain/cities';
 import { CODE_LABEL, MONTHS_FULL, TAG_LABEL, t } from '../i18n/de';
 import { TAG_ICON } from './icons';
 import { MonthBar } from './MonthBar';
@@ -11,6 +13,8 @@ export function CountryCard({ country, month }: { country: Country; month: numbe
   const code = month >= 0 ? (agg[month] as ClimateCode) : null;
   const good = month >= 0 ? country.regions.filter((r) => r.climate[month] === 'G' || r.climate[month] === 'L').length : 0;
   const regionsWord = n === 1 ? 'Region' : 'Regionen';
+  const cities = citiesOfCountry(country, places).map((c) => c.name);
+  const shown = cities.slice(0, 4);
   const href = `/land/${country.id}${month >= 0 ? `?monat=${month + 1}` : ''}`;
   return (
     <Link to={href} className="country-card" aria-label={`${country.name} öffnen`}>
@@ -26,6 +30,11 @@ export function CountryCard({ country, month }: { country: Country; month: numbe
         {code && (
           <span className={`pill ${code}`}>
             Im {MONTHS_FULL[month]}: {CODE_LABEL[code]} in {good} von {n} {regionsWord}
+          </span>
+        )}
+        {shown.length > 0 && (
+          <span className="small" style={{ color: 'var(--ink-2)' }}>
+            <strong>Orte:</strong> {shown.join(', ')}{cities.length > shown.length ? ` +${cities.length - shown.length}` : ''}
           </span>
         )}
         <div className="row" style={{ ['--gap' as string]: '6px' }}>
