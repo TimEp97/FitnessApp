@@ -5,6 +5,10 @@ import type { TravelProfile } from '../domain/profile';
 export interface ProfileState extends TravelProfile {
   /** Profile von Freunden, per Link hinzugefügt (nur lokal gespeichert) */
   friends: TravelProfile[];
+  /** IDs schon gefeierter Abzeichen und höchste gefeierte Stufe (damit jede Meldung nur einmal kommt) */
+  celebrated: string[];
+  celebratedLevel: number;
+  markCelebrated(ids: string[], level: number): void;
   setName(name: string): void;
   toggleCountry(code: string): void;
   addCountries(codes: string[]): void;
@@ -31,6 +35,9 @@ export const useProfile = create<ProfileState>()(
       countries: [],
       places: [],
       friends: [],
+      celebrated: [],
+      celebratedLevel: 0,
+      markCelebrated: (ids, level) => set((s) => ({ celebrated: union(s.celebrated, ids), celebratedLevel: Math.max(s.celebratedLevel, level) })),
       setName: (name) => set({ name: name.slice(0, 40) }),
       toggleCountry: (code) => set((s) => ({ countries: toggle(s.countries, code) })),
       addCountries: (codes) => set((s) => ({ countries: union(s.countries, codes) })),
@@ -38,7 +45,7 @@ export const useProfile = create<ProfileState>()(
       addPlaces: (ids) => set((s) => ({ places: union(s.places, ids) })),
       addFriend: (p) => set((s) => ({ friends: [...s.friends.filter((f) => f.name !== p.name), p].slice(-30) })),
       removeFriend: (name) => set((s) => ({ friends: s.friends.filter((f) => f.name !== name) })),
-      resetProfile: () => set({ name: '', countries: [], places: [], friends: [] }),
+      resetProfile: () => set({ name: '', countries: [], places: [], friends: [], celebrated: [], celebratedLevel: 0 }),
     }),
     { name: 'reisezeit-profil-v1', version: 1, storage: createJSONStorage(() => safeStorage) },
   ),

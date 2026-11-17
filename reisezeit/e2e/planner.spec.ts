@@ -66,14 +66,20 @@ test('Reiseprofil: Punkte, Auszeichnungen und Vergleich', async ({ page }) => {
   await page.getByRole('button', { name: 'Thailand', exact: true }).click();
   await page.getByLabel('Land suchen').fill('Itali');
   await page.getByRole('button', { name: 'Italien', exact: true }).click();
-  // 2 Länder × 10 + 2 Kontinente × 25
-  await expect(page.locator('.stat').first()).toContainText('70');
+  // 2 Länder × 10 + 2 Kontinente × 25 + 5 Bonus für das erste Abzeichen
+  await expect(page.getByRole('img', { name: /Stufe Urlauber, 75 Punkte/ })).toBeVisible();
   await expect(page.locator('.badge.earned')).toHaveCount(1);
   await expect(page.locator('.badge.earned')).toContainText('Erste Reise');
+  // Glückwunsch-Meldung, Weltkarte und nächste Ziele
+  await expect(page.locator('.toast').first()).toContainText('Neues Abzeichen: Erste Reise');
+  await expect(page.getByRole('img', { name: 'Weltkarte: 2 Länder bereist' })).toBeVisible();
+  await expect(page.locator('.worldmap .land.mine')).toHaveCount(2);
+  await expect(page.getByRole('heading', { name: 'Deine nächsten Ziele' })).toBeVisible();
 
   // Profil eines Freundes per Link vergleichen und in die Rangliste nehmen
   await page.goto('/#/vergleich/p1.QW5uYQ.DEFRITJPTHUS.bkk');
   await expect(page.getByRole('heading', { name: 'Tim und Anna' })).toBeVisible();
+  await expect(page.locator('.worldmap .land.both')).toHaveCount(2);
   await expect(page.getByText(/Anna liegt \d+ Punkte vorn/)).toBeVisible();
   await page.getByRole('button', { name: 'Zur Rangliste hinzufügen' }).click();
   await page.getByRole('link', { name: 'Mein Profil' }).click();

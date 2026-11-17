@@ -2,6 +2,7 @@ import { Suspense, lazy, useEffect } from 'react';
 import { Link, Route, Routes, useLocation } from 'react-router-dom';
 import { Globe2, Map as MapIcon, Plane, Route as RouteIcon, Trophy } from 'lucide-react';
 import { ComparePage, ProfilePage } from './pages/ProfilePage';
+import { Celebration } from './components/Celebration';
 import { useTrip } from './store/tripStore';
 import { t } from './i18n/de';
 import { HomePage } from './pages/HomePage';
@@ -131,6 +132,7 @@ export function App() {
       </Suspense>
       {!isPrint && <SiteFooter />}
       {!isPrint && <MobileTabBar />}
+      {!isPrint && <Celebration />}
     </>
   );
 }

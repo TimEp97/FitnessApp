@@ -2,19 +2,20 @@ import { describe, expect, it } from 'vitest';
 import { COUNTRY_INFO } from '../data/countryInfo';
 import countries from '../data/countries.json';
 import { WORLD, WORLD_BY_CODE, isoOfAppCountry } from '../data/world';
-import { BADGES, compareProfiles, decodeProfile, earnedBadges, encodeProfile, leaderboard, levelFor, profileStats } from './profile';
+import { BADGES, compareProfiles, decodeProfile, earnedBadges, encodeProfile, leaderboard, levelFor, nextGoals, profileStats, travelType } from './profile';
 
 describe('Reiseprofil', () => {
-  it('zählt Punkte: 10 je Land, 3 je Ort, 25 je Kontinent', () => {
+  it('zählt Punkte: 10 je Land, 3 je Ort, 25 je Kontinent, plus Bonus für Abzeichen', () => {
     const s = profileStats({ countries: ['TH', 'VN', 'IT', 'XX', 'TH'], places: ['bkk', 'cnx'] });
     expect(s.countries).toBe(3);
     expect(s.continents).toEqual(['Europa', 'Asien']);
-    expect(s.points).toBe(3 * 10 + 2 * 3 + 2 * 25);
+    expect(s.bonusPoints).toBe(5); // „Erste Reise“
+    expect(s.points).toBe(3 * 10 + 2 * 3 + 2 * 25 + 5);
   });
   it('Stufen und Fortschritt', () => {
     expect(levelFor(0).name).toBe('Neuling');
     expect(levelFor(160).name).toBe('Entdecker');
-    expect(levelFor(160).toNext).toBe(140);
+    expect(levelFor(160).toNext).toBe(190);
     expect(levelFor(5000).progress).toBe(1);
   });
   it('vergibt Auszeichnungen', () => {
@@ -25,6 +26,21 @@ describe('Reiseprofil', () => {
     expect(five).toEqual(expect.arrayContaining(['entdecker', 'drei-kontinente', 'asien-fan', 'inselhuepfer']));
     expect(five).not.toContain('weltenbummler');
     expect(BADGES.every((b) => b.progress(profileStats({ countries: [], places: [] }))[0] === 0)).toBe(true);
+  });
+  it('Regions-, Halbkugel- und Erlebnis-Abzeichen', () => {
+    const s = profileStats({ countries: ['TH', 'VN', 'KH', 'LA', 'PE'], places: ['hkt', 'kbv', 'lnt', 'pp', 'usm', 'bkk'] });
+    const ids = earnedBadges(s).map((b) => b.id);
+    expect(ids).toEqual(expect.arrayContaining(['suedostasien', 'aequator', 'strandlaeufer']));
+    expect(travelType(s)).toBe('Strandmensch');
+    expect(travelType(profileStats({ countries: ['TH'], places: [] }))).toBeNull();
+  });
+  it('nächste Ziele: weit fortgeschrittene zuerst, nie schon erreichte', () => {
+    const s = profileStats({ countries: ['TH', 'VN', 'JP', 'IT'], places: [] });
+    const goals = nextGoals(s);
+    expect(goals).toHaveLength(3);
+    expect(goals[0].badge.id).toBe('entdecker'); // 4 von 5
+    expect(goals.every((g) => g.left > 0)).toBe(true);
+    expect(new Set(BADGES.map((b) => b.id)).size).toBe(BADGES.length);
   });
   it('Vergleich und Rangliste', () => {
     const a = { name: 'A', countries: ['TH', 'IT', 'PE'], places: [] };

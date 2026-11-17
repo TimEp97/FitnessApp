@@ -35,12 +35,22 @@ Bei vorinstalliertem Chromium: `PW_CHROMIUM_PATH=/pfad/zu/chromium npm run test:
 
 **Achtung:** Die Angaben sind von Hand zusammengestellt (Stand siehe `INFO_STAND`) und nicht gegen eine amtliche Quelle abgeglichen. Vor dem Livegang Land für Land mit dem Auswärtigen Amt prüfen und danach regelmäßig pflegen. In der App steht überall der Hinweis „ohne Gewähr“ mit Link zum Auswärtigen Amt.
 
-## Reiseprofil, Punkte und Vergleich
+## Reiseprofil und Gamification
 
-- `#/profil`: bereiste Länder (Weltliste mit rund 200 Ländern, `data/world.ts`) und Orte ankreuzen.
-- Punkte: 10 je Land, 25 je Kontinent, 3 je Ort. Daraus ergeben sich Stufen (Neuling … Reiselegende) und 13 Auszeichnungen (`domain/profile.ts`).
-- Vergleich ohne Server: Der Profil-Link (`#/vergleich/<code>`) enthält Name, Länder und Orte. Wer ihn öffnet, sieht den direkten Vergleich und kann die Person in seine lokale Rangliste aufnehmen.
-- Eine öffentliche Rangliste über alle Nutzer gibt es nicht – dafür wäre ein Server mit Konten nötig.
+`#/profil` – alles liegt lokal im Browser, die Logik steht in `domain/profile.ts`:
+
+- **Weltkarte zum Freirubbeln:** Bereiste Länder färben sich ein; ein Klick auf ein Land markiert es. Sehr kleine Staaten (z. B. Malta, Singapur) fehlen in den Kartendaten und werden über die Länderliste angekreuzt.
+- **Punkte:** 10 je Land, 25 je Kontinent, 3 je besuchtem Ort, dazu Bonuspunkte für jedes Abzeichen.
+- **Stufen:** Neuling → Urlauber → Entdecker → Weltenbummler → Globetrotter → Weltreisender → Reiselegende, als Ring mit Fortschritt.
+- **28 Abzeichen in vier Gruppen:** Länder (Erste Reise … Club der 100), Kontinente (z. B. Äquator-Überquerer), Regionen (z. B. Südostasien-Kenner, Nordlicht, Seidenstraße) und Erlebnisse aus den besuchten Orten (z. B. Strandläufer, Gipfelstürmer).
+- **Nächste Ziele:** die drei Abzeichen, die am nächsten sind, mit Fortschrittsbalken.
+- **Reisetyp:** aus den besuchten Orten, z. B. „Strandmensch“.
+- **Glückwunsch-Meldung** bei neuem Abzeichen oder neuer Stufe – auf jeder Seite, auch wenn man ein Land auf der Länderseite oder eine Reise im Plan als bereist einträgt.
+- **Freunde und Rangliste:** Der Profil-Link (`#/vergleich/<code>`) enthält Name, Länder und Orte. Wer ihn einfügt, sieht die Reisen der Person (gemeinsame Weltkarte, besuchte Orte, Abzeichen) und eine Rangliste.
+
+**Für später – Freunde live im Profil:** Der Link ist eine Momentaufnahme; neue Reisen eines Freundes erscheinen erst mit einem neuen Link. Damit Freunde und ihre Reisen automatisch aktuell sind, braucht es Konten und einen kleinen Server (z. B. PHP + MySQL wie bei der Fitness-App oder Supabase). Die Profildaten (`TravelProfile`) und alle Berechnungen sind schon so gebaut, dass sie dann vom Server statt aus dem Link kommen können.
+
+Die Karte braucht `src/data/isoNumeric.json` (erzeugt mit `node scripts/make-iso-numeric.mjs`).
 
 ## Bilder
 
